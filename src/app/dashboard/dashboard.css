@@ -1,0 +1,509 @@
+/* ---------------------------------------------------------------------
+   Blue Diamond Cre8tive — Dashboard app shell (Pattern E tokens)
+   Scoped entirely under .dashboard-e so this cannot leak into (or be
+   leaked into by) the marketing site's landing-e.css. Same palette
+   variables as Pattern E, restyled for an app surface — no new colours.
+   --------------------------------------------------------------------- */
+.dashboard-e {
+  --bg: #e9e9e9;
+  --accent: #f7652d;
+  --accent-rgb: 247, 101, 45;
+  --accent-2: #527799;
+  --accent-3: #333333;
+  --dark: #101820;
+  --dark-2: #0f2437;
+  --text-dark: #000000;
+  --text-light: #ffffff;
+
+  --card: #ffffff;
+  --card-alt: #f5f5f4;
+  --border: rgba(0, 0, 0, 0.1);
+  --body-c: rgba(0, 0, 0, 0.72);
+  --muted: rgba(0, 0, 0, 0.56);
+  --font: "Inter", "Aptos", -apple-system, "Segoe UI", system-ui, sans-serif;
+  --ease: cubic-bezier(0.4, 0, 0.2, 1);
+
+  min-height: 100vh;
+  background: var(--bg);
+  color: var(--text-dark);
+  font-family: var(--font);
+  -webkit-font-smoothing: antialiased;
+  line-height: 1.5;
+}
+
+.dashboard-e * {
+  box-sizing: border-box;
+}
+
+.dashboard-e a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.dashboard-e h1,
+.dashboard-e h2,
+.dashboard-e h3 {
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  margin: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dashboard-e * {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+/* Layout: fixed sidebar + scrollable main */
+.dashboard-e .dash-shell {
+  display: flex;
+  min-height: 100vh;
+}
+
+.dashboard-e .dash-main {
+  flex: 1;
+  min-width: 0;
+  padding: 28px 32px 48px;
+}
+
+.dashboard-e .dash-topbar {
+  display: none;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+  background: var(--dark);
+  color: var(--text-light);
+}
+
+@media (max-width: 860px) {
+  .dashboard-e .dash-shell {
+    flex-direction: column;
+  }
+  .dashboard-e .dash-topbar {
+    display: flex;
+  }
+  .dashboard-e .dash-main {
+    padding: 20px 16px 40px;
+  }
+}
+
+/* Sidebar */
+.dashboard-e .dash-sidebar {
+  width: 240px;
+  flex-shrink: 0;
+  background: var(--dark);
+  color: var(--text-light);
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+@media (max-width: 860px) {
+  .dashboard-e .dash-sidebar {
+    position: fixed;
+    inset: 0 auto 0 0;
+    z-index: 50;
+    width: 260px;
+    min-height: 100vh;
+    transform: translateX(-100%);
+    transition: transform 0.2s var(--ease);
+  }
+  .dashboard-e .dash-sidebar.open {
+    transform: translateX(0);
+  }
+  .dashboard-e .dash-scrim {
+    position: fixed;
+    inset: 0;
+    z-index: 40;
+    background: rgba(0, 0, 0, 0.5);
+  }
+}
+
+.dashboard-e .dash-sidebar-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 20px 18px;
+  font-weight: 700;
+  font-size: 14.5px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.dashboard-e .dash-nav {
+  flex: 1;
+  overflow-y: auto;
+  padding: 14px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.dashboard-e .dash-nav-link {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 9px 12px;
+  border-radius: 8px;
+  font-size: 13.5px;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.68);
+  border-left: 2px solid transparent;
+  transition: background-color 0.15s var(--ease), color 0.15s var(--ease);
+}
+
+.dashboard-e .dash-nav-link:hover {
+  background: rgba(255, 255, 255, 0.06);
+  color: #fff;
+}
+
+.dashboard-e .dash-nav-link.active {
+  background: rgba(var(--accent-rgb), 0.16);
+  color: #fff;
+  border-left-color: var(--accent);
+  font-weight: 600;
+}
+
+.dashboard-e .dash-sidebar-footer {
+  padding: 12px 18px 18px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.dashboard-e .dash-signout {
+  font-size: 13px;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.6);
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+.dashboard-e .dash-signout:hover {
+  color: #fff;
+}
+
+.dashboard-e .dash-hamburger {
+  background: none;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  padding: 4px;
+}
+
+/* Page heading */
+.dashboard-e .dash-page-head {
+  margin-bottom: 24px;
+}
+
+.dashboard-e .dash-page-head h1 {
+  font-size: 24px;
+}
+
+.dashboard-e .dash-page-head p {
+  margin: 6px 0 0;
+  color: var(--body-c);
+  font-size: 14px;
+}
+
+/* Cards (reuse TiltCard with tilt="flat" for the glow-only hover) */
+.dashboard-e .dash-card {
+  padding: 22px;
+}
+
+.dashboard-e .dash-grid {
+  display: grid;
+  gap: 18px;
+}
+
+.dashboard-e .dash-grid-2 {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.dashboard-e .dash-grid-3 {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+@media (max-width: 720px) {
+  .dashboard-e .dash-grid-2,
+  .dashboard-e .dash-grid-3 {
+    grid-template-columns: 1fr;
+  }
+}
+
+.dashboard-e .dash-stat-label {
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--muted);
+}
+
+.dashboard-e .dash-stat-value {
+  font-size: 28px;
+  font-weight: 800;
+  margin-top: 8px;
+  letter-spacing: -0.01em;
+}
+
+/* Tables / lists */
+.dashboard-e .dash-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.dashboard-e .dash-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 14px 18px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+}
+
+.dashboard-e .dash-row-title {
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.dashboard-e .dash-row-sub {
+  font-size: 12.5px;
+  color: var(--muted);
+  margin-top: 2px;
+}
+
+/* Status pills */
+.dashboard-e .pill {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 11px;
+  border-radius: 999px;
+  font-size: 11.5px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.dashboard-e .pill-paid {
+  background: rgba(26, 122, 60, 0.12);
+  color: #1a7a3c;
+}
+
+.dashboard-e .pill-due {
+  background: rgba(var(--accent-2-rgb, 82, 119, 153), 0.14);
+  color: var(--accent-2);
+}
+
+.dashboard-e .pill-overdue {
+  background: rgba(179, 38, 30, 0.12);
+  color: #b3261e;
+}
+
+/* Empty state */
+.dashboard-e .dash-empty {
+  padding: 40px 24px;
+  text-align: center;
+  color: var(--muted);
+  background: var(--card);
+  border: 1px dashed var(--border);
+  border-radius: 16px;
+  font-size: 14px;
+}
+
+/* Buttons (matches landing-e's) */
+.dashboard-e .btn-solid,
+.dashboard-e .btn-outline {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  border-radius: 999px;
+  padding: 11px 22px;
+  font-size: 13.5px;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  transition: transform 0.15s var(--ease), box-shadow 0.15s var(--ease);
+}
+
+.dashboard-e .btn-solid {
+  background: var(--accent);
+  color: #fff;
+  border: 1px solid var(--accent);
+}
+
+.dashboard-e .btn-solid:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 8px 20px rgba(var(--accent-rgb), 0.32);
+}
+
+.dashboard-e .btn-solid:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+.dashboard-e .btn-outline {
+  background: transparent;
+  color: var(--dark);
+  border: 1px solid var(--border);
+}
+
+.dashboard-e .btn-outline:hover {
+  border-color: var(--dark);
+}
+
+/* Forms */
+.dashboard-e .field {
+  margin-bottom: 14px;
+}
+
+.dashboard-e label {
+  display: block;
+  font-size: 12.5px;
+  font-weight: 600;
+  margin-bottom: 5px;
+  color: var(--dark);
+}
+
+.dashboard-e input,
+.dashboard-e textarea,
+.dashboard-e select {
+  width: 100%;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 10px 12px;
+  font-size: 13.5px;
+  font-family: var(--font);
+  background: #fff;
+  color: var(--text-dark);
+}
+
+.dashboard-e input:focus,
+.dashboard-e textarea:focus,
+.dashboard-e select:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(var(--accent-rgb), 0.15);
+}
+
+.dashboard-e .form-error {
+  font-size: 12px;
+  color: #b3261e;
+  margin-top: 6px;
+}
+
+.dashboard-e .form-note {
+  font-size: 12.5px;
+  color: var(--muted);
+  background: rgba(var(--accent-rgb), 0.06);
+  border: 1px solid rgba(var(--accent-rgb), 0.18);
+  border-radius: 10px;
+  padding: 12px 14px;
+  line-height: 1.55;
+}
+
+/* Persona picker (Your Cre8tive Team) */
+.dashboard-e .persona-card {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 22px;
+  cursor: pointer;
+}
+
+.dashboard-e .persona-emoji {
+  font-size: 30px;
+}
+
+.dashboard-e .persona-name {
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.dashboard-e .persona-role {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--accent-2);
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.dashboard-e .persona-oneliner {
+  font-size: 13px;
+  color: var(--body-c);
+  line-height: 1.55;
+}
+
+/* Chat */
+.dashboard-e .chat-shell {
+  display: flex;
+  flex-direction: column;
+  height: calc(100vh - 180px);
+  min-height: 420px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  overflow: hidden;
+}
+
+.dashboard-e .chat-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--border);
+}
+
+.dashboard-e .chat-messages {
+  flex: 1;
+  overflow-y: auto;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.dashboard-e .chat-bubble {
+  max-width: 74%;
+  padding: 11px 15px;
+  border-radius: 14px;
+  font-size: 13.5px;
+  line-height: 1.55;
+  white-space: pre-wrap;
+}
+
+.dashboard-e .chat-bubble.user {
+  align-self: flex-end;
+  background: var(--accent);
+  color: #fff;
+  border-bottom-right-radius: 4px;
+}
+
+.dashboard-e .chat-bubble.assistant {
+  align-self: flex-start;
+  background: var(--card-alt);
+  color: var(--text-dark);
+  border-bottom-left-radius: 4px;
+}
+
+.dashboard-e .chat-bubble.pending {
+  color: var(--muted);
+  font-style: italic;
+}
+
+.dashboard-e .chat-input-row {
+  display: flex;
+  gap: 10px;
+  padding: 14px 16px;
+  border-top: 1px solid var(--border);
+}
+
+.dashboard-e .chat-input-row textarea {
+  resize: none;
+  flex: 1;
+}
