@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
-import { Check, Radar } from "lucide-react";
+import { Check, Radar, Target } from "lucide-react";
 import { MarketingShell } from "@/components/marketing/MarketingShell";
 import { LineReveal } from "@/components/marketing/TextReveal";
-import { Pill, Eyebrow } from "@/components/marketing/Pill";
+import { Pill, Eyebrow, TagChip } from "@/components/marketing/Pill";
 import "../landing-e.css";
 
 export const metadata: Metadata = {
@@ -43,6 +43,33 @@ export default function ToolsPage() {
                 See a preview
               </Pill>
             </div>
+          </div>
+        </section>
+
+        <section className="section section-bg">
+          <div className="section-head reveal">
+            <Eyebrow>Free tool</Eyebrow>
+            <LineReveal as="h2" lines={["Not ready for the Vault?", "Start with a free score."]} />
+          </div>
+          <div className="card reveal" style={{ maxWidth: 720, margin: "0 auto", border: "none", display: "grid", gridTemplateColumns: "auto 1fr auto", gap: 24, alignItems: "center" }}>
+            <div className="icon-badge" style={{ marginBottom: 0 }}>
+              <Target size={22} />
+            </div>
+            <div>
+              <h3>Cre8tive Score</h3>
+              <p>
+                Submit your idea or tool and get an honest 0-100 score across originality, technical
+                feasibility, AI-visibility (will ChatGPT and Claude recommend you), competition, and
+                white space, in about 30 seconds. No account required.
+              </p>
+              <div style={{ display: "flex", gap: 8, marginTop: 12 }}>
+                <TagChip>Free</TagChip>
+                <TagChip>3 lifetime scores</TagChip>
+              </div>
+            </div>
+            <Pill href="/tools/score" variant="dark" trailing="arrow">
+              Score my idea
+            </Pill>
           </div>
         </section>
 

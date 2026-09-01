@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { Check } from "lucide-react";
 import { MarketingShell } from "@/components/marketing/MarketingShell";
 import { LineReveal } from "@/components/marketing/TextReveal";
@@ -95,7 +96,14 @@ export default function PricingPage() {
           <div className="section-head reveal" style={{ marginBottom: 12 }}>
             <Eyebrow>Platform — self-serve</Eyebrow>
             <LineReveal as="h2" lines={["Sign up and get instant access."]} />
-            <p>No onboarding call needed for either product below.</p>
+            <p>
+              No onboarding call needed for either product below. Not ready to commit to either yet?{" "}
+              <Link href="/tools/score" style={{ color: "var(--accent)", fontWeight: 600 }}>
+                Cre8tive Score
+              </Link>{" "}
+              is a free idea and positioning scorer, no account required, and the fastest way to see
+              what our platform can do.
+            </p>
           </div>
           {platformGroups.map((group) => (
             <div className="bdc-silo-group" key={group.name} style={{ marginTop: 36 }}>

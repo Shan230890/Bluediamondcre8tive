@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { Megaphone, Radar, GraduationCap, Trophy, ArrowRight, Check, Sparkles } from "lucide-react";
+import { Megaphone, Radar, GraduationCap, Trophy, ArrowRight, Check, Sparkles, Target } from "lucide-react";
 import { MarketingShell } from "@/components/marketing/MarketingShell";
 import { LiquidHero } from "@/components/marketing/LiquidHero";
 import { HeroCarousel } from "@/components/marketing/HeroCarousel";
@@ -23,6 +23,14 @@ const serviceSilo = {
 };
 
 const platformSilos = [
+  {
+    icon: Target,
+    title: "Cre8tive Score",
+    body: "Free idea and positioning scorer. Get an honest 0-100 read on originality, technical feasibility, AI-visibility, competition, and white space, in about 30 seconds.",
+    href: "/tools/score",
+    cta: "Score your idea free",
+    tags: ["Free", "No sign-up required"],
+  },
   {
     icon: Radar,
     title: "Competitor Intelligence Vault",
@@ -163,7 +171,7 @@ export default function HomePage() {
               <h3>Platform — self-serve</h3>
               <span className="bdc-silo-group-note">Sign up and get instant access. No onboarding call.</span>
             </div>
-            <div className="grid grid-2">
+            <div className="grid grid-3">
               {platformSilos.map((silo) => (
                 <div className="card reveal" key={silo.title}>
                   <div className="icon-badge">
