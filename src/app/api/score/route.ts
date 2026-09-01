@@ -19,7 +19,11 @@ import {
 import type { ScoreAxes } from "@/lib/score/types";
 
 export const runtime = "nodejs";
-export const maxDuration = 60;
+// The pipeline runs several sequential + parallel Ollama Cloud calls; under
+// real-world latency variance this occasionally exceeds 60s, which was
+// observed to 504 in production. Raised to the Vercel Pro ceiling for this
+// plan; if the account is ever on Hobby, this gets silently capped to 60s.
+export const maxDuration = 120;
 
 const FREE_TIER_LIMIT = 3;
 

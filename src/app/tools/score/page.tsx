@@ -35,6 +35,7 @@ const LOADING_STEPS = [
   "Checking originality against known AI tools…",
   "Simulating how AI assistants would recommend you…",
   "Scoring technical feasibility and white space…",
+  "Still working, some scores just take longer…",
 ];
 
 export default function ScorePage() {
@@ -66,6 +67,27 @@ export default function ScorePage() {
     return () => timers.forEach(clearTimeout);
   }, [loading]);
 
+  async function scoreOnce() {
+    const res = await fetch("/api/score", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ name, description, competitors, url, visitorId, email }),
+    });
+
+    if (res.status === 402) {
+      setLimitReached(true);
+      return null;
+    }
+
+    if (!res.ok) {
+      const body: ApiError = await res.json().catch(() => ({}));
+      throw new Error(body.error || `Score failed (${res.status})`);
+    }
+
+    const result: ScoreResult = await res.json();
+    return result;
+  }
+
   async function onSubmit(e: React.FormEvent) {
     e.preventDefault();
     setLoading(true);
@@ -73,30 +95,26 @@ export default function ScorePage() {
     setLimitReached(false);
     setLoadingStep(0);
 
-    try {
-      const res = await fetch("/api/score", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name, description, competitors, url, visitorId, email }),
-      });
-
-      if (res.status === 402) {
-        setLimitReached(true);
-        setLoading(false);
+    // Ollama Cloud latency varies enough that the pipeline occasionally
+    // times out even though it would have succeeded on a plain retry -- one
+    // silent retry before surfacing an error to the visitor avoids punishing
+    // them for infrastructure variance rather than a real failure.
+    const MAX_ATTEMPTS = 2;
+    for (let attempt = 1; attempt <= MAX_ATTEMPTS; attempt++) {
+      try {
+        const result = await scoreOnce();
+        if (result) {
+          router.push(`/tools/score/${result.shareSlug}`);
+        } else {
+          setLoading(false);
+        }
         return;
+      } catch (err: unknown) {
+        if (attempt < MAX_ATTEMPTS) continue;
+        const msg = err instanceof Error ? err.message : "Something went wrong";
+        setError(msg);
+        setLoading(false);
       }
-
-      if (!res.ok) {
-        const body: ApiError = await res.json().catch(() => ({}));
-        throw new Error(body.error || `Score failed (${res.status})`);
-      }
-
-      const result: ScoreResult = await res.json();
-      router.push(`/tools/score/${result.shareSlug}`);
-    } catch (err: unknown) {
-      const msg = err instanceof Error ? err.message : "Something went wrong";
-      setError(msg);
-      setLoading(false);
     }
   }
 
