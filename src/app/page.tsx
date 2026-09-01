@@ -231,7 +231,7 @@ export default function HomePage() {
                 <span className="bdc-ink-card-arrow"><ArrowRight size={16} /></span>
               </div>
               <div className="bdc-ink-card-watermark"><Trophy size={64} /></div>
-              <h3>See the results we've shipped</h3>
+              <h3>See the results we&apos;ve shipped</h3>
               <p>Every case study on /work was built using the same pipeline and review we run for paying clients.</p>
               <div className="bdc-ink-card-tags">
                 <TagChip>Content</TagChip>
@@ -246,7 +246,7 @@ export default function HomePage() {
               </div>
               <div className="bdc-ink-card-watermark"><Radar size={64} /></div>
               <h3>Built on our own Vault</h3>
-              <p>We run our own competitor tracking on ourselves first. If it's not good enough for us, it doesn't ship to clients.</p>
+              <p>We run our own competitor tracking on ourselves first. If it&apos;s not good enough for us, it doesn&apos;t ship to clients.</p>
               <div className="bdc-ink-card-tags">
                 <TagChip>Positioning</TagChip>
                 <TagChip>White space</TagChip>

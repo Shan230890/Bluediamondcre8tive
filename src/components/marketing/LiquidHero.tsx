@@ -30,6 +30,9 @@ export function LiquidHero() {
 
   useEffect(() => {
     const isTouch = window.matchMedia("(pointer: coarse)").matches;
+    // Touch/pointer capability is unknown until after mount (SSR has no
+    // window), so this correction can't be a lazy initializer.
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     if (reduced || isTouch) setStaticFallback(true);
   }, [reduced]);
 

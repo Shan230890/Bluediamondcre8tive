@@ -27,6 +27,10 @@ export function MarketingHeader() {
   const [now, setNow] = useState<Date | null>(null);
 
   useEffect(() => {
+    // `now` starts null so SSR and the first client render match; this sets
+    // the real clock immediately after mount instead of waiting a full
+    // second for the first interval tick.
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setNow(new Date());
     const id = window.setInterval(() => setNow(new Date()), 1000);
     return () => window.clearInterval(id);

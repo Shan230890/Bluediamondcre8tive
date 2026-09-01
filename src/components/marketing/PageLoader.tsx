@@ -29,8 +29,9 @@ export function PageLoader({ onDone }: { onDone: () => void }) {
 
   useEffect(() => {
     if (reduced) {
+      // No need to also flip `mounted` here: the render guard below already
+      // returns null whenever `reduced` is true.
       onDone();
-      setMounted(false);
       return;
     }
     let raf = 0;

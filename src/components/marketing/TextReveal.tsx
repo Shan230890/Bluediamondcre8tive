@@ -33,6 +33,9 @@ export function LineReveal({
 
   useEffect(() => {
     if (reduced) {
+      // Reduced-motion preference is unknown until after mount; skip
+      // straight to the settled state rather than animating.
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setPlay(true);
       return;
     }
@@ -97,6 +100,9 @@ export function WordReveal({
 
   useEffect(() => {
     if (reduced) {
+      // Reduced-motion preference is unknown until after mount; skip
+      // straight to the settled state rather than animating.
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setPlay(true);
       return;
     }

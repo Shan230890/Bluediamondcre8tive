@@ -34,6 +34,9 @@ export function NavOverlay({ open, onClose }: { open: boolean; onClose: () => vo
 
   useEffect(() => {
     if (!open) return;
+    // Sets the clock immediately on open instead of waiting for the first
+    // interval tick; `now` starts null so SSR/first client render match.
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setNow(new Date());
     const id = window.setInterval(() => setNow(new Date()), 1000);
     const onKey = (e: KeyboardEvent) => e.key === "Escape" && onClose();

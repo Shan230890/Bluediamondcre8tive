@@ -11,6 +11,10 @@ export function useReducedMotion(): boolean {
 
   useEffect(() => {
     const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
+    // Reading matchMedia can only happen client-side, so the true value is
+    // necessarily unknown until after mount -- this correction is required,
+    // not an effect that could be replaced by a lazy initializer.
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setReduced(mq.matches);
     const handler = (e: MediaQueryListEvent) => setReduced(e.matches);
     mq.addEventListener("change", handler);
