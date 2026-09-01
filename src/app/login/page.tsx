@@ -38,7 +38,7 @@ export default function LoginPage() {
     <div className="landing-e" style={{ minHeight: "100vh", display: "flex", alignItems: "center", justifyContent: "center", padding: "40px 20px" }}>
       <div style={{ width: "100%", maxWidth: 400 }}>
         <Link href="/" style={{ display: "flex", justifyContent: "center", marginBottom: 24 }}>
-          <LogoMark size="md" />
+          <LogoMark size="lg" />
         </Link>
         <form onSubmit={handleSubmit} className="form-shell">
           <h1 style={{ fontSize: 22, marginBottom: 20, textAlign: "center" }}>Sign in</h1>

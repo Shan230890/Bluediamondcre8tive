@@ -1,22 +1,27 @@
 /**
- * Icon mark. `public/logo.svg` is the full brand wordmark lockup ("blue"
- * script over "CRE8TIVE"), not a square icon -- squeezed into a small square
- * it reads as illegible noise everywhere it was used. This is a proper icon
- * mark instead: an accent-orange diamond (nodding to "Blue Diamond") with no
- * background fill, drawn as plain vector shapes so it stays crisp at any
- * size and reads clearly on both light and dark surfaces (header, footer,
- * nav overlay, dashboard sidebar) instead of relying on a wordmark asset
- * that was never meant to be a small icon.
+ * Icon mark, redrawn from the approved brand concept (Blue Diamond Cre8tive
+ * Logo/2.svg + 6.svg): a circle stacked over a rounded blob, in the same
+ * proportions and colour logic as the source files -- the circle uses
+ * whichever tone actually contrasts with its surface (dark on light
+ * backgrounds, steel on dark ones, matching how the source pair does it),
+ * the blob stays accent-orange either way. Redrawn as two plain shapes
+ * (no background rect, no clipPath cruft) so it stays crisp and legible
+ * at any size instead of squeezing a generator-output SVG into a tiny box.
  */
-export function LogoMark({ size = "sm" }: { size?: "sm" | "md" }) {
-  const px = size === "md" ? 34 : 28;
+export function LogoMark({
+  size = "sm",
+  surface = "light",
+}: {
+  size?: "sm" | "md" | "lg";
+  /** Which background this mark sits on, so the circle stays legible. */
+  surface?: "light" | "dark";
+}) {
+  const px = size === "lg" ? 80 : size === "md" ? 48 : 32;
+  const circleFill = surface === "dark" ? "var(--accent-2)" : "var(--dark)";
   return (
     <svg width={px} height={px} viewBox="0 0 32 32" aria-hidden="true">
-      <path
-        d="M16 2 L30 16 L16 30 L2 16 Z M16 10 L24 16 L16 22 L8 16 Z"
-        fill="var(--accent)"
-        fillRule="evenodd"
-      />
+      <circle cx="16" cy="9.5" r="6" fill={circleFill} />
+      <rect x="6.5" y="13" width="19" height="16.5" rx="8" fill="var(--accent)" />
     </svg>
   );
 }
