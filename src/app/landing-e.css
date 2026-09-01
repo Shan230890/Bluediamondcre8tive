@@ -460,6 +460,11 @@
   font-weight: 800;
   margin-top: 8px;
   letter-spacing: -0.02em;
+  /* Explicit dark-on-white, unlike every other declaration in this file it
+     had no color set, so it silently inherited white from an ancestor
+     .bdc-section-services (the new dark Services section wraps price-card
+     now) instead of the intended dark text. */
+  color: var(--text-dark);
 }
 .landing-e .price-card .tier-price span {
   font-size: 14px;
