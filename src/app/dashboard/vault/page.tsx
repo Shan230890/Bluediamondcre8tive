@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
+import { ShieldCheck } from "lucide-react";
 import { createClient } from "@/lib/supabase/client";
 import { getCompetitorLimit } from "@/lib/vault/tier-limits";
 import { WeeklyScanEntrySchema } from "@/lib/vault/schema";
@@ -153,10 +154,17 @@ export default function VaultPage() {
       </div>
 
       {entries === null ? (
-        <p style={{ color: "var(--muted)", fontSize: 14 }}>Loading...</p>
+        <div className="dash-list" style={{ marginBottom: 24 }}>
+          <div className="skel skel-row" />
+          <div className="skel skel-row" />
+        </div>
       ) : competitorNames.length === 0 ? (
         <div className="dash-empty" style={{ marginBottom: 24 }}>
-          No competitors tracked yet. Add your first weekly scan below.
+          <div className="dash-empty-icon">
+            <ShieldCheck size={20} />
+          </div>
+          <div className="dash-empty-title">No competitors tracked yet</div>
+          <p>Add your first weekly scan below.</p>
         </div>
       ) : (
         <div style={{ marginBottom: 32 }}>

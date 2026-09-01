@@ -15,7 +15,7 @@ export default async function PersonaChatPage({ params }: { params: Promise<{ pe
         </h1>
         <p>{persona.role}</p>
       </div>
-      <PersonaChat slug={persona.slug} name={persona.name} emoji={persona.emoji} />
+      <PersonaChat slug={persona.slug} name={persona.name} role={persona.role} emoji={persona.emoji} />
     </div>
   );
 }

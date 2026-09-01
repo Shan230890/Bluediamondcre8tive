@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { ArrowRight } from "lucide-react";
 import { PERSONA_SLUGS, PERSONAS } from "@/lib/personas/blue-diamond";
 import { TiltCard } from "@/components/motion/TiltCard";
 
@@ -16,10 +17,13 @@ export default function TeamPage() {
           return (
             <Link key={slug} href={`/dashboard/team/${slug}`} style={{ display: "block" }}>
               <TiltCard tilt="flat" className="persona-card">
-                <span className="persona-emoji">{persona.emoji}</span>
+                <span className="persona-avatar">{persona.emoji}</span>
                 <span className="persona-name">{persona.name}</span>
                 <span className="persona-role">{persona.role}</span>
                 <p className="persona-oneliner">{persona.oneLiner}</p>
+                <span className="persona-card-arrow">
+                  Start a chat <ArrowRight size={13} />
+                </span>
               </TiltCard>
             </Link>
           );

@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { Receipt } from "lucide-react";
 import { createClient } from "@/lib/supabase/client";
 import { formatCurrency } from "@/lib/format";
 
@@ -43,16 +44,31 @@ export default function InvoicesPage() {
       </div>
 
       {invoices === null ? (
-        <p style={{ color: "var(--muted)", fontSize: 14 }}>Loading...</p>
+        <div className="dash-list">
+          <div className="skel skel-row" />
+          <div className="skel skel-row" />
+          <div className="skel skel-row" />
+        </div>
       ) : invoices.length === 0 ? (
-        <div className="dash-empty">No invoices yet.</div>
+        <div className="dash-empty">
+          <div className="dash-empty-icon">
+            <Receipt size={20} />
+          </div>
+          <div className="dash-empty-title">No invoices yet</div>
+          <p>Anything billed to your account will show up here.</p>
+        </div>
       ) : (
         <div className="dash-list">
           {invoices.map((inv) => (
             <div className="dash-row" key={inv.id}>
-              <div>
-                <div className="dash-row-title">{formatCurrency(inv.amount)}</div>
-                <div className="dash-row-sub">{inv.due_date ? `Due ${inv.due_date}` : "No due date"}</div>
+              <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
+                <div className="dash-row-icon">
+                  <Receipt size={16} />
+                </div>
+                <div>
+                  <div className="dash-row-title">{formatCurrency(inv.amount)}</div>
+                  <div className="dash-row-sub">{inv.due_date ? `Due ${inv.due_date}` : "No due date"}</div>
+                </div>
               </div>
               <span className={`pill pill-${inv.status}`}>{inv.status}</span>
             </div>

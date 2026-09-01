@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import { GraduationCap } from "lucide-react";
 import { createClient } from "@/lib/supabase/client";
 
 interface PurchasedProduct {
@@ -48,10 +49,17 @@ export default function AcademyLibraryPage() {
       </div>
 
       {purchases === null ? (
-        <p style={{ color: "var(--muted)", fontSize: 14 }}>Loading...</p>
+        <div className="dash-grid dash-grid-2">
+          <div className="skel skel-row" style={{ height: 78 }} />
+          <div className="skel skel-row" style={{ height: 78 }} />
+        </div>
       ) : purchases.length === 0 ? (
         <div className="dash-empty">
-          <p style={{ marginBottom: 12 }}>You haven&apos;t purchased anything from the Academy yet.</p>
+          <div className="dash-empty-icon">
+            <GraduationCap size={20} />
+          </div>
+          <div className="dash-empty-title">Nothing purchased yet</div>
+          <p>You haven&apos;t purchased anything from the Academy yet.</p>
           <Link href="/academy" className="btn-solid">
             Browse Academy
           </Link>

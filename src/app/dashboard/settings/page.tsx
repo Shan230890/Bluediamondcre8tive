@@ -68,7 +68,12 @@ export default function SettingsPage() {
       </div>
 
       {loading ? (
-        <p style={{ color: "var(--muted)", fontSize: 14 }}>Loading...</p>
+        <div style={{ maxWidth: 420 }}>
+          <div className="skel skel-line" style={{ width: "30%", height: 11, marginBottom: 6 }} />
+          <div className="skel" style={{ height: 38, borderRadius: 10, marginBottom: 14 }} />
+          <div className="skel skel-line" style={{ width: "30%", height: 11, marginBottom: 6 }} />
+          <div className="skel" style={{ height: 38, borderRadius: 10 }} />
+        </div>
       ) : (
         <form onSubmit={handleSubmit} style={{ maxWidth: 420 }}>
           <div className="field">

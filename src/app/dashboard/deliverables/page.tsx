@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { FolderOpen } from "lucide-react";
 import { createClient } from "@/lib/supabase/client";
 
 interface Deliverable {
@@ -43,16 +44,31 @@ export default function DeliverablesPage() {
       </div>
 
       {deliverables === null ? (
-        <p style={{ color: "var(--muted)", fontSize: 14 }}>Loading...</p>
+        <div className="dash-list">
+          <div className="skel skel-row" />
+          <div className="skel skel-row" />
+          <div className="skel skel-row" />
+        </div>
       ) : deliverables.length === 0 ? (
-        <div className="dash-empty">No deliverables yet.</div>
+        <div className="dash-empty">
+          <div className="dash-empty-icon">
+            <FolderOpen size={20} />
+          </div>
+          <div className="dash-empty-title">No deliverables yet</div>
+          <p>Content calendars, campaign assets, and reports will land here.</p>
+        </div>
       ) : (
         <div className="dash-list">
           {deliverables.map((d) => (
             <div className="dash-row" key={d.id}>
-              <div>
-                <div className="dash-row-title">{d.title}</div>
-                <div className="dash-row-sub">{d.type ?? "Deliverable"}</div>
+              <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
+                <div className="dash-row-icon">
+                  <FolderOpen size={16} />
+                </div>
+                <div>
+                  <div className="dash-row-title">{d.title}</div>
+                  <div className="dash-row-sub">{d.type ?? "Deliverable"}</div>
+                </div>
               </div>
               {d.file_url ? (
                 <a href={d.file_url} target="_blank" rel="noopener noreferrer" className="btn-outline">
