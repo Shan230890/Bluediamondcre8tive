@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
-import { Check, Radar, Target } from "lucide-react";
+import { Radar, Target } from "lucide-react";
 import { MarketingShell } from "@/components/marketing/MarketingShell";
 import { LineReveal } from "@/components/marketing/TextReveal";
 import { Pill, Eyebrow, TagChip } from "@/components/marketing/Pill";
+import { SectionBackground } from "@/components/marketing/SectionBackground";
 import "../landing-e.css";
 
 export const metadata: Metadata = {
@@ -10,22 +11,14 @@ export const metadata: Metadata = {
   description: "Track competitor pricing, positioning, and content moves on a weekly cadence, with a monthly white-space review. Self-serve, instant access.",
 };
 
-const tiers = [
-  { name: "Starter", price: "$49", period: "/mo", includes: ["1 competitor tracked", "Weekly scan entries", "Email summary"] },
-  { name: "Pro", price: "$99", period: "/mo", featured: true, badge: "Most popular", includes: ["5 competitors tracked", "Weekly scan entries", "Change alerts", "Monthly white-space review"] },
-  { name: "Agency", price: "$249", period: "/mo", includes: ["Unlimited competitors", "Weekly scan entries", "Change alerts", "Monthly white-space review", "White-label report export"] },
-];
-
 export default function ToolsPage() {
   return (
     <MarketingShell>
       <>
         <section className="fs-hero" style={{ padding: "56px 24px 40px" }}>
-          <div className="hero-bg" aria-hidden="true">
-            <span className="glow" />
-          </div>
+          <SectionBackground watermark="TOOLS" />
           <div className="fs-hero-inner">
-            <Eyebrow>Silo 2 — Tools · Self-serve platform</Eyebrow>
+            <Eyebrow>Tools · Self-serve platform</Eyebrow>
             <LineReveal
               as="h1"
               className="bdc-hero-h1"
@@ -51,7 +44,7 @@ export default function ToolsPage() {
             <Eyebrow>Free tool</Eyebrow>
             <LineReveal as="h2" lines={["Not ready for the Vault?", "Start with a free score."]} />
           </div>
-          <div className="card reveal" style={{ maxWidth: 720, margin: "0 auto", border: "none", display: "grid", gridTemplateColumns: "auto 1fr auto", gap: 24, alignItems: "center" }}>
+          <div className="card reveal" style={{ maxWidth: 720, margin: "0 auto", display: "grid", gridTemplateColumns: "auto 1fr auto", gap: 24, alignItems: "center" }}>
             <div className="icon-badge" style={{ marginBottom: 0 }}>
               <Target size={22} />
             </div>
@@ -73,33 +66,10 @@ export default function ToolsPage() {
           </div>
         </section>
 
-        <section className="section section-bg-alt">
-          <div className="grid grid-3">
-            {tiers.map((tier) => (
-              <div className={`price-card reveal ${tier.featured ? "featured" : ""}`} key={tier.name}>
-                {tier.badge && <span className="badge">{tier.badge}</span>}
-                <span className="tier-name">{tier.name}</span>
-                <div className="tier-price">
-                  {tier.price}
-                  <span>{tier.period}</span>
-                </div>
-                <ul>
-                  {tier.includes.map((item) => (
-                    <li key={item}>
-                      <Check size={16} />
-                      {item}
-                    </li>
-                  ))}
-                </ul>
-                <Pill href="/contact" variant={tier.featured ? "dark" : "outline"}>
-                  Get started
-                </Pill>
-              </div>
-            ))}
-          </div>
-          <p className="payments-note text-center" style={{ display: "flex", margin: "28px auto 0", justifyContent: "center" }}>
-            Payments launching soon. Inquiries route to our team for now.
-          </p>
+        <section className="section section-bg-alt text-center reveal">
+          <Pill href="/pricing" variant="dark" trailing="arrow">
+            See Vault pricing
+          </Pill>
         </section>
 
         <section className="section section-bg">

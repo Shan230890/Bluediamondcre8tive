@@ -12,7 +12,6 @@ const LINKS = [
   { href: "/tools", label: "Tools" },
   { href: "/tools/score", label: "Cre8tive Score (free)" },
   { href: "/tools/vault", label: "Vault preview" },
-  { href: "/academy", label: "Academy" },
   { href: "/work", label: "Work" },
   { href: "/pricing", label: "Pricing" },
   { href: "/login", label: "Log in" },
@@ -54,7 +53,7 @@ export function NavOverlay({ open, onClose }: { open: boolean; onClose: () => vo
     <div className="bdc-nav-overlay" role="dialog" aria-modal="true" aria-label="Site menu">
       <div className="bdc-nav-overlay-top">
         <Link href="/" className="fs-wordmark bdc-header-brand" onClick={onClose}>
-          <LogoMark size="sm" />
+          <LogoMark size="md" surface="dark" />
           <span>Blue Diamond Cre8tive</span>
         </Link>
         <button type="button" className="bdc-nav-overlay-close" onClick={onClose} aria-label="Close menu">

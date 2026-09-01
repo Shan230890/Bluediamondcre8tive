@@ -19,7 +19,7 @@ const inter = Inter({
 export const metadata: Metadata = {
   title: "Blue Diamond Cre8tive — AI-native marketing, tools, and courses",
   description:
-    "Blue Diamond Cre8tive is an AI-native digital marketing agency: done-for-you marketing services, the Competitor Intelligence Vault, and a self-serve marketing academy.",
+    "Blue Diamond Cre8tive is an AI-native digital marketing agency: done-for-you marketing services and a self-serve platform of tools, including the Competitor Intelligence Vault and Cre8tive Score.",
 };
 
 export default function RootLayout({

@@ -40,14 +40,13 @@ export function MarketingHeader() {
     <>
       <header className={`bdc-header ${ready ? "bdc-header-in" : ""}`}>
         <Link href="/" className="fs-wordmark bdc-header-brand">
-          <LogoMark size="sm" />
+          <LogoMark size="md" />
           <span>Blue Diamond Cre8tive</span>
         </Link>
 
         <nav className="bdc-header-nav">
           <Link href="/services">Services</Link>
           <Link href="/tools">Tools</Link>
-          <Link href="/academy">Academy</Link>
           <Link href="/work">Work</Link>
           <Link href="/pricing">Pricing</Link>
         </nav>

@@ -2,6 +2,7 @@ import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import { LogoMark } from "@/components/LogoMark";
 import { LineReveal } from "@/components/marketing/TextReveal";
+import { DecorativeShapes } from "@/components/marketing/DecorativeShapes";
 
 /** Shared footer for every Pattern E marketing page — carries the mandatory
  * attribution line, full legal-suite link set, a CTA row, and a giant faint
@@ -9,6 +10,7 @@ import { LineReveal } from "@/components/marketing/TextReveal";
 export function LandingFooter() {
   return (
     <footer className="fs-footer bdc-footer">
+      <DecorativeShapes corner="bl" />
       <span className="bdc-footer-watermark" aria-hidden="true">CRE8TIVE</span>
       <div className="footer-inner">
         <div className="bdc-footer-cta">
@@ -24,12 +26,12 @@ export function LandingFooter() {
         <div className="footer-cols">
           <div>
             <div className="footer-brand">
-              <LogoMark size="sm" />
+              <LogoMark size="lg" surface="dark" />
               <span>Blue Diamond Cre8tive</span>
             </div>
             <p className="footer-tagline">
-              AI-native marketing services, tools, and courses for busy brands. Built and run by a human team,
-              delivered at AI speed.
+              We exist because busy brands don&apos;t need another vendor. They need one
+              accountable system that plans, builds, and ships the work, at AI speed.
             </p>
           </div>
           <div>
@@ -37,7 +39,6 @@ export function LandingFooter() {
             <ul>
               <li><Link href="/services" className="bdc-footer-link">Services</Link></li>
               <li><Link href="/tools" className="bdc-footer-link">Tools</Link></li>
-              <li><Link href="/academy" className="bdc-footer-link">Academy</Link></li>
               <li><Link href="/work" className="bdc-footer-link">Work</Link></li>
             </ul>
           </div>

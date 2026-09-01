@@ -85,6 +85,14 @@
     opacity: 1;
     transform: none;
   }
+  .landing-e .card:hover,
+  .landing-e .price-card:hover,
+  .landing-e .price-card.featured:hover,
+  .landing-e .bdc-showcase-mock:hover,
+  .landing-e .bdc-ink-card:hover,
+  .landing-e .tilt-card.tilt-hover:hover {
+    transform: none !important;
+  }
 }
 
 /* ---------------------------------------------------------------------
@@ -381,9 +389,16 @@
 
 .landing-e .card {
   background: var(--card);
-  border: 1px solid var(--border);
+  border: 1px solid rgba(0, 0, 0, 0.04);
   border-radius: 18px;
   padding: 28px;
+  box-shadow: none;
+  transition: border-color 0.3s var(--ease), box-shadow 0.3s var(--ease), transform 0.3s var(--ease);
+}
+.landing-e .card:hover {
+  border-color: var(--border);
+  box-shadow: 0 16px 32px rgba(0, 0, 0, 0.08);
+  transform: translateY(-3px);
 }
 .landing-e .card h3 {
   font-size: 18px;
@@ -406,12 +421,12 @@
   margin-bottom: 16px;
 }
 
-/* TiltCard hover treatment (marketing = tilt+lift, dashboard = flat glow) */
+/* TiltCard hover treatment (marketing = blend-then-reveal lift, dashboard = flat glow) */
 .landing-e .tilt-card {
   transition: box-shadow 0.3s var(--ease);
 }
 .landing-e .tilt-card.tilt-hover:hover {
-  transform: translateY(-4px) rotate(0deg) !important;
+  transform: translateY(-4px);
   box-shadow: 0 16px 32px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s var(--ease), box-shadow 0.3s var(--ease);
 }
@@ -424,16 +439,29 @@
    --------------------------------------------------------------------- */
 .landing-e .price-card {
   background: var(--card);
-  border: 1px solid var(--border);
+  border: 1px solid rgba(0, 0, 0, 0.04);
   border-radius: 20px;
   padding: 32px 28px;
   display: flex;
   flex-direction: column;
   position: relative;
+  box-shadow: none;
+  transition: border-color 0.3s var(--ease), box-shadow 0.3s var(--ease), transform 0.3s var(--ease);
+}
+.landing-e .price-card:hover {
+  border-color: var(--border);
+  box-shadow: 0 16px 32px rgba(0, 0, 0, 0.08);
+  transform: translateY(-3px);
 }
 .landing-e .price-card.featured {
+  /* Intentional emphasis, not decorative noise — the accent border stays
+     visible at rest even though other cards blend in. */
   border-color: var(--accent);
   box-shadow: 0 0 0 1px var(--accent), 0 20px 40px rgba(var(--accent-rgb), 0.16);
+}
+.landing-e .price-card.featured:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 0 0 1px var(--accent), 0 24px 48px rgba(var(--accent-rgb), 0.22);
 }
 .landing-e .price-card .badge {
   position: absolute;
@@ -1597,6 +1625,7 @@
   padding: 26px;
   position: relative;
   overflow: hidden;
+  box-shadow: none;
   transition: transform 0.4s var(--ease-spring), box-shadow 0.4s var(--ease-spring);
 }
 .landing-e .bdc-ink-card:hover {
@@ -2140,10 +2169,16 @@
 }
 .landing-e .bdc-showcase-mock {
   background: var(--card);
-  border: 1px solid var(--border);
+  border: 1px solid rgba(0, 0, 0, 0.04);
   border-radius: 18px;
   overflow: hidden;
-  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.08);
+  box-shadow: none;
+  transition: border-color 0.3s var(--ease), box-shadow 0.3s var(--ease), transform 0.3s var(--ease);
+}
+.landing-e .bdc-showcase-mock:hover {
+  border-color: var(--border);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.1);
+  transform: translateY(-3px);
 }
 .landing-e .bdc-mock-header {
   display: flex;
@@ -2399,5 +2434,165 @@
 @keyframes bdc-score-spin {
   to {
     transform: rotate(360deg);
+  }
+}
+
+/* ---------------------------------------------------------------------
+   SectionBackground — shared hero background for secondary marketing
+   pages (Services/Tools/Work/Pricing). Bundles the vignette + watermark
+   language from the homepage hero with the simpler breathing glow used
+   elsewhere, without running the interactive liquid canvas.
+   --------------------------------------------------------------------- */
+.landing-e .bdc-section-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+.landing-e .bdc-section-bg-vignette {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(233, 233, 233, 0.2) 0%, rgba(233, 233, 233, 0.75) 70%, var(--bg) 100%);
+}
+.landing-e .bdc-section-bg-watermark {
+  position: absolute;
+  left: 50%;
+  top: 46%;
+  transform: translate(-50%, -50%);
+  font-size: clamp(80px, 18vw, 280px);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  color: rgba(0, 0, 0, 0.045);
+  white-space: nowrap;
+  user-select: none;
+}
+
+/* ---------------------------------------------------------------------
+   DecorativeShapes — a low-opacity dot-grid texture, used sparingly (2-3
+   places site-wide) as a recurring brand texture, derived only from
+   --accent-rgb.
+   --------------------------------------------------------------------- */
+.landing-e .bdc-decorative-shapes {
+  position: absolute;
+  z-index: 0;
+  pointer-events: none;
+  width: 220px;
+  height: 220px;
+  background-image: radial-gradient(rgba(var(--accent-rgb), 0.35) 1.5px, transparent 1.5px);
+  background-size: 22px 22px;
+  opacity: 0.35;
+  mask-image: radial-gradient(circle, #000 0%, transparent 75%);
+  -webkit-mask-image: radial-gradient(circle, #000 0%, transparent 75%);
+}
+.landing-e .bdc-decorative-shapes-tr {
+  top: -40px;
+  right: -40px;
+}
+.landing-e .bdc-decorative-shapes-bl {
+  bottom: -40px;
+  left: -40px;
+}
+
+/* ---------------------------------------------------------------------
+   FAQ accordion
+   --------------------------------------------------------------------- */
+.landing-e .bdc-faq {
+  max-width: 760px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.landing-e .bdc-faq-row {
+  background: var(--card);
+  border: 1px solid rgba(0, 0, 0, 0.04);
+  border-radius: 16px;
+  overflow: hidden;
+  transition: border-color 0.3s var(--ease), box-shadow 0.3s var(--ease);
+}
+.landing-e .bdc-faq-row:hover,
+.landing-e .bdc-faq-row.bdc-faq-open {
+  border-color: var(--border);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.06);
+}
+.landing-e .bdc-faq-question {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 18px 22px;
+  background: none;
+  border: none;
+  text-align: left;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--dark);
+  cursor: pointer;
+  font-family: var(--font);
+}
+.landing-e .bdc-faq-chevron {
+  flex-shrink: 0;
+  color: var(--muted);
+  transition: transform 0.3s var(--ease);
+}
+.landing-e .bdc-faq-open .bdc-faq-chevron {
+  transform: rotate(180deg);
+  color: var(--accent);
+}
+.landing-e .bdc-faq-answer {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.3s var(--ease);
+}
+.landing-e .bdc-faq-open .bdc-faq-answer {
+  grid-template-rows: 1fr;
+}
+.landing-e .bdc-faq-answer-inner {
+  overflow: hidden;
+}
+.landing-e .bdc-faq-answer-inner p {
+  padding: 0 22px 20px;
+  font-size: 13.5px;
+  line-height: 1.65;
+  color: var(--body-c);
+}
+.landing-e .bdc-faq-answer-inner p a {
+  color: var(--accent);
+  font-weight: 600;
+}
+@media (prefers-reduced-motion: reduce) {
+  .landing-e .bdc-faq-answer,
+  .landing-e .bdc-faq-chevron {
+    transition: none !important;
+  }
+}
+
+/* ---------------------------------------------------------------------
+   Schedule-a-call section
+   --------------------------------------------------------------------- */
+.landing-e .bdc-schedule-call {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 32px;
+  flex-wrap: wrap;
+}
+.landing-e .bdc-schedule-call-copy {
+  max-width: 460px;
+}
+/* Explicit color, not inherited — .bdc-ink-card already sets h3/p color
+   for the dark-card context this section always renders in, so this only
+   overrides sizing/spacing, never text color (see landing-e cascade note
+   on .price-card .tier-price above). */
+.landing-e .bdc-schedule-call-copy h3 {
+  font-size: 22px;
+  margin-bottom: 10px;
+}
+@media (max-width: 720px) {
+  .landing-e .bdc-schedule-call {
+    flex-direction: column;
+    align-items: flex-start;
   }
 }

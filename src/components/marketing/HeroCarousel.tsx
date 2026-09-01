@@ -5,8 +5,8 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 
 const SLIDES = [
   {
-    stat: "3 silos, 1 login",
-    body: "Services, tools, and courses under one account, so growth compounds instead of scattering across vendors.",
+    stat: "Two ways to work with us",
+    body: "A done-for-you marketing service, and a self-serve platform of tools, under one account.",
   },
   {
     stat: "Principal-reviewed",
@@ -14,7 +14,7 @@ const SLIDES = [
   },
   {
     stat: "Self-serve or done-for-you",
-    body: "Start with the Vault or Academy for instant access, or hand the whole thing to our team. Your call.",
+    body: "Start with the Vault for instant access, or hand the whole thing to our team. Your call.",
   },
 ];
 

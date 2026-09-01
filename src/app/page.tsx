@@ -1,21 +1,16 @@
 import type { Metadata } from "next";
-import { ArrowRight, Trophy, Radar } from "lucide-react";
+import { ArrowRight, TrendingUp } from "lucide-react";
 import { MarketingShell } from "@/components/marketing/MarketingShell";
 import { LiquidHero } from "@/components/marketing/LiquidHero";
 import { HeroCarousel } from "@/components/marketing/HeroCarousel";
 import { HeroScoreForm } from "@/components/marketing/HeroScoreForm";
 import { StatsPanel } from "@/components/marketing/StatsPanel";
 import { PillarGrid } from "@/components/marketing/PillarGrid";
-import { TestimonialStats } from "@/components/marketing/TestimonialStats";
 import { QualityChecklist } from "@/components/marketing/QualityChecklist";
-import {
-  ScoreShowcase,
-  VaultShowcase,
-  AcademyShowcase,
-  PrincipalReviewShowcase,
-} from "@/components/marketing/ShowcaseCards";
+import { ScoreShowcase, VaultShowcase } from "@/components/marketing/ShowcaseCards";
 import { PrincipalBio } from "@/components/marketing/PrincipalBio";
-import { LineReveal, WordReveal } from "@/components/marketing/TextReveal";
+import { DecorativeShapes } from "@/components/marketing/DecorativeShapes";
+import { LineReveal } from "@/components/marketing/TextReveal";
 import { Pill, Eyebrow, TagChip } from "@/components/marketing/Pill";
 import "./landing-e.css";
 
@@ -27,6 +22,7 @@ export default function HomePage() {
   return (
     <MarketingShell>
       <>
+        {/* ================= 1. HERO ================= */}
         <section className="bdc-hero">
           <LiquidHero />
           <div className="bdc-hero-vignette" aria-hidden="true" />
@@ -43,8 +39,8 @@ export default function HomePage() {
               />
               <p className="bdc-hero-lead">
                 Blue Diamond Cre8tive is two different ways to work with us: a done-for-you,
-                principal-led marketing service, and a self-serve platform of tools and courses.
-                Try the platform free below, no sign-up required.
+                principal-led marketing service, and a self-serve platform of tools. Try the
+                platform free below, no sign-up required.
               </p>
               <HeroScoreForm />
               <div className="bdc-hero-ctas">
@@ -59,50 +55,40 @@ export default function HomePage() {
 
             <div>
               <HeroCarousel />
-              <div className="bdc-partner-grid">
-                <span className="bdc-partner-chip">Blue Diamond Capital</span>
-                <span className="bdc-partner-chip">One Hub Automation</span>
-                <span className="bdc-partner-chip">Mauritius-licensed</span>
+            </div>
+          </div>
+        </section>
+
+        {/* ================= 2. THIN STATUS + MARQUEE STRIP ================= */}
+        <div className="section-bg-alt reveal">
+          <div className="bdc-hero-status-bar" style={{ maxWidth: 1120, padding: "16px 24px" }}>
+            <span>Working since <strong>2025</strong></span>
+            <div className="marquee" style={{ flex: "1 1 320px", minWidth: 0 }}>
+              <div className="marquee-track">
+                {[...Array(2)].flatMap((_, i) =>
+                  [
+                    "Content calendars",
+                    "Paid campaigns",
+                    "Email flows",
+                    "Landing pages",
+                    "Brand design",
+                    "Competitor tracking",
+                    "Monthly reporting",
+                  ].map((item, j) => (
+                    <span className="marquee-item" key={`${i}-${j}`}>
+                      {item}
+                    </span>
+                  )),
+                )}
               </div>
             </div>
           </div>
-        </section>
-
-        <div className="bdc-hero-status-bar">
-          <span>Working since <strong>2025</strong></span>
-          <span>Services, tools, and courses, one account.</span>
-          <span className="bdc-scroll-cue">
-            Scroll to explore <ArrowRight size={13} />
-          </span>
         </div>
 
-        <section className="section section-bg-alt reveal">
-          <div className="marquee">
-            <div className="marquee-track">
-              {[...Array(2)].flatMap((_, i) =>
-                [
-                  "Content calendars",
-                  "Paid campaigns",
-                  "Email flows",
-                  "Landing pages",
-                  "Brand design",
-                  "Competitor tracking",
-                  "Course templates",
-                  "Monthly reporting",
-                ].map((item, j) => (
-                  <span className="marquee-item" key={`${i}-${j}`}>
-                    {item}
-                  </span>
-                )),
-              )}
-            </div>
-          </div>
-        </section>
-
-        {/* ================= SERVICES — dark, agency-pitch treatment ================= */}
+        {/* ================= 3. SERVICES — dark, agency-pitch treatment ================= */}
         <section className="section bdc-section-services reveal" id="services">
           <div className="section-head reveal">
-            <Eyebrow tone="light">Silo 1 — Services</Eyebrow>
+            <Eyebrow tone="light">Services</Eyebrow>
             <LineReveal as="h2" lines={["A marketing department,", "without the department."]} />
             <p>
               Done-for-you and led by a real person. Every engagement starts with an onboarding
@@ -114,23 +100,15 @@ export default function HomePage() {
             <PrincipalBio />
           </div>
 
-          <div className="reveal" style={{ marginBottom: 44 }}>
-            <PillarGrid />
-          </div>
-
-          <div className="reveal" style={{ marginBottom: 44 }}>
-            <PrincipalReviewShowcase />
-          </div>
-
           <div className="reveal">
-            <TestimonialStats />
+            <PillarGrid />
           </div>
 
           <div style={{ marginTop: 40, display: "flex", justifyContent: "center", gap: 12, flexWrap: "wrap" }}>
             <Pill href="/services" variant="light" trailing="arrow">
               See Services tiers
             </Pill>
-            <Pill href="/contact" variant="outline">
+            <Pill href="/services#schedule-call" variant="outline">
               Talk to us
             </Pill>
           </div>
@@ -140,25 +118,24 @@ export default function HomePage() {
           <span className="bdc-silo-divider-label">Two different ways to work with us</span>
         </div>
 
-        {/* ================= PLATFORM — light, self-serve product treatment ================= */}
-        <section className="section bdc-section-platform" id="platform">
+        {/* ================= 4. PLATFORM — light, self-serve product treatment ================= */}
+        <section className="section bdc-section-platform" id="platform" style={{ position: "relative" }}>
+          <DecorativeShapes corner="tr" />
           <div className="section-head reveal">
-            <Eyebrow>Silo 2 &amp; 3 — Platform</Eyebrow>
+            <Eyebrow>Platform</Eyebrow>
             <LineReveal as="h2" lines={["Self-serve products.", "Start in minutes."]} />
             <p>
               No onboarding call, no sales conversation. Sign up and get instant access to the
-              Competitor Intelligence Vault and the Marketing Academy, or try Cre8tive Score free
-              right now.
+              Competitor Intelligence Vault, or try Cre8tive Score free right now.
             </p>
           </div>
 
-          <div className="reveal" style={{ marginBottom: 8 }}>
+          <div className="reveal" style={{ marginBottom: 44 }}>
             <ScoreShowcase />
             <VaultShowcase />
-            <AcademyShowcase />
           </div>
 
-          <div className="grid grid-2 reveal" style={{ marginTop: 44, alignItems: "start" }}>
+          <div className="reveal" style={{ maxWidth: 420, margin: "0 auto" }}>
             <QualityChecklist
               title="Every Vault entry, checked before it counts"
               items={[
@@ -168,43 +145,28 @@ export default function HomePage() {
                 { label: "Human review of anything you act on commercially", state: "pending" },
               ]}
             />
-            <div className="bdc-ink-card">
-              <div className="bdc-ink-card-meta">
-                <span>Free tool</span>
-                <span className="bdc-ink-card-arrow"><ArrowRight size={16} /></span>
-              </div>
-              <div className="bdc-ink-card-watermark"><Radar size={64} /></div>
-              <h3>Not ready to commit to either?</h3>
-              <p>Cre8tive Score is free, no account required, and the fastest way to see what our platform can do.</p>
-              <div className="bdc-ink-card-tags">
-                <TagChip>Free</TagChip>
-                <TagChip>30 seconds</TagChip>
-              </div>
-            </div>
           </div>
 
           <div style={{ marginTop: 44, display: "flex", justifyContent: "center", gap: 12, flexWrap: "wrap" }}>
             <Pill href="/signup" variant="dark" trailing="arrow">
               Start free
             </Pill>
-            <Pill href="/pricing" variant="outline">
-              View pricing
-            </Pill>
           </div>
         </section>
 
+        {/* ================= 5. PROOF + STATS + FINAL CTA ================= */}
+        <section className="section section-bg-dark">
+          <StatsPanel />
+        </section>
+
         <section className="section section-bg-alt">
-          <div className="section-head reveal">
-            <Eyebrow>Proof</Eyebrow>
-            <LineReveal as="h2" lines={["We hold our own marketing", "to a client's top-tier standard."]} />
-          </div>
-          <div className="grid grid-2">
+          <div className="grid grid-2" style={{ alignItems: "center" }}>
             <div className="bdc-ink-card reveal">
               <div className="bdc-ink-card-meta">
                 <span>Case study · 2026</span>
                 <span className="bdc-ink-card-arrow"><ArrowRight size={16} /></span>
               </div>
-              <div className="bdc-ink-card-watermark"><Trophy size={64} /></div>
+              <div className="bdc-ink-card-watermark"><TrendingUp size={64} /></div>
               <h3>See the results we&apos;ve shipped</h3>
               <p>Every case study on /work was built using the same pipeline and review we run for paying clients.</p>
               <div className="bdc-ink-card-tags">
@@ -212,53 +174,30 @@ export default function HomePage() {
                 <TagChip>Campaigns</TagChip>
                 <TagChip>Vault</TagChip>
               </div>
-            </div>
-            <div className="bdc-ink-card reveal">
-              <div className="bdc-ink-card-meta">
-                <span>Cadence · Weekly</span>
-                <span className="bdc-ink-card-arrow"><ArrowRight size={16} /></span>
-              </div>
-              <div className="bdc-ink-card-watermark"><Radar size={64} /></div>
-              <h3>Built on our own Vault</h3>
-              <p>We run our own competitor tracking on ourselves first. If it&apos;s not good enough for us, it doesn&apos;t ship to clients.</p>
-              <div className="bdc-ink-card-tags">
-                <TagChip>Positioning</TagChip>
-                <TagChip>White space</TagChip>
+              <div style={{ marginTop: 20 }}>
+                <Pill href="/work" variant="light" trailing="arrow" className="bdc-full-width">
+                  See the work
+                </Pill>
               </div>
             </div>
+            <div className="reveal text-center">
+              <LineReveal as="h2" lines={["Ready to hand off", "your marketing?"]} />
+              <p style={{ maxWidth: 420, margin: "16px auto 0", fontSize: 15, color: "var(--body-c)" }}>
+                Tell us about your brand and we&apos;ll come back with a plan, not a sales call.
+              </p>
+              <div style={{ marginTop: 24, display: "flex", justifyContent: "center", gap: 12, flexWrap: "wrap" }}>
+                <Pill href="/signup" variant="dark" trailing="arrow">
+                  Get started
+                </Pill>
+                <Pill href="/pricing" variant="outline">
+                  View pricing
+                </Pill>
+              </div>
+            </div>
           </div>
         </section>
 
-        <section className="section section-bg-dark">
-          <StatsPanel />
-        </section>
-
-        <section className="section section-bg" style={{ maxWidth: 900 }}>
-          <div className="reveal">
-            <Eyebrow>The studio</Eyebrow>
-            <WordReveal
-              text="Blue Diamond Cre8tive exists because most busy brands don't need another vendor, they need one accountable system that plans, builds, and ships the work."
-              mutedWords={["another", "vendor,", "they", "need", "one", "accountable", "system", "that", "plans,", "builds,", "and", "ships", "the", "work."]}
-              className="bdc-about-statement"
-              key="about"
-            />
-          </div>
-        </section>
-
-        <section className="section section-bg-dark reveal text-center">
-          <LineReveal as="h2" lines={["Ready to hand off", "your marketing?"]} className="bdc-hero-h1" style={{ fontSize: "clamp(26px, 4vw, 36px)" } as React.CSSProperties} />
-          <p className="muted-on-dark" style={{ maxWidth: 480, margin: "16px auto 0", fontSize: 15 }}>
-            Tell us about your brand and we&apos;ll come back with a plan, not a sales call.
-          </p>
-          <div className="ctas" style={{ marginTop: 28, justifyContent: "center", display: "flex", gap: 12, flexWrap: "wrap" }}>
-            <Pill href="/signup" variant="light" trailing="arrow">
-              Get started
-            </Pill>
-            <Pill href="/pricing" variant="outline">
-              View pricing
-            </Pill>
-          </div>
-        </section>
+        {/* ================= 6. FOOTER (unchanged) ================= */}
       </>
     </MarketingShell>
   );

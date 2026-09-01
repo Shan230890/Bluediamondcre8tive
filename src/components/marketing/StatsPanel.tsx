@@ -8,7 +8,7 @@ import { Eyebrow } from "./Pill";
 type Stat = { value: number; suffix: string; label: string };
 
 const STATS: Stat[] = [
-  { value: 3, suffix: "", label: "active silos: services, tools, academy" },
+  { value: 2, suffix: "", label: "ways to work with us: done-for-you services, self-serve platform" },
   { value: 100, suffix: "%", label: "deliverables reviewed by our principal before they ship" },
   { value: 4, suffix: "wk", label: "weekly cadence on every Vault scan" },
   { value: 24, suffix: "hr", label: "typical response time on a new inquiry" },

@@ -4,6 +4,7 @@ import { MarketingShell } from "@/components/marketing/MarketingShell";
 import { LineReveal } from "@/components/marketing/TextReveal";
 import { Pill, Eyebrow, TagChip } from "@/components/marketing/Pill";
 import { PrincipalBio } from "@/components/marketing/PrincipalBio";
+import { SectionBackground } from "@/components/marketing/SectionBackground";
 import "../landing-e.css";
 
 export const metadata: Metadata = {
@@ -40,9 +41,7 @@ export default function WorkPage() {
     <MarketingShell>
       <>
         <section className="fs-hero" style={{ padding: "56px 24px 40px" }}>
-          <div className="hero-bg" aria-hidden="true">
-            <span className="glow" />
-          </div>
+          <SectionBackground watermark="WORK" />
           <div className="fs-hero-inner">
             <Eyebrow>Our work</Eyebrow>
             <LineReveal

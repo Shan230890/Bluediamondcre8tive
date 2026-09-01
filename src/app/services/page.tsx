@@ -1,10 +1,14 @@
 import type { Metadata } from "next";
-import { Check, ArrowRight } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { MarketingShell } from "@/components/marketing/MarketingShell";
 import { LineReveal } from "@/components/marketing/TextReveal";
 import { Pill, Eyebrow } from "@/components/marketing/Pill";
 import { PrincipalBio } from "@/components/marketing/PrincipalBio";
 import { QualifyGrid } from "@/components/marketing/QualifyGrid";
+import { SectionBackground } from "@/components/marketing/SectionBackground";
+import { PrincipalReviewShowcase } from "@/components/marketing/ShowcaseCards";
+import { TestimonialStats } from "@/components/marketing/TestimonialStats";
+import { ScheduleCallSection } from "@/components/marketing/ScheduleCallSection";
 import "../landing-e.css";
 
 export const metadata: Metadata = {
@@ -12,63 +16,14 @@ export const metadata: Metadata = {
   description: "AI-native marketing services for busy personal and business brands: content, campaigns, and fractional-CMO strategy, led by our principal.",
 };
 
-const tiers = [
-  {
-    name: "Starter",
-    price: "$697–$997",
-    period: "/mo",
-    includes: [
-      "Monthly social content calendar",
-      "Copywriting for every post",
-      "Design for every post",
-      "Monthly performance report",
-    ],
-    cta: "Get started",
-  },
-  {
-    name: "Growth",
-    price: "$1,997–$2,997",
-    period: "/mo",
-    featured: true,
-    badge: "Most popular",
-    includes: [
-      "Everything in Starter",
-      "Paid and organic campaigns",
-      "Email marketing flows",
-      "Landing page builds",
-      "Reddit and YouTube distribution",
-      "Digital PR and influencer placements",
-      "Quarterly strategy session",
-    ],
-    cta: "Get started",
-  },
-  {
-    name: "Signature",
-    price: "$5,000+",
-    period: "/mo",
-    note: "Limited seats",
-    includes: [
-      "Fractional-CMO engagement",
-      "Full team output across every channel",
-      "Reddit, YouTube, and digital PR/influencer placements",
-      "Executive visibility and thought leadership for your founder",
-      "Priority turnaround on every request",
-      "Direct access to our principal",
-    ],
-    cta: "Apply for a seat",
-  },
-];
-
 export default function ServicesPage() {
   return (
     <MarketingShell>
       <>
         <section className="fs-hero" style={{ padding: "56px 24px 40px" }}>
-          <div className="hero-bg" aria-hidden="true">
-            <span className="glow" />
-          </div>
+          <SectionBackground watermark="SERVICES" />
           <div className="fs-hero-inner">
-            <Eyebrow>Silo 1 — Services · Principal-led</Eyebrow>
+            <Eyebrow>Services · Principal-led</Eyebrow>
             <LineReveal
               as="h1"
               className="bdc-hero-h1"
@@ -87,33 +42,17 @@ export default function ServicesPage() {
           <div className="reveal" style={{ marginBottom: 44 }}>
             <PrincipalBio />
           </div>
-          <div className="grid grid-3">
-            {tiers.map((tier) => (
-              <div className={`price-card reveal ${tier.featured ? "featured" : ""}`} key={tier.name}>
-                {tier.badge && <span className="badge">{tier.badge}</span>}
-                <span className="tier-name">{tier.name}</span>
-                <div className="tier-price">
-                  {tier.price}
-                  <span>{tier.period}</span>
-                </div>
-                {tier.note && <div className="tier-note">{tier.note}</div>}
-                <ul>
-                  {tier.includes.map((item) => (
-                    <li key={item}>
-                      <Check size={16} />
-                      {item}
-                    </li>
-                  ))}
-                </ul>
-                <Pill href="/contact" variant={tier.featured ? "dark" : "outline"} className="bdc-full-width">
-                  {tier.cta}
-                </Pill>
-              </div>
-            ))}
+          <div className="reveal" style={{ marginBottom: 44 }}>
+            <PrincipalReviewShowcase />
           </div>
-          <p className="payments-note text-center" style={{ display: "flex", margin: "28px auto 0", justifyContent: "center" }}>
-            Payments launching soon. Inquiries route to our team for now.
-          </p>
+          <div className="reveal">
+            <TestimonialStats />
+          </div>
+          <div className="text-center reveal" style={{ marginTop: 40 }}>
+            <Pill href="/pricing" variant="dark" trailing="arrow">
+              See full pricing
+            </Pill>
+          </div>
         </section>
 
         <section className="section section-bg">
@@ -154,16 +93,8 @@ export default function ServicesPage() {
           <QualifyGrid />
         </section>
 
-        <section className="section section-bg-dark reveal text-center">
-          <LineReveal as="h2" lines={["Not sure which tier fits?"]} style={{ fontSize: "clamp(24px, 4vw, 32px)" } as React.CSSProperties} />
-          <p className="muted-on-dark" style={{ maxWidth: 460, margin: "14px auto 0", fontSize: 15 }}>
-            Tell us about your brand and we&apos;ll recommend a starting point, no obligation.
-          </p>
-          <div className="ctas" style={{ marginTop: 24, justifyContent: "center", display: "flex" }}>
-            <Pill href="/contact" variant="light" trailing="arrow">
-              Talk to us
-            </Pill>
-          </div>
+        <section className="section section-bg-dark reveal" id="schedule-call">
+          <ScheduleCallSection />
         </section>
       </>
     </MarketingShell>

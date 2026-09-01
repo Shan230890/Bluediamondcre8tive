@@ -79,7 +79,6 @@ export default function ContactPage() {
                   <select id="interest" name="interest" defaultValue="services">
                     <option value="services">Marketing services</option>
                     <option value="vault">Competitor Intelligence Vault</option>
-                    <option value="academy">Academy course or template</option>
                     <option value="other">Something else</option>
                   </select>
                 </div>
