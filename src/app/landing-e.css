@@ -1921,6 +1921,13 @@
   .landing-e .bdc-hero-score-row {
     flex-direction: column;
   }
+  .landing-e .bdc-hero-score-row input {
+    /* In row layout flex-basis:160px sets a sensible width, but once the
+       container switches to column the same basis applies to the main
+       (vertical) axis instead, stretching each input to 160px tall. */
+    flex-basis: auto;
+    width: 100%;
+  }
   .landing-e .bdc-hero-score-row button {
     justify-content: center;
   }
