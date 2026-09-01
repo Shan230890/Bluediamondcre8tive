@@ -1,12 +1,26 @@
 import Link from "next/link";
+import { ArrowUpRight } from "lucide-react";
 import { LogoMark } from "@/components/LogoMark";
+import { LineReveal } from "@/components/marketing/TextReveal";
 
 /** Shared footer for every Pattern E marketing page — carries the mandatory
- * attribution line and full legal-suite link set. */
+ * attribution line, full legal-suite link set, a CTA row, and a giant faint
+ * watermark word, matching the rest of the site's motion system. */
 export function LandingFooter() {
   return (
-    <footer className="fs-footer">
+    <footer className="fs-footer bdc-footer">
+      <span className="bdc-footer-watermark" aria-hidden="true">CRE8TIVE</span>
       <div className="footer-inner">
+        <div className="bdc-footer-cta">
+          <LineReveal as="h2" lines={["Ready to hand off", "your marketing?"]} className="bdc-footer-cta-heading" />
+          <Link href="/contact" className="bdc-pill bdc-pill-light">
+            Get started
+            <span className="bdc-pill-badge">
+              <ArrowUpRight size={14} />
+            </span>
+          </Link>
+        </div>
+
         <div className="footer-cols">
           <div>
             <div className="footer-brand">
@@ -21,31 +35,31 @@ export function LandingFooter() {
           <div>
             <h4>Silos</h4>
             <ul>
-              <li><Link href="/services">Services</Link></li>
-              <li><Link href="/tools">Tools</Link></li>
-              <li><Link href="/academy">Academy</Link></li>
-              <li><Link href="/work">Work</Link></li>
+              <li><Link href="/services" className="bdc-footer-link">Services</Link></li>
+              <li><Link href="/tools" className="bdc-footer-link">Tools</Link></li>
+              <li><Link href="/academy" className="bdc-footer-link">Academy</Link></li>
+              <li><Link href="/work" className="bdc-footer-link">Work</Link></li>
             </ul>
           </div>
           <div>
             <h4>Company</h4>
             <ul>
-              <li><Link href="/pricing">Pricing</Link></li>
-              <li><Link href="/contact">Contact</Link></li>
-              <li><Link href="/login">Log in</Link></li>
-              <li><Link href="/signup">Sign up</Link></li>
+              <li><Link href="/pricing" className="bdc-footer-link">Pricing</Link></li>
+              <li><Link href="/contact" className="bdc-footer-link">Contact</Link></li>
+              <li><Link href="/login" className="bdc-footer-link">Log in</Link></li>
+              <li><Link href="/signup" className="bdc-footer-link">Sign up</Link></li>
             </ul>
           </div>
           <div>
             <h4>Legal</h4>
             <ul>
-              <li><Link href="/terms">Terms of Service</Link></li>
-              <li><Link href="/privacy">Privacy Policy</Link></li>
-              <li><Link href="/disclaimer">Disclaimer</Link></li>
-              <li><Link href="/refund-cancellation">Refund &amp; Cancellation</Link></li>
-              <li><Link href="/legal/services-agreement">Client Services Agreement</Link></li>
-              <li><Link href="/legal/tool-tos">Tool ToS &amp; DPA</Link></li>
-              <li><Link href="/legal/course-licence">Course Licence Terms</Link></li>
+              <li><Link href="/terms" className="bdc-footer-link">Terms of Service</Link></li>
+              <li><Link href="/privacy" className="bdc-footer-link">Privacy Policy</Link></li>
+              <li><Link href="/disclaimer" className="bdc-footer-link">Disclaimer</Link></li>
+              <li><Link href="/refund-cancellation" className="bdc-footer-link">Refund &amp; Cancellation</Link></li>
+              <li><Link href="/legal/services-agreement" className="bdc-footer-link">Client Services Agreement</Link></li>
+              <li><Link href="/legal/tool-tos" className="bdc-footer-link">Tool ToS &amp; DPA</Link></li>
+              <li><Link href="/legal/course-licence" className="bdc-footer-link">Course Licence Terms</Link></li>
             </ul>
           </div>
         </div>
