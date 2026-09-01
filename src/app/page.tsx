@@ -1,10 +1,20 @@
 import type { Metadata } from "next";
-import Link from "next/link";
-import { Megaphone, Radar, GraduationCap, Trophy, ArrowRight, Check, Sparkles, Target } from "lucide-react";
+import { ArrowRight, Trophy, Radar } from "lucide-react";
 import { MarketingShell } from "@/components/marketing/MarketingShell";
 import { LiquidHero } from "@/components/marketing/LiquidHero";
 import { HeroCarousel } from "@/components/marketing/HeroCarousel";
+import { HeroScoreForm } from "@/components/marketing/HeroScoreForm";
 import { StatsPanel } from "@/components/marketing/StatsPanel";
+import { PillarGrid } from "@/components/marketing/PillarGrid";
+import { TestimonialStats } from "@/components/marketing/TestimonialStats";
+import { QualityChecklist } from "@/components/marketing/QualityChecklist";
+import {
+  ScoreShowcase,
+  VaultShowcase,
+  AcademyShowcase,
+  PrincipalReviewShowcase,
+} from "@/components/marketing/ShowcaseCards";
+import { PrincipalBio } from "@/components/marketing/PrincipalBio";
 import { LineReveal, WordReveal } from "@/components/marketing/TextReveal";
 import { Pill, Eyebrow, TagChip } from "@/components/marketing/Pill";
 import "./landing-e.css";
@@ -12,42 +22,6 @@ import "./landing-e.css";
 export const metadata: Metadata = {
   title: "Blue Diamond Cre8tive — AI-native marketing, tools, and courses",
 };
-
-const serviceSilo = {
-  icon: Megaphone,
-  title: "Marketing services",
-  body: "A full marketing team's output, led by our principal and delivered on a subscription, for busy brands who don't have time to run their own department.",
-  href: "/services",
-  cta: "See services",
-  tags: ["Onboarding call", "Principal-reviewed"],
-};
-
-const platformSilos = [
-  {
-    icon: Target,
-    title: "Cre8tive Score",
-    body: "Free idea and positioning scorer. Get an honest 0-100 read on originality, technical feasibility, AI-visibility, competition, and white space, in about 30 seconds.",
-    href: "/tools/score",
-    cta: "Score your idea free",
-    tags: ["Free", "No sign-up required"],
-  },
-  {
-    icon: Radar,
-    title: "Competitor Intelligence Vault",
-    body: "Track competitors' pricing, positioning, and content moves on a weekly cadence, with a monthly white-space review that tells you where to move next.",
-    href: "/tools",
-    cta: "See the Vault",
-    tags: ["Instant access", "Self-serve"],
-  },
-  {
-    icon: GraduationCap,
-    title: "Marketing Academy",
-    body: "Courses, templates, and cohorts that teach the exact playbooks we use for clients, for founders who'd rather learn the system than outsource it.",
-    href: "/academy",
-    cta: "Browse Academy",
-    tags: ["Instant access", "Self-serve"],
-  },
-];
 
 export default function HomePage() {
   return (
@@ -68,17 +42,14 @@ export default function HomePage() {
                 lines={["Marketing that runs itself,", "built by a team that doesn't", "sleep on your deadlines."]}
               />
               <p className="bdc-hero-lead">
-                Blue Diamond Cre8tive combines a done-for-you, principal-led marketing service with a
-                self-serve competitor intelligence tool and academy, so busy brands get the output
-                without hiring an in-house department.
+                Blue Diamond Cre8tive is two different ways to work with us: a done-for-you,
+                principal-led marketing service, and a self-serve platform of tools and courses.
+                Try the platform free below, no sign-up required.
               </p>
-              <div className="bdc-hero-proof">
-                <Sparkles size={15} color="var(--accent)" />
-                <span><strong>Every</strong> Services deliverable is reviewed by our principal before it ships.</span>
-              </div>
+              <HeroScoreForm />
               <div className="bdc-hero-ctas">
-                <Pill href="/signup" variant="dark" trailing="arrow">
-                  Get started
+                <Pill href="/services" variant="dark" trailing="arrow">
+                  Explore Services
                 </Pill>
                 <Pill href="/work" variant="outline">
                   See the work
@@ -128,106 +99,101 @@ export default function HomePage() {
           </div>
         </section>
 
-        <section className="section section-bg">
+        {/* ================= SERVICES — dark, agency-pitch treatment ================= */}
+        <section className="section bdc-section-services reveal" id="services">
           <div className="section-head reveal">
-            <Eyebrow>What we do</Eyebrow>
-            <LineReveal as="h2" lines={["Services, or a platform.", "You choose."]} />
+            <Eyebrow tone="light">Silo 1 — Services</Eyebrow>
+            <LineReveal as="h2" lines={["A marketing department,", "without the department."]} />
             <p>
-              Silo 1 is done-for-you and led by a real person. Silos 2 and 3 are self-serve products
-              you can start using in minutes. Most clients start with one and grow into more than one
-              as the results compound.
+              Done-for-you and led by a real person. Every engagement starts with an onboarding
+              call, and every deliverable is reviewed by our principal before it ships.
             </p>
           </div>
 
-          <div className="bdc-silo-group">
-            <div className="bdc-silo-group-head">
-              <h3>Services — principal-led</h3>
-              <span className="bdc-silo-group-note">Done-for-you. Onboarding call required before work begins.</span>
-            </div>
-            <div className="card reveal" style={{ border: "none", display: "grid", gridTemplateColumns: "auto 1fr auto", gap: 24, alignItems: "center" }}>
-              <div className="icon-badge" style={{ marginBottom: 0 }}>
-                <serviceSilo.icon size={22} />
+          <div className="reveal" style={{ marginBottom: 44 }}>
+            <PrincipalBio />
+          </div>
+
+          <div className="reveal" style={{ marginBottom: 44 }}>
+            <PillarGrid />
+          </div>
+
+          <div className="reveal" style={{ marginBottom: 44 }}>
+            <PrincipalReviewShowcase />
+          </div>
+
+          <div className="reveal">
+            <TestimonialStats />
+          </div>
+
+          <div style={{ marginTop: 40, display: "flex", justifyContent: "center", gap: 12, flexWrap: "wrap" }}>
+            <Pill href="/services" variant="light" trailing="arrow">
+              See Services tiers
+            </Pill>
+            <Pill href="/contact" variant="outline">
+              Talk to us
+            </Pill>
+          </div>
+        </section>
+
+        <div className="bdc-silo-divider">
+          <span className="bdc-silo-divider-label">Two different ways to work with us</span>
+        </div>
+
+        {/* ================= PLATFORM — light, self-serve product treatment ================= */}
+        <section className="section bdc-section-platform" id="platform">
+          <div className="section-head reveal">
+            <Eyebrow>Silo 2 &amp; 3 — Platform</Eyebrow>
+            <LineReveal as="h2" lines={["Self-serve products.", "Start in minutes."]} />
+            <p>
+              No onboarding call, no sales conversation. Sign up and get instant access to the
+              Competitor Intelligence Vault and the Marketing Academy, or try Cre8tive Score free
+              right now.
+            </p>
+          </div>
+
+          <div className="reveal" style={{ marginBottom: 8 }}>
+            <ScoreShowcase />
+            <VaultShowcase />
+            <AcademyShowcase />
+          </div>
+
+          <div className="grid grid-2 reveal" style={{ marginTop: 44, alignItems: "start" }}>
+            <QualityChecklist
+              title="Every Vault entry, checked before it counts"
+              items={[
+                { label: "Sourced from a named, dated competitor scan", state: "pass" },
+                { label: "Speculative claims flagged, not stated as fact", state: "pass" },
+                { label: "Automated scraping (pending legal review)", state: "fail" },
+                { label: "Human review of anything you act on commercially", state: "pending" },
+              ]}
+            />
+            <div className="bdc-ink-card">
+              <div className="bdc-ink-card-meta">
+                <span>Free tool</span>
+                <span className="bdc-ink-card-arrow"><ArrowRight size={16} /></span>
               </div>
-              <div>
-                <h3>{serviceSilo.title}</h3>
-                <p>{serviceSilo.body}</p>
-                <div style={{ display: "flex", gap: 8, marginTop: 12 }}>
-                  {serviceSilo.tags.map((t) => (
-                    <TagChip key={t}>{t}</TagChip>
-                  ))}
-                </div>
+              <div className="bdc-ink-card-watermark"><Radar size={64} /></div>
+              <h3>Not ready to commit to either?</h3>
+              <p>Cre8tive Score is free, no account required, and the fastest way to see what our platform can do.</p>
+              <div className="bdc-ink-card-tags">
+                <TagChip>Free</TagChip>
+                <TagChip>30 seconds</TagChip>
               </div>
-              <Link
-                href={serviceSilo.href}
-                style={{ display: "inline-flex", alignItems: "center", gap: 6, fontSize: 13.5, fontWeight: 600, color: "var(--accent)", whiteSpace: "nowrap" }}
-              >
-                {serviceSilo.cta} <ArrowRight size={14} />
-              </Link>
             </div>
           </div>
 
-          <div className="bdc-silo-group">
-            <div className="bdc-silo-group-head">
-              <h3>Platform — self-serve</h3>
-              <span className="bdc-silo-group-note">Sign up and get instant access. No onboarding call.</span>
-            </div>
-            <div className="grid grid-3">
-              {platformSilos.map((silo) => (
-                <div className="card reveal" key={silo.title}>
-                  <div className="icon-badge">
-                    <silo.icon size={22} />
-                  </div>
-                  <h3>{silo.title}</h3>
-                  <p>{silo.body}</p>
-                  <div style={{ display: "flex", gap: 8, marginTop: 12 }}>
-                    {silo.tags.map((t) => (
-                      <TagChip key={t}>{t}</TagChip>
-                    ))}
-                  </div>
-                  <Link
-                    href={silo.href}
-                    style={{ display: "inline-flex", alignItems: "center", gap: 6, marginTop: 16, fontSize: 13.5, fontWeight: 600, color: "var(--accent)" }}
-                  >
-                    {silo.cta} <ArrowRight size={14} />
-                  </Link>
-                </div>
-              ))}
-            </div>
+          <div style={{ marginTop: 44, display: "flex", justifyContent: "center", gap: 12, flexWrap: "wrap" }}>
+            <Pill href="/signup" variant="dark" trailing="arrow">
+              Start free
+            </Pill>
+            <Pill href="/pricing" variant="outline">
+              View pricing
+            </Pill>
           </div>
         </section>
 
         <section className="section section-bg-alt">
-          <div className="section-head reveal">
-            <Eyebrow>Why it works</Eyebrow>
-            <LineReveal as="h2" lines={["A real team,", "an AI-native process."]} />
-          </div>
-          <div className="grid grid-3">
-            {[
-              {
-                title: "Principal led, not template led",
-                body: "Every Services engagement starts with our principal mapping your brand and market before a single asset gets made.",
-              },
-              {
-                title: "Production at AI speed",
-                body: "Copy, design, and video move through an AI-assisted production pipeline, reviewed by our team before it ever reaches you.",
-              },
-              {
-                title: "Legally sound, always",
-                body: "Every contract, disclosure, and data practice is reviewed by our legal counsel before it ships. No shortcuts on compliance.",
-              },
-            ].map((item) => (
-              <div className="card reveal" key={item.title}>
-                <div className="icon-badge">
-                  <Check size={20} />
-                </div>
-                <h3>{item.title}</h3>
-                <p>{item.body}</p>
-              </div>
-            ))}
-          </div>
-        </section>
-
-        <section className="section section-bg">
           <div className="section-head reveal">
             <Eyebrow>Proof</Eyebrow>
             <LineReveal as="h2" lines={["We hold our own marketing", "to a client's top-tier standard."]} />
@@ -263,7 +229,7 @@ export default function HomePage() {
           </div>
         </section>
 
-        <section className="section section-bg-alt">
+        <section className="section section-bg-dark">
           <StatsPanel />
         </section>
 

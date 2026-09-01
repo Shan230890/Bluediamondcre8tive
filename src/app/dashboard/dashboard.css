@@ -916,3 +916,101 @@
   padding: 0 16px 12px;
   margin-top: -4px;
 }
+
+/* ---------------------------------------------------------------------
+   Metaflow-pattern additions, reskinned to the dashboard surface —
+   quality-check checklist + a recent-activity timeline. Same tokens as
+   landing-e's equivalents, no leakage between the two stylesheets.
+   --------------------------------------------------------------------- */
+.dashboard-e .dash-checklist-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 18px 20px;
+}
+.dashboard-e .dash-checklist-card h4 {
+  font-size: 13px;
+  font-weight: 700;
+  margin: 0 0 12px;
+}
+.dashboard-e .dash-checklist {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+}
+.dashboard-e .dash-checklist-item {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  font-size: 12.5px;
+  color: var(--body-c);
+}
+.dashboard-e .dash-checklist-icon {
+  width: 18px;
+  height: 18px;
+  border-radius: 999px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.dashboard-e .dash-checklist-pass .dash-checklist-icon {
+  background: rgba(26, 122, 60, 0.14);
+  color: #1a7a3c;
+}
+.dashboard-e .dash-checklist-pending .dash-checklist-icon {
+  background: rgba(var(--accent-rgb), 0.14);
+  color: var(--accent);
+}
+
+/* Recent-activity timeline (dashboard Overview) */
+.dashboard-e .dash-timeline {
+  display: flex;
+  flex-direction: column;
+}
+.dashboard-e .dash-timeline-row {
+  display: flex;
+  gap: 14px;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--border);
+}
+.dashboard-e .dash-timeline-row:last-child {
+  border-bottom: none;
+}
+.dashboard-e .dash-timeline-dot-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-shrink: 0;
+}
+.dashboard-e .dash-timeline-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  background: var(--accent);
+  box-shadow: 0 0 0 3px rgba(var(--accent-rgb), 0.16);
+  margin-top: 5px;
+}
+.dashboard-e .dash-timeline-line {
+  flex: 1;
+  width: 1px;
+  background: var(--border);
+  margin-top: 4px;
+}
+.dashboard-e .dash-timeline-body {
+  flex: 1;
+  min-width: 0;
+}
+.dashboard-e .dash-timeline-title {
+  font-size: 13.5px;
+  font-weight: 600;
+  color: var(--text-dark);
+}
+.dashboard-e .dash-timeline-meta {
+  font-size: 12px;
+  color: var(--muted);
+  margin-top: 2px;
+}

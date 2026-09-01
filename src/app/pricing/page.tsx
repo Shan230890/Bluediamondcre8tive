@@ -18,8 +18,8 @@ const serviceGroup = {
   href: "/services",
   tiers: [
     { name: "Starter", price: "$697–$997/mo", includes: ["Content calendar, copy, design", "Monthly report"] },
-    { name: "Growth", price: "$1,997–$2,997/mo", featured: true, includes: ["Everything in Starter", "Campaigns, email, landing pages", "Quarterly strategy session"] },
-    { name: "Signature", price: "$5,000+/mo", includes: ["Fractional-CMO engagement", "Full team output", "Priority turnaround", "Limited seats"] },
+    { name: "Growth", price: "$1,997–$2,997/mo", featured: true, includes: ["Everything in Starter", "Campaigns, email, landing pages", "Reddit, YouTube, digital PR", "Quarterly strategy session"] },
+    { name: "Signature", price: "$5,000+/mo", includes: ["Fractional-CMO engagement", "Full team output", "Executive thought leadership", "Priority turnaround", "Limited seats"] },
   ],
 };
 
@@ -84,15 +84,19 @@ export default function PricingPage() {
           </div>
         </section>
 
-        <section className="section section-bg-alt">
+        <section className="section bdc-section-services">
           <div className="bdc-silo-group-head" style={{ marginBottom: 22 }}>
-            <Eyebrow>{serviceGroup.label}</Eyebrow>
-            <span className="bdc-silo-group-note">{serviceGroup.note}</span>
+            <Eyebrow tone="light">{serviceGroup.label}</Eyebrow>
+            <span className="bdc-silo-group-note" style={{ color: "rgba(255,255,255,0.55)" }}>{serviceGroup.note}</span>
           </div>
           <TierGrid tiers={serviceGroup.tiers} href={serviceGroup.href} />
         </section>
 
-        <section className="section section-bg">
+        <div className="bdc-silo-divider">
+          <span className="bdc-silo-divider-label">Two different ways to work with us</span>
+        </div>
+
+        <section className="section bdc-section-platform">
           <div className="section-head reveal" style={{ marginBottom: 12 }}>
             <Eyebrow>Platform — self-serve</Eyebrow>
             <LineReveal as="h2" lines={["Sign up and get instant access."]} />

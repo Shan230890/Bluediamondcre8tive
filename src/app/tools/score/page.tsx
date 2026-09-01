@@ -1,7 +1,7 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
+import { Suspense, useEffect, useState } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
 import { MarketingShell } from "@/components/marketing/MarketingShell";
 import { LineReveal } from "@/components/marketing/TextReveal";
 import { Pill, Eyebrow } from "@/components/marketing/Pill";
@@ -38,8 +38,9 @@ const LOADING_STEPS = [
   "Still working, some scores just take longer…",
 ];
 
-export default function ScorePage() {
+function ScoreFormInner() {
   const router = useRouter();
+  const searchParams = useSearchParams();
   const reducedMotion = useReducedMotion();
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
@@ -57,6 +58,14 @@ export default function ScorePage() {
     // client-only sync, not something a lazy initializer can do safely.
     // eslint-disable-next-line react-hooks/set-state-in-effect
     setVisitorId(getOrCreateVisitorId());
+
+    // Deep-link prefill from the homepage hero's lightweight capture (see
+    // HeroScoreForm) — those two fields only, nothing else in the schema.
+    const prefillName = searchParams.get("name");
+    const prefillDescription = searchParams.get("description");
+    if (prefillName) setName(prefillName.slice(0, 80));
+    if (prefillDescription) setDescription(prefillDescription.slice(0, 2000));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
@@ -262,5 +271,16 @@ export default function ScorePage() {
         </section>
       </>
     </MarketingShell>
+  );
+}
+
+export default function ScorePage() {
+  // useSearchParams requires a Suspense boundary in the app router; the
+  // form itself has no meaningful "loading" state before params resolve,
+  // so an empty fallback avoids a layout flash.
+  return (
+    <Suspense fallback={null}>
+      <ScoreFormInner />
+    </Suspense>
   );
 }

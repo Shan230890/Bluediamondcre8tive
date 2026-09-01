@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { Receipt, Layers, FolderOpen, ShieldCheck, GraduationCap, Users, ArrowRight } from "lucide-react";
+import { Receipt, Layers, FolderOpen, ShieldCheck, GraduationCap, Users, ArrowRight, FileText, Radar } from "lucide-react";
 import { createClient } from "@/lib/supabase/client";
 import { TiltCard } from "@/components/motion/TiltCard";
 
@@ -10,6 +10,14 @@ interface Stats {
   openInvoices: number;
   activeTier: string | null;
   recentDeliverables: { id: string; title: string; type: string | null }[];
+}
+
+interface ActivityItem {
+  id: string;
+  kind: "deliverable" | "vault" | "invoice";
+  title: string;
+  meta: string;
+  at: string;
 }
 
 const WEEKDAY_FORMAT = new Intl.DateTimeFormat("en-US", { weekday: "long", month: "long", day: "numeric" });
@@ -22,6 +30,7 @@ function greetingForHour(hour: number): string {
 
 export default function DashboardOverviewPage() {
   const [stats, setStats] = useState<Stats | null>(null);
+  const [activity, setActivity] = useState<ActivityItem[]>([]);
   const [loading, setLoading] = useState(true);
   const [firstName, setFirstName] = useState<string | null>(null);
 
@@ -40,7 +49,7 @@ export default function DashboardOverviewPage() {
         setFirstName(local.charAt(0).toUpperCase() + local.slice(1));
       }
 
-      const [{ data: invoices }, { data: subs }, { data: deliverables }] = await Promise.all([
+      const [{ data: invoices }, { data: subs }, { data: deliverables }, { data: vaultEntries }] = await Promise.all([
         supabase.from("invoices").select("id, status").in("status", ["due", "overdue"]).eq("client_id", user.id),
         supabase
           .from("subscriptions")
@@ -52,7 +61,13 @@ export default function DashboardOverviewPage() {
           .limit(1),
         supabase
           .from("deliverables")
-          .select("id, title, type")
+          .select("id, title, type, created_at")
+          .eq("client_id", user.id)
+          .order("created_at", { ascending: false })
+          .limit(5),
+        supabase
+          .from("competitor_vault_entries")
+          .select("id, competitor_name, entry_type, created_at")
           .eq("client_id", user.id)
           .order("created_at", { ascending: false })
           .limit(5),
@@ -64,6 +79,28 @@ export default function DashboardOverviewPage() {
         activeTier: subs?.[0]?.tier ?? null,
         recentDeliverables: deliverables ?? [],
       });
+
+      // Recent-activity feed, built from real rows already on the account
+      // (deliverables + Vault scans), merged and sorted by recency — the
+      // Metaflow-style "running feed" pattern, no fabricated content.
+      const deliverableItems: ActivityItem[] = (deliverables ?? []).map((d: { id: string; title: string; type: string | null; created_at: string }) => ({
+        id: `deliverable-${d.id}`,
+        kind: "deliverable",
+        title: d.title,
+        meta: d.type ? `Deliverable · ${d.type}` : "Deliverable",
+        at: d.created_at,
+      }));
+      const vaultItems: ActivityItem[] = (vaultEntries ?? []).map((v: { id: string; competitor_name: string; entry_type: string; created_at: string }) => ({
+        id: `vault-${v.id}`,
+        kind: "vault",
+        title: `${v.competitor_name} — ${v.entry_type === "weekly_scan" ? "weekly scan logged" : "monthly review logged"}`,
+        meta: "Competitor Intelligence Vault",
+        at: v.created_at,
+      }));
+      const merged = [...deliverableItems, ...vaultItems]
+        .sort((a, b) => new Date(b.at).getTime() - new Date(a.at).getTime())
+        .slice(0, 6);
+      setActivity(merged);
       setLoading(false);
     }
     load();
@@ -205,6 +242,46 @@ export default function DashboardOverviewPage() {
                 </Link>
               </div>
             </div>
+          </div>
+
+          <div style={{ marginTop: 28 }}>
+            <div className="dash-section-head">
+              <h3>Recent activity</h3>
+            </div>
+            {activity.length > 0 ? (
+              <TiltCard tilt="flat" className="dash-card">
+                <div className="dash-timeline">
+                  {activity.map((item, i) => {
+                    const Icon = item.kind === "vault" ? Radar : FileText;
+                    return (
+                      <div className="dash-timeline-row" key={item.id}>
+                        <div className="dash-timeline-dot-col">
+                          <span className="dash-timeline-dot" />
+                          {i < activity.length - 1 && <span className="dash-timeline-line" />}
+                        </div>
+                        <div className="dash-timeline-body">
+                          <div className="dash-timeline-title">
+                            <Icon size={13} style={{ marginRight: 6, verticalAlign: -2 }} />
+                            {item.title}
+                          </div>
+                          <div className="dash-timeline-meta">
+                            {item.meta} · {new Date(item.at).toLocaleDateString()}
+                          </div>
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+              </TiltCard>
+            ) : (
+              <div className="dash-empty">
+                <div className="dash-empty-icon">
+                  <FileText size={20} />
+                </div>
+                <div className="dash-empty-title">No activity yet</div>
+                <p>Deliverables and Vault scans will show up here as they happen.</p>
+              </div>
+            )}
           </div>
         </>
       )}

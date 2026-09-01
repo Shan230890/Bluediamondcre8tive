@@ -4,6 +4,7 @@ import { MarketingShell } from "@/components/marketing/MarketingShell";
 import { LineReveal } from "@/components/marketing/TextReveal";
 import { Pill, Eyebrow } from "@/components/marketing/Pill";
 import { PrincipalBio } from "@/components/marketing/PrincipalBio";
+import { QualifyGrid } from "@/components/marketing/QualifyGrid";
 import "../landing-e.css";
 
 export const metadata: Metadata = {
@@ -35,6 +36,8 @@ const tiers = [
       "Paid and organic campaigns",
       "Email marketing flows",
       "Landing page builds",
+      "Reddit and YouTube distribution",
+      "Digital PR and influencer placements",
       "Quarterly strategy session",
     ],
     cta: "Get started",
@@ -47,6 +50,8 @@ const tiers = [
     includes: [
       "Fractional-CMO engagement",
       "Full team output across every channel",
+      "Reddit, YouTube, and digital PR/influencer placements",
+      "Executive visibility and thought leadership for your founder",
       "Priority turnaround on every request",
       "Direct access to our principal",
     ],
@@ -135,6 +140,18 @@ export default function ServicesPage() {
               </div>
             ))}
           </div>
+        </section>
+
+        <section className="section section-bg-alt">
+          <div className="section-head reveal">
+            <Eyebrow>Before you book a call</Eyebrow>
+            <LineReveal as="h2" lines={["Is this actually", "the right fit?"]} />
+            <p>
+              Services works best for a specific kind of brand. Check the list below before you
+              reach out, it saves everyone a call.
+            </p>
+          </div>
+          <QualifyGrid />
         </section>
 
         <section className="section section-bg-dark reveal text-center">

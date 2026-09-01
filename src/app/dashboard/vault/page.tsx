@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
-import { ShieldCheck } from "lucide-react";
+import { ShieldCheck, Check, Minus } from "lucide-react";
 import { createClient } from "@/lib/supabase/client";
 import { getCompetitorLimit } from "@/lib/vault/tier-limits";
 import { WeeklyScanEntrySchema } from "@/lib/vault/schema";
@@ -193,40 +193,66 @@ export default function VaultPage() {
         </div>
       )}
 
-      <h3 style={{ fontSize: 15, marginBottom: 12 }}>Add a weekly scan entry</h3>
-      <form onSubmit={handleAddEntry} style={{ maxWidth: 480 }}>
-        <div className="field">
-          <label htmlFor="competitor_name">Competitor name</label>
-          <input
-            id="competitor_name"
-            value={competitorName}
-            onChange={(e) => setCompetitorName(e.target.value)}
-            required
-          />
+      <div className="dash-grid dash-grid-2" style={{ alignItems: "start", gap: 32 }}>
+        <div>
+          <h3 style={{ fontSize: 15, marginBottom: 12 }}>Add a weekly scan entry</h3>
+          <form onSubmit={handleAddEntry} style={{ maxWidth: 480 }}>
+            <div className="field">
+              <label htmlFor="competitor_name">Competitor name</label>
+              <input
+                id="competitor_name"
+                value={competitorName}
+                onChange={(e) => setCompetitorName(e.target.value)}
+                required
+              />
+            </div>
+            <div className="field">
+              <label htmlFor="content">What did you find</label>
+              <textarea id="content" rows={4} value={content} onChange={(e) => setContent(e.target.value)} required />
+            </div>
+            <div className="field">
+              <label htmlFor="white_space_notes">White space notes (optional)</label>
+              <textarea
+                id="white_space_notes"
+                rows={3}
+                value={whiteSpaceNotes}
+                onChange={(e) => setWhiteSpaceNotes(e.target.value)}
+              />
+            </div>
+            {formError && <p className="form-error">{formError}</p>}
+            {atLimit && (
+              <p className="form-error">
+                Your {tier ?? "current"} tier tracks up to {limit} competitor{limit === 1 ? "" : "s"}. Upgrade to add another.
+              </p>
+            )}
+            <button type="submit" className="btn-solid" disabled={saving} style={{ marginTop: 6 }}>
+              {saving ? "Saving..." : "Add entry"}
+            </button>
+          </form>
         </div>
-        <div className="field">
-          <label htmlFor="content">What did you find</label>
-          <textarea id="content" rows={4} value={content} onChange={(e) => setContent(e.target.value)} required />
+
+        <div className="dash-checklist-card">
+          <h4>What this entry logs</h4>
+          <ul className="dash-checklist">
+            <li className={`dash-checklist-item ${competitorName.trim() ? "dash-checklist-pass" : "dash-checklist-pending"}`}>
+              <span className="dash-checklist-icon">{competitorName.trim() ? <Check size={11} /> : <Minus size={11} />}</span>
+              Competitor named
+            </li>
+            <li className={`dash-checklist-item ${content.trim() ? "dash-checklist-pass" : "dash-checklist-pending"}`}>
+              <span className="dash-checklist-icon">{content.trim() ? <Check size={11} /> : <Minus size={11} />}</span>
+              Finding described in your own words
+            </li>
+            <li className={`dash-checklist-item ${whiteSpaceNotes.trim() ? "dash-checklist-pass" : "dash-checklist-pending"}`}>
+              <span className="dash-checklist-icon">{whiteSpaceNotes.trim() ? <Check size={11} /> : <Minus size={11} />}</span>
+              White space noted (optional)
+            </li>
+            <li className="dash-checklist-item dash-checklist-pass">
+              <span className="dash-checklist-icon"><Check size={11} /></span>
+              Sourced by hand, not scraped
+            </li>
+          </ul>
         </div>
-        <div className="field">
-          <label htmlFor="white_space_notes">White space notes (optional)</label>
-          <textarea
-            id="white_space_notes"
-            rows={3}
-            value={whiteSpaceNotes}
-            onChange={(e) => setWhiteSpaceNotes(e.target.value)}
-          />
-        </div>
-        {formError && <p className="form-error">{formError}</p>}
-        {atLimit && (
-          <p className="form-error">
-            Your {tier ?? "current"} tier tracks up to {limit} competitor{limit === 1 ? "" : "s"}. Upgrade to add another.
-          </p>
-        )}
-        <button type="submit" className="btn-solid" disabled={saving} style={{ marginTop: 6 }}>
-          {saving ? "Saving..." : "Add entry"}
-        </button>
-      </form>
+      </div>
     </div>
   );
 }
