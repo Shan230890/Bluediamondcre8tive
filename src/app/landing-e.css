@@ -2028,41 +2028,16 @@
 
 /* Distinct Services (dark, agency) vs Platform (light, product) sections */
 .landing-e .bdc-section-services {
-  background: var(--dark);
-  color: var(--text-light);
+  /* Was a dark "agency-pitch" panel; Shan asked for this to read as a
+     light card like the rest of the page instead, so it now shares the
+     same --card surface as .bdc-principal-bio and every other card here
+     rather than needing its own dark-context colour overrides. */
+  background: var(--card);
+  border: 1px solid var(--border);
   border-radius: 32px;
   margin: 0 auto;
   max-width: 1160px;
   padding: 64px clamp(20px, 4vw, 56px);
-}
-/* Scoped to top-level copy only — never blanket-applied, so nested white
-   cards (price-card, bdc-checklist-card, .card, form-shell) keep their own
-   dark-on-white text instead of inheriting light-on-dark colors. */
-.landing-e .bdc-section-services > .section-head p,
-.landing-e .bdc-section-services > .bdc-silo-group-head .bdc-silo-group-note {
-  color: rgba(255, 255, 255, 0.68);
-}
-.landing-e .bdc-section-services > .section-head h2,
-.landing-e .bdc-section-services > .section-head h3 {
-  color: #fff;
-}
-.landing-e .bdc-section-services .bdc-principal-bio {
-  background: var(--dark-2);
-  border-color: rgba(255, 255, 255, 0.12);
-}
-.landing-e .bdc-section-services .bdc-principal-copy {
-  color: rgba(255, 255, 255, 0.68);
-}
-/* ShowcaseCards are reused on both the dark Services section
-   (PrincipalReviewShowcase) and the light Platform section (Score/Vault/
-   Academy) — the copy pane needs a light variant only in the dark
-   context; the white bdc-showcase-mock card keeps its own dark-on-white
-   text either way, so it isn't touched here. */
-.landing-e .bdc-section-services .bdc-showcase-copy h3 {
-  color: #fff;
-}
-.landing-e .bdc-section-services .bdc-showcase-copy p {
-  color: rgba(255, 255, 255, 0.68);
 }
 .landing-e .bdc-section-platform {
   background: var(--bg);

@@ -6,36 +6,13 @@ import { LogoMark } from "@/components/LogoMark";
 import { NavOverlay } from "./NavOverlay";
 import { useReady } from "./ReadyContext";
 
-function formatClock(d: Date) {
-  let h = d.getHours();
-  const m = String(d.getMinutes()).padStart(2, "0");
-  const ampm = h >= 12 ? "pm" : "am";
-  h = h % 12 || 12;
-  const months = [
-    "January", "February", "March", "April", "May", "June",
-    "July", "August", "September", "October", "November", "December",
-  ];
-  return `${h}:${m}${ampm} · ${d.getDate()} ${months[d.getMonth()]}, ${d.getFullYear()}`;
-}
-
-/** Fixed-overlay header: brand lockup, primary nav (desktop), live local
- * clock, and a Menu button that opens the full-screen NavOverlay. Slides
- * down + fades in shortly after the intro loader finishes. */
+/** Fixed-overlay header: brand lockup, primary nav (desktop), and a Menu
+ * button that opens the full-screen NavOverlay. Slides down + fades in
+ * shortly after the intro loader finishes. */
 export function MarketingHeader() {
   const ready = useReady();
   const [menuOpen, setMenuOpen] = useState(false);
-  const [now, setNow] = useState<Date | null>(null);
   const [condensed, setCondensed] = useState(false);
-
-  useEffect(() => {
-    // `now` starts null so SSR and the first client render match; this sets
-    // the real clock immediately after mount instead of waiting a full
-    // second for the first interval tick.
-    // eslint-disable-next-line react-hooks/set-state-in-effect
-    setNow(new Date());
-    const id = window.setInterval(() => setNow(new Date()), 1000);
-    return () => window.clearInterval(id);
-  }, []);
 
   useEffect(() => {
     // Header condenses into a floating pill once the hero has scrolled past
@@ -67,7 +44,6 @@ export function MarketingHeader() {
         )}
 
         <div className="bdc-header-right">
-          {!condensed && now && <span className="bdc-clock">{formatClock(now)}</span>}
           <button type="button" className="bdc-menu-btn" onClick={() => setMenuOpen(true)} aria-haspopup="dialog">
             Menu
           </button>

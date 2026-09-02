@@ -98,7 +98,7 @@ export default function HomePage() {
         {/* ================= 3. SERVICES — dark, agency-pitch treatment ================= */}
         <section className="section bdc-section-services reveal" id="services">
           <div className="section-head reveal">
-            <Eyebrow tone="light">Services</Eyebrow>
+            <Eyebrow>Services</Eyebrow>
             <LineReveal as="h2" lines={["A marketing department,", "without the department."]} />
             <p>
               Done-for-you and led by a real person. Every engagement starts with an onboarding
@@ -115,7 +115,7 @@ export default function HomePage() {
           </div>
 
           <div style={{ marginTop: 40, display: "flex", justifyContent: "center", gap: 12, flexWrap: "wrap" }}>
-            <Pill href="/services" variant="light" trailing="arrow">
+            <Pill href="/services" variant="dark" trailing="arrow">
               See Services tiers
             </Pill>
             <Pill href="/services#schedule-call" variant="outline">
