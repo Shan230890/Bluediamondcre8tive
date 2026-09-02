@@ -22,7 +22,8 @@ export type TemplateCategory =
   | "Video & podcast"
   | "Web & app"
   | "Email & lifecycle"
-  | "Reporting & analytics";
+  | "Reporting & analytics"
+  | "Legal & compliance";
 
 export const TEMPLATE_CATEGORIES: TemplateCategory[] = [
   "SEO & AEO strategy",
@@ -34,6 +35,7 @@ export const TEMPLATE_CATEGORIES: TemplateCategory[] = [
   "Web & app",
   "Email & lifecycle",
   "Reporting & analytics",
+  "Legal & compliance",
 ];
 
 export interface TaskTemplate {
@@ -313,6 +315,36 @@ export const TASK_TEMPLATES: TaskTemplate[] = [
     description: "Henry reviews the quarter's closed tasks and outcomes and drafts a retro with priorities for next quarter.",
     suggestedPersonaKey: "henry",
     category: "Reporting & analytics",
+  },
+
+  // --- Legal & compliance (harvey) ---
+  {
+    slug: "legal-ad-claims-review",
+    title: "Ad claims compliance review",
+    description: "Harvey checks a set of ad or landing page claims for anything that could create regulatory or misrepresentation risk in your jurisdiction, and flags what to soften or cut.",
+    suggestedPersonaKey: "harvey",
+    category: "Legal & compliance",
+  },
+  {
+    slug: "legal-contract-review",
+    title: "Contract or vendor agreement review",
+    description: "Harvey reviews a contract or vendor agreement clause by clause and flags anything that creates risk, is ambiguous, or is missing entirely.",
+    suggestedPersonaKey: "harvey",
+    category: "Legal & compliance",
+  },
+  {
+    slug: "legal-privacy-policy-update",
+    title: "Privacy policy or terms update",
+    description: "Harvey reviews your current privacy policy or terms of service against a described change to your product or data handling and drafts the updated clauses.",
+    suggestedPersonaKey: "harvey",
+    category: "Legal & compliance",
+  },
+  {
+    slug: "legal-influencer-agreement-check",
+    title: "Influencer or affiliate agreement check",
+    description: "Harvey reviews an influencer, affiliate, or partnership agreement for disclosure obligations, IP ownership, and termination terms before it goes out.",
+    suggestedPersonaKey: "harvey",
+    category: "Legal & compliance",
   },
 ];
 
