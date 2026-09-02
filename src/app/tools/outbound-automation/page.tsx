@@ -5,6 +5,8 @@ import { Pill, Eyebrow } from "@/components/marketing/Pill";
 import { SectionBackground } from "@/components/marketing/SectionBackground";
 import { OldWayNewWay } from "@/components/marketing/OldWayNewWay";
 import { TemplateTeasers } from "@/components/marketing/TemplateTeasers";
+import { OutboundDraftsShowcase } from "@/components/marketing/ShowcaseCards";
+import { HowItWorks } from "@/components/marketing/HowItWorks";
 import "../../landing-e.css";
 
 export const metadata: Metadata = {
@@ -48,6 +50,12 @@ export default function OutboundAutomationPage() {
         </section>
 
         <section className="section section-bg">
+          <div className="reveal">
+            <OutboundDraftsShowcase />
+          </div>
+        </section>
+
+        <section className="section section-bg-alt">
           <div className="section-head reveal">
             <Eyebrow>Old way vs. our way</Eyebrow>
             <LineReveal as="h2" lines={["Stop rewriting the same cold email", "for every new list."]} />
@@ -55,6 +63,14 @@ export default function OutboundAutomationPage() {
           <div className="reveal">
             <OldWayNewWay />
           </div>
+        </section>
+
+        <section className="section section-bg">
+          <div className="section-head reveal">
+            <Eyebrow>How it works</Eyebrow>
+            <LineReveal as="h2" lines={["From brief", "to outreach drafts."]} />
+          </div>
+          <HowItWorks />
         </section>
 
         <section className="section section-bg-alt">

@@ -5,6 +5,8 @@ import { Pill, Eyebrow } from "@/components/marketing/Pill";
 import { SectionBackground } from "@/components/marketing/SectionBackground";
 import { OldWayNewWay } from "@/components/marketing/OldWayNewWay";
 import { TemplateTeasers } from "@/components/marketing/TemplateTeasers";
+import { VisibilityShowcase } from "@/components/marketing/ShowcaseCards";
+import { HowItWorks } from "@/components/marketing/HowItWorks";
 import "../../landing-e.css";
 
 export const metadata: Metadata = {
@@ -44,6 +46,12 @@ export default function ContentLedGrowthPage() {
         </section>
 
         <section className="section section-bg">
+          <div className="reveal">
+            <VisibilityShowcase />
+          </div>
+        </section>
+
+        <section className="section section-bg-alt">
           <div className="section-head reveal">
             <Eyebrow>Old way vs. our way</Eyebrow>
             <LineReveal as="h2" lines={["Stop losing content decisions", "to old chat history."]} />
@@ -51,6 +59,14 @@ export default function ContentLedGrowthPage() {
           <div className="reveal">
             <OldWayNewWay />
           </div>
+        </section>
+
+        <section className="section section-bg">
+          <div className="section-head reveal">
+            <Eyebrow>How it works</Eyebrow>
+            <LineReveal as="h2" lines={["From brief", "to a content engine."]} />
+          </div>
+          <HowItWorks />
         </section>
 
         <section className="section section-bg-alt">

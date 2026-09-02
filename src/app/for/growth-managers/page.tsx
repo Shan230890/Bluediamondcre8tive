@@ -5,6 +5,8 @@ import { Pill, Eyebrow } from "@/components/marketing/Pill";
 import { SectionBackground } from "@/components/marketing/SectionBackground";
 import { PainProductRows } from "@/components/marketing/PainProductRows";
 import { TemplateTeasers } from "@/components/marketing/TemplateTeasers";
+import { TaskBoardShowcase } from "@/components/marketing/ShowcaseCards";
+import { HowItWorks } from "@/components/marketing/HowItWorks";
 import "../../landing-e.css";
 
 export const metadata: Metadata = {
@@ -62,11 +64,25 @@ export default function GrowthManagersPage() {
         </section>
 
         <section className="section section-bg">
+          <div className="reveal">
+            <TaskBoardShowcase />
+          </div>
+        </section>
+
+        <section className="section section-bg-alt">
           <div className="section-head reveal">
             <Eyebrow>The day-to-day</Eyebrow>
             <LineReveal as="h2" lines={["What's actually eating", "your week."]} />
           </div>
           <PainProductRows rows={PAIN_ROWS} />
+        </section>
+
+        <section className="section section-bg">
+          <div className="section-head reveal">
+            <Eyebrow>How it works</Eyebrow>
+            <LineReveal as="h2" lines={["From brief", "to a closed task."]} />
+          </div>
+          <HowItWorks />
         </section>
 
         <section className="section section-bg-alt">

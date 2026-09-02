@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowRight, CheckCircle2, TrendingUp, TrendingDown, Minus } from "lucide-react";
+import { ArrowRight, CheckCircle2, TrendingUp, TrendingDown, Minus, Send } from "lucide-react";
 
 /**
  * Product-screenshot showcase cards, embedded directly in the homepage
@@ -183,6 +183,139 @@ export function AcademyShowcase() {
               <span className="bdc-mock-course-name">{c.name}</span>
             </div>
           ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export function VisibilityShowcase() {
+  const rows = [
+    { name: "Your brand", value: 61 },
+    { name: "Competitor A", value: 44 },
+    { name: "Competitor B", value: 29 },
+  ];
+  return (
+    <div className="bdc-showcase">
+      <div className="bdc-showcase-copy">
+        <h3>AI Visibility Report</h3>
+        <p>
+          Name up to three competitors and get a mention-rate comparison across four AI-judge
+          personas modeled on ChatGPT, Claude, Perplexity, and Google AI Overviews.
+        </p>
+        <Link href="/dashboard/ai-visibility" className="bdc-showcase-link">
+          See how the report works <ArrowRight size={14} />
+        </Link>
+      </div>
+      <div className="bdc-showcase-mock">
+        <div className="bdc-mock-header">
+          <span className="bdc-mock-dot" />
+          <span className="bdc-mock-dot" />
+          <span className="bdc-mock-dot" />
+          <span className="bdc-mock-url">dashboard/ai-visibility</span>
+        </div>
+        <div className="bdc-mock-body">
+          {rows.map((r) => (
+            <div className="bdc-mock-axis" key={r.name}>
+              <span>{r.name}</span>
+              <div className="bdc-mock-axis-track">
+                <div className="bdc-mock-axis-fill" style={{ width: `${r.value}%` }} />
+              </div>
+            </div>
+          ))}
+          <p className="bdc-mock-truth">
+            &ldquo;This is a simulation. One underlying model answers as four distinct judge
+            personas, it does not query the real ChatGPT, Claude, Perplexity, or Google
+            systems.&rdquo;
+          </p>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export function PaidMediaShowcase() {
+  const rows = [
+    { channel: "Google", budget: "$2,000", angle: "Search-intent capture on high-value keywords" },
+    { channel: "Meta", budget: "$1,500", angle: "Retargeting warm site visitors with a proof-led creative" },
+    { channel: "LinkedIn", budget: "$1,500", angle: "Direct reach to the named decision-maker title" },
+  ];
+  return (
+    <div className="bdc-showcase bdc-showcase-reverse">
+      <div className="bdc-showcase-copy">
+        <h3>Paid Media Plan</h3>
+        <p>
+          Describe your budget, channels, and goal. Get a recommended split and a creative angle
+          for each channel back. Creative direction and budget planning only, we never manage a
+          live ad account or spend on your behalf.
+        </p>
+        <Link href="/dashboard/paid-media-plan" className="bdc-showcase-link">
+          See how the plan works <ArrowRight size={14} />
+        </Link>
+      </div>
+      <div className="bdc-showcase-mock">
+        <div className="bdc-mock-header">
+          <span className="bdc-mock-dot" />
+          <span className="bdc-mock-dot" />
+          <span className="bdc-mock-dot" />
+          <span className="bdc-mock-url">dashboard/paid-media-plan</span>
+        </div>
+        <div className="bdc-mock-body">
+          {rows.map((row) => (
+            <div className="bdc-mock-vault-row" key={row.channel}>
+              <CheckCircle2 size={16} />
+              <div>
+                <div className="bdc-mock-vault-name">
+                  {row.channel} · {row.budget}
+                </div>
+                <div className="bdc-mock-vault-change">{row.angle}</div>
+              </div>
+            </div>
+          ))}
+          <p className="bdc-mock-caption">Illustrative preview, not a real client budget.</p>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export function OutboundDraftsShowcase() {
+  const rows = [
+    { label: "Cold email opener", draft: "Hi [First name], saw [Company] just [trigger event]…" },
+    { label: "LinkedIn connection note", draft: "Enjoyed [Company]'s recent [trigger event], would love to connect." },
+    { label: "Follow-up, touch 2", draft: "Circling back on the note above, still relevant for [Company]?" },
+  ];
+  return (
+    <div className="bdc-showcase">
+      <div className="bdc-showcase-copy">
+        <h3>Outbound Drafts</h3>
+        <p>
+          Describe a target title, industry, company size, and pain point. Get cold email and
+          LinkedIn drafts back with placeholder tokens, ready for you to personalize and send. No
+          real contact data, no scraping, no sending on your behalf.
+        </p>
+        <Link href="/dashboard/outbound" className="bdc-showcase-link">
+          See how drafting works <ArrowRight size={14} />
+        </Link>
+      </div>
+      <div className="bdc-showcase-mock">
+        <div className="bdc-mock-header">
+          <span className="bdc-mock-dot" />
+          <span className="bdc-mock-dot" />
+          <span className="bdc-mock-dot" />
+          <span className="bdc-mock-url">dashboard/outbound</span>
+        </div>
+        <div className="bdc-mock-body">
+          {rows.map((row) => (
+            <div className="bdc-mock-vault-row" key={row.label}>
+              <Send size={16} />
+              <div>
+                <div className="bdc-mock-vault-name">{row.label}</div>
+                <div className="bdc-mock-vault-change">{row.draft}</div>
+              </div>
+            </div>
+          ))}
+          <p className="bdc-mock-caption">Illustrative drafts, not real prospect data.</p>
         </div>
       </div>
     </div>
