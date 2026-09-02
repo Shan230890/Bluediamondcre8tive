@@ -20,21 +20,39 @@ const STARTER_TOPIC: Record<string, string> = {
   barry: "a build, bug, or technical question",
 };
 
+/** Initials shown in the monogram avatar for agents with no emoji (custom agents). */
+function initials(name: string): string {
+  return name
+    .trim()
+    .split(/\s+/)
+    .slice(0, 2)
+    .map((part) => part[0]?.toUpperCase() ?? "")
+    .join("");
+}
+
 /**
  * Chat state is in-memory/per-session only — no persistence to Supabase in
  * this pass. Known follow-up, not a silent omission: a `persona_chat_messages`
  * table would need its own migration + RLS policy, out of scope here.
+ *
+ * Generalized to also drive custom-agent chat: pass `apiPath` to hit a
+ * different route than the built-in `/api/dashboard/team/:slug/chat`
+ * pattern, and omit `emoji` to fall back to a text monogram (custom agents
+ * don't get persona icons).
  */
 export function PersonaChat({
   slug,
   name,
   role,
   emoji,
+  apiPath,
 }: {
   slug: string;
   name: string;
   role: string;
-  emoji: string;
+  emoji?: string;
+  /** Defaults to the built-in persona chat route if not given. */
+  apiPath?: string;
 }) {
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState("");
@@ -66,7 +84,7 @@ export function PersonaChat({
     setError("");
 
     try {
-      const res = await fetch(`/api/dashboard/team/${slug}/chat`, {
+      const res = await fetch(apiPath ?? `/api/dashboard/team/${slug}/chat`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ messages: nextMessages }),
@@ -85,11 +103,13 @@ export function PersonaChat({
   }
 
   const topic = STARTER_TOPIC[slug] ?? "how they can help";
+  const avatarContent = emoji ?? initials(name);
+  const avatarClass = emoji ? "" : " monogram";
 
   return (
     <div className="chat-shell">
       <div className="chat-header">
-        <span className="chat-header-avatar">{emoji}</span>
+        <span className={`chat-header-avatar${avatarClass}`}>{avatarContent}</span>
         <div>
           <div className="chat-header-name">{name}</div>
           <div className="chat-header-role">{role}</div>
@@ -102,7 +122,7 @@ export function PersonaChat({
 
       {messages.length === 0 ? (
         <div className="chat-empty">
-          <span className="persona-avatar">{emoji}</span>
+          <span className={`persona-avatar${avatarClass}`}>{avatarContent}</span>
           <p className="chat-empty-title">Chat with {name}</p>
           <p className="chat-empty-sub">Ask {name} about {topic}.</p>
         </div>
@@ -110,13 +130,13 @@ export function PersonaChat({
         <div className="chat-messages">
           {messages.map((m, i) => (
             <div key={i} className={`chat-row ${m.role}`}>
-              {m.role === "assistant" && <span className="chat-row-avatar">{emoji}</span>}
+              {m.role === "assistant" && <span className={`chat-row-avatar${avatarClass}`}>{avatarContent}</span>}
               <div className={`chat-bubble ${m.role}`}>{m.content}</div>
             </div>
           ))}
           {pending && (
             <div className="chat-row assistant">
-              <span className="chat-row-avatar">{emoji}</span>
+              <span className={`chat-row-avatar${avatarClass}`}>{avatarContent}</span>
               <div className="chat-bubble assistant chat-typing">
                 <span />
                 <span />

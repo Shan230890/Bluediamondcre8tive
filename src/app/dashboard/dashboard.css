@@ -707,6 +707,18 @@
   color: var(--accent);
 }
 
+/* Monogram avatar variant — used by custom agents in place of a persona
+   emoji (this app avoids icon identities for client-built agents). Applies
+   on top of persona-avatar / chat-header-avatar / chat-row-avatar. */
+.dashboard-e .persona-avatar.monogram,
+.dashboard-e .chat-header-avatar.monogram,
+.dashboard-e .chat-row-avatar.monogram {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--accent);
+  letter-spacing: 0.02em;
+}
+
 /* Chat */
 .dashboard-e .chat-shell {
   display: flex;

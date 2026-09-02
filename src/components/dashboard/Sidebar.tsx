@@ -20,6 +20,7 @@ import {
   Megaphone,
   Send,
   History,
+  Sparkles,
 } from "lucide-react";
 import { LogoMark } from "@/components/LogoMark";
 
@@ -42,6 +43,7 @@ const GROWTH_ITEMS = [
 ] as const;
 
 const TEAM_ITEM = { href: "/dashboard/team", label: "Your Cre8tive Team", icon: Users } as const;
+const CUSTOM_AGENTS_ITEM = { href: "/dashboard/team/custom", label: "Custom agents", icon: Sparkles } as const;
 const SETTINGS_ITEM = { href: "/dashboard/settings", label: "Settings", icon: Settings } as const;
 
 export function Sidebar({
@@ -108,6 +110,7 @@ export function Sidebar({
 
         <p className="dash-nav-section-label">Team</p>
         {renderLink(TEAM_ITEM)}
+        {renderLink(CUSTOM_AGENTS_ITEM)}
 
         <p className="dash-nav-section-label">Account</p>
         {renderLink(SETTINGS_ITEM)}

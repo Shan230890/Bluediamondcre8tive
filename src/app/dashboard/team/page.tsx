@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Plus } from "lucide-react";
 import { PERSONA_SLUGS, PERSONAS } from "@/lib/personas/blue-diamond";
 import { TiltCard } from "@/components/motion/TiltCard";
 
@@ -29,6 +29,30 @@ export default function TeamPage() {
           );
         })}
       </div>
+
+      <div className="dash-section-head" style={{ marginTop: 40 }}>
+        <h3>Custom agents</h3>
+      </div>
+      <p className="form-note" style={{ marginBottom: 20 }}>
+        Build your own AI agent for the marketing work your six-person team doesn&apos;t already cover.
+        Custom agents can only help with marketing work for your business, no matter how a request is
+        phrased.
+      </p>
+      <Link href="/dashboard/team/custom" style={{ display: "block" }}>
+        <TiltCard tilt="flat" className="persona-card">
+          <span className="persona-avatar monogram">
+            <Plus size={22} />
+          </span>
+          <span className="persona-name">Manage custom agents</span>
+          <span className="persona-role">Create, edit, and chat</span>
+          <p className="persona-oneliner">
+            Build a marketing specialist for the work your built-in team doesn&apos;t cover.
+          </p>
+          <span className="persona-card-arrow">
+            View custom agents <ArrowRight size={13} />
+          </span>
+        </TiltCard>
+      </Link>
     </div>
   );
 }
