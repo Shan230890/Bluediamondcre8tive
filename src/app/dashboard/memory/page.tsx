@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { History, ChevronDown, ChevronUp } from "lucide-react";
 import { PERSONAS, type PersonaSlug } from "@/lib/personas/blue-diamond";
 import { PersonaAvatar } from "@/components/dashboard/PersonaAvatar";
+import { FormattedAiText } from "@/lib/format/render-ai-text";
 
 interface Task {
   id: string;
@@ -128,7 +129,13 @@ export default function ExecutionMemoryPage() {
                     {isOpen ? "Hide reply" : "Show reply"}
                     {isOpen ? <ChevronUp size={12} /> : <ChevronDown size={12} />}
                   </button>
-                  {isOpen && <div className="kanban-reply-body">{task.ai_reply}</div>}
+                  {isOpen && (
+                    <div className="kanban-reply-card">
+                      <div className="kanban-reply-card-body">
+                        <FormattedAiText text={task.ai_reply} />
+                      </div>
+                    </div>
+                  )}
                   {!isOpen && <p style={{ fontSize: 13, color: "var(--muted)" }}>{task.ai_reply.slice(0, 140)}{task.ai_reply.length > 140 ? "…" : ""}</p>}
                 </>
               )}

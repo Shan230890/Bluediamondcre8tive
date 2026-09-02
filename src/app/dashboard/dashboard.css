@@ -1030,6 +1030,45 @@
   background: var(--card-alt);
   color: var(--text-dark);
   border-bottom-left-radius: 4px;
+  /* Assistant content renders through FormattedAiText (block-level p/ul/ol),
+     which already supplies its own spacing — pre-wrap would double it up. */
+  white-space: normal;
+}
+
+.dashboard-e .chat-bubble.assistant p {
+  margin: 0 0 8px;
+}
+
+.dashboard-e .chat-bubble.assistant p:last-child {
+  margin-bottom: 0;
+}
+
+.dashboard-e .chat-bubble.assistant ul,
+.dashboard-e .chat-bubble.assistant ol {
+  margin: 0 0 8px;
+  padding-left: 18px;
+}
+
+.dashboard-e .chat-bubble.assistant li {
+  margin-bottom: 3px;
+}
+
+.dashboard-e .chat-bubble.assistant h4,
+.dashboard-e .chat-bubble.assistant h5 {
+  margin: 8px 0 4px;
+  font-weight: 700;
+}
+
+.dashboard-e .chat-bubble.assistant h4 {
+  font-size: 13.5px;
+}
+
+.dashboard-e .chat-bubble.assistant h5 {
+  font-size: 13px;
+}
+
+.dashboard-e .chat-bubble.assistant strong {
+  font-weight: 700;
 }
 
 .dashboard-e .chat-typing {
@@ -1435,15 +1474,156 @@
   text-align: left;
 }
 
-.dashboard-e .kanban-reply-body {
-  font-size: 12px;
-  line-height: 1.55;
-  color: var(--body-c);
+/* Reply artifact card — restyled kanban-reply-body, matches the Pattern E
+   "mockup UI card" language (see .bdc-showcase-mock/.bdc-mock-header in
+   landing-e.css) adapted to the dashboard's own token set: a small header
+   row (avatar + name + badge + timestamp) over the formatted reply body. */
+.dashboard-e .kanban-reply-card {
   background: var(--card-alt);
   border: 1px solid var(--border);
   border-radius: 10px;
+  overflow: hidden;
+}
+
+.dashboard-e .kanban-reply-card-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 12px;
+  background: var(--card);
+  border-bottom: 1px solid var(--border);
+}
+
+.dashboard-e .kanban-reply-card-avatar.monogram {
+  width: 22px;
+  height: 22px;
+  border-radius: 7px;
+  font-size: 11px;
+  flex-shrink: 0;
+}
+
+.dashboard-e .kanban-reply-card-name {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--text-dark);
+}
+
+.dashboard-e .kanban-reply-card-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px 8px;
+  border-radius: 999px;
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  background: rgba(var(--accent-rgb), 0.12);
+  color: var(--accent);
+}
+
+.dashboard-e .kanban-reply-card-time {
+  margin-left: auto;
+  font-size: 11px;
+  color: var(--muted);
+  white-space: nowrap;
+}
+
+.dashboard-e .kanban-reply-card-body {
   padding: 10px 12px;
-  white-space: pre-wrap;
+  font-size: 12px;
+  line-height: 1.6;
+  color: var(--body-c);
+}
+
+.dashboard-e .kanban-reply-card-body > *:first-child {
+  margin-top: 0;
+}
+
+.dashboard-e .kanban-reply-card-body > *:last-child {
+  margin-bottom: 0;
+}
+
+.dashboard-e .kanban-reply-card-body p {
+  margin: 0 0 8px;
+}
+
+.dashboard-e .kanban-reply-card-body h4,
+.dashboard-e .kanban-reply-card-body h5 {
+  margin: 10px 0 4px;
+  color: var(--text-dark);
+  font-weight: 700;
+}
+
+.dashboard-e .kanban-reply-card-body h4 {
+  font-size: 13px;
+}
+
+.dashboard-e .kanban-reply-card-body h5 {
+  font-size: 12.5px;
+}
+
+.dashboard-e .kanban-reply-card-body ul,
+.dashboard-e .kanban-reply-card-body ol {
+  margin: 0 0 8px;
+  padding-left: 18px;
+}
+
+.dashboard-e .kanban-reply-card-body li {
+  margin-bottom: 3px;
+}
+
+.dashboard-e .kanban-reply-card-body li:last-child {
+  margin-bottom: 0;
+}
+
+.dashboard-e .kanban-reply-card-body strong {
+  color: var(--text-dark);
+  font-weight: 700;
+}
+
+/* Honest busy state — shown only while a real, single synchronous LLM call
+   is in flight (see handleAssign in TaskBoard.tsx). One label, no fabricated
+   multi-step progress narrative: the pulse communicates "in progress",
+   nothing more specific than that, because nothing more specific is true. */
+.dashboard-e .kanban-busy-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 10px;
+  background: var(--card-alt);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+}
+
+.dashboard-e .kanban-busy-avatar.monogram {
+  width: 26px;
+  height: 26px;
+  border-radius: 8px;
+  font-size: 12px;
+  flex-shrink: 0;
+  animation: kanban-busy-pulse 1.6s ease-in-out infinite;
+}
+
+.dashboard-e .kanban-busy-label {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--body-c);
+}
+
+@keyframes kanban-busy-pulse {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgba(var(--accent-rgb), 0.35);
+  }
+  50% {
+    box-shadow: 0 0 0 5px rgba(var(--accent-rgb), 0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dashboard-e .kanban-busy-avatar.monogram {
+    animation: none;
+  }
 }
 
 .dashboard-e .kanban-assign-row {

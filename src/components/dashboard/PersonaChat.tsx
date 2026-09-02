@@ -21,6 +21,7 @@ const STARTER_TOPIC: Record<string, string> = {
 };
 
 import { initials } from "@/lib/personas/avatar";
+import { FormattedAiText } from "@/lib/format/render-ai-text";
 
 /**
  * Chat state is in-memory/per-session only — no persistence to Supabase in
@@ -126,7 +127,9 @@ export function PersonaChat({
           {messages.map((m, i) => (
             <div key={i} className={`chat-row ${m.role}`}>
               {m.role === "assistant" && <span className="chat-row-avatar monogram" style={avatarStyle}>{avatarContent}</span>}
-              <div className={`chat-bubble ${m.role}`}>{m.content}</div>
+              <div className={`chat-bubble ${m.role}`}>
+                {m.role === "assistant" ? <FormattedAiText text={m.content} /> : m.content}
+              </div>
             </div>
           ))}
           {pending && (

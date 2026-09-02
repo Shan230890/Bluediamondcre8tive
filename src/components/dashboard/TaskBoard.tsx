@@ -6,6 +6,8 @@ import { ListTodo, Plus, ChevronDown, ChevronUp, Sparkles } from "lucide-react";
 import { PERSONA_SLUGS, PERSONAS, type PersonaSlug } from "@/lib/personas/blue-diamond";
 import { DraggableCard, DroppableColumn } from "@/components/dashboard/Kanban";
 import { PersonaAvatar } from "@/components/dashboard/PersonaAvatar";
+import { FormattedAiText } from "@/lib/format/render-ai-text";
+import { formatRelativeTime } from "@/lib/format";
 
 /**
  * Shared kanban board, factored out of the original standalone
@@ -333,8 +335,37 @@ export function TaskBoard({
                               Persona replied
                               {replyOpen ? <ChevronUp size={12} /> : <ChevronDown size={12} />}
                             </button>
-                            {replyOpen && <div className="kanban-reply-body">{task.ai_reply}</div>}
+                            {replyOpen && (
+                              <div className="kanban-reply-card">
+                                <div className="kanban-reply-card-header">
+                                  {persona ? (
+                                    <PersonaAvatar slug={persona.slug} name={persona.name} className="kanban-reply-card-avatar" />
+                                  ) : (
+                                    <span className="kanban-reply-card-avatar monogram">—</span>
+                                  )}
+                                  <span className="kanban-reply-card-name">{persona ? persona.name : "Unknown"}</span>
+                                  <span className="kanban-reply-card-badge">Replied</span>
+                                  {task.ai_replied_at && (
+                                    <span className="kanban-reply-card-time">{formatRelativeTime(task.ai_replied_at)}</span>
+                                  )}
+                                </div>
+                                <div className="kanban-reply-card-body">
+                                  <FormattedAiText text={task.ai_reply} />
+                                </div>
+                              </div>
+                            )}
                           </>
+                        )}
+
+                        {state.busy && state.persona && (
+                          <div className="kanban-busy-row">
+                            <PersonaAvatar
+                              slug={PERSONAS[state.persona].slug}
+                              name={PERSONAS[state.persona].name}
+                              className="kanban-busy-avatar"
+                            />
+                            <span className="kanban-busy-label">{PERSONAS[state.persona].name} is working on this</span>
+                          </div>
                         )}
 
                         <div className="kanban-assign-row" onPointerDown={(e) => e.stopPropagation()}>
