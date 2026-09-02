@@ -9,6 +9,7 @@ import { SectionBackground } from "@/components/marketing/SectionBackground";
 import { PrincipalReviewShowcase } from "@/components/marketing/ShowcaseCards";
 import { TestimonialStats } from "@/components/marketing/TestimonialStats";
 import { ScheduleCallSection } from "@/components/marketing/ScheduleCallSection";
+import { Guardrails } from "@/components/marketing/Guardrails";
 import "../landing-e.css";
 
 export const metadata: Metadata = {
@@ -91,6 +92,9 @@ export default function ServicesPage() {
             </p>
           </div>
           <QualifyGrid />
+          <div className="reveal" style={{ marginTop: 40 }}>
+            <Guardrails />
+          </div>
         </section>
 
         <section className="section section-bg-dark reveal" id="schedule-call">

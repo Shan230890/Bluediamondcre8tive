@@ -1,3 +1,6 @@
+/* eslint-disable @next/next/no-img-element -- hero watermark reuses the raw
+   brand icon file at giant display size, same as LogoMark's iconOnly path,
+   not a next/image-optimizable content image. */
 import type { Metadata } from "next";
 import { ArrowRight, TrendingUp, Check } from "lucide-react";
 import { MarketingShell } from "@/components/marketing/MarketingShell";
@@ -7,7 +10,7 @@ import { HeroScoreForm } from "@/components/marketing/HeroScoreForm";
 import { StatsPanel } from "@/components/marketing/StatsPanel";
 import { PillarGrid } from "@/components/marketing/PillarGrid";
 import { QualityChecklist } from "@/components/marketing/QualityChecklist";
-import { ScoreShowcase, VaultShowcase } from "@/components/marketing/ShowcaseCards";
+import { ScoreShowcase, VaultShowcase, TaskBoardShowcase } from "@/components/marketing/ShowcaseCards";
 import { PrincipalBio } from "@/components/marketing/PrincipalBio";
 import { DecorativeShapes } from "@/components/marketing/DecorativeShapes";
 import { LineReveal } from "@/components/marketing/TextReveal";
@@ -33,7 +36,11 @@ export default function HomePage() {
         <section className="bdc-hero">
           <LiquidHero />
           <div className="bdc-hero-vignette" aria-hidden="true" />
-          <span className="bdc-hero-watermark" aria-hidden="true">CRE8TIVE</span>
+          <span className="bdc-hero-watermark" aria-hidden="true">
+            CRE
+            <img src="/brand/icon-light.svg" alt="" className="bdc-hero-watermark-icon" />
+            TIVE
+          </span>
 
           <div className="bdc-hero-inner">
             <div>
@@ -46,8 +53,8 @@ export default function HomePage() {
               />
               <p className="bdc-hero-lead">
                 Blue Diamond Cre8tive is two different ways to work with us: a done-for-you,
-                principal-led marketing service, and a self-serve platform of tools. Try the
-                platform free below, no sign-up required.
+                principal-led marketing service, and a self-serve Platform where you run the same
+                AI marketing team yourself. Try the platform free below, no sign-up required.
               </p>
               <HeroScoreForm />
               <div className="bdc-hero-ctas">
@@ -133,14 +140,17 @@ export default function HomePage() {
           <DecorativeShapes corner="tr" />
           <div className="section-head reveal">
             <Eyebrow>Platform</Eyebrow>
-            <LineReveal as="h2" lines={["Self-serve products.", "Start in minutes."]} />
+            <LineReveal as="h2" lines={["A full marketing team,", "that you run yourself."]} />
             <p>
-              No onboarding call, no sales conversation. Sign up and get instant access to the
-              Competitor Intelligence Vault, or try Cre8tive Score free right now.
+              No onboarding call, no sales conversation. Sign up and get the same AI-native
+              marketing team behind our Services silo, copywriting, design, video, legal, and code,
+              working for you on a task board you control, plus the Competitor Intelligence Vault and
+              a free Cre8tive Score to start.
             </p>
           </div>
 
           <div className="reveal" style={{ marginBottom: 44 }}>
+            <TaskBoardShowcase />
             <ScoreShowcase />
             <VaultShowcase />
           </div>

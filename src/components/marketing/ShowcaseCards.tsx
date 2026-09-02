@@ -59,6 +59,51 @@ export function ScoreShowcase() {
   );
 }
 
+export function TaskBoardShowcase() {
+  const rows = [
+    { title: "Draft next week's email flow", role: "Copywriting agent", status: "Replied, awaiting review" },
+    { title: "Redesign the pricing page hero", role: "Design agent", status: "In progress" },
+    { title: "Check the new landing page copy", role: "Legal agent", status: "Auto-run, done" },
+  ];
+  return (
+    <div className="bdc-showcase">
+      <div className="bdc-showcase-copy">
+        <h3>Your AI team, on a task board</h3>
+        <p>
+          The Platform isn&apos;t a chat window. Assign real marketing work, copy, design, video,
+          legal review, code, to your AI team and track it on a kanban board from open to done. Every
+          agent drafts a reply you review, or let a task auto-run straight to done.
+        </p>
+        <Link href="/dashboard/tasks" className="bdc-showcase-link">
+          Open the task board <ArrowRight size={14} />
+        </Link>
+      </div>
+      <div className="bdc-showcase-mock">
+        <div className="bdc-mock-header">
+          <span className="bdc-mock-dot" />
+          <span className="bdc-mock-dot" />
+          <span className="bdc-mock-dot" />
+          <span className="bdc-mock-url">dashboard/tasks</span>
+        </div>
+        <div className="bdc-mock-body">
+          {rows.map((row) => (
+            <div className="bdc-mock-vault-row" key={row.title}>
+              <CheckCircle2 size={16} />
+              <div>
+                <div className="bdc-mock-vault-name">{row.title}</div>
+                <div className="bdc-mock-vault-change">
+                  {row.role} · {row.status}
+                </div>
+              </div>
+            </div>
+          ))}
+          <p className="bdc-mock-caption">Illustrative preview, not real client data.</p>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 export function VaultShowcase() {
   const rows = [
     { name: "Acme Growth Co.", change: "Dropped entry tier from $79 to $59/mo", trend: "down" as const },

@@ -1393,6 +1393,20 @@
   white-space: nowrap;
   pointer-events: none;
   user-select: none;
+  display: inline-flex;
+  align-items: center;
+}
+
+/* The "8" in the watermark is the real brand icon file (same file LogoMark
+   uses), scaled proportionally to the surrounding giant text rather than a
+   plain text digit. Opacity matches the watermark's text color alpha since
+   the icon file itself is full-opacity artwork. */
+.landing-e .bdc-hero-watermark-icon {
+  height: 0.74em;
+  width: auto;
+  display: inline-block;
+  margin: 0 0.02em;
+  opacity: 0.045;
 }
 .landing-e .bdc-hero-inner {
   position: relative;

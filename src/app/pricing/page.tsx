@@ -7,6 +7,7 @@ import { Pill, Eyebrow } from "@/components/marketing/Pill";
 import { SectionBackground } from "@/components/marketing/SectionBackground";
 import { DecorativeShapes } from "@/components/marketing/DecorativeShapes";
 import { FaqAccordion } from "@/components/marketing/FaqAccordion";
+import { Guardrails } from "@/components/marketing/Guardrails";
 import "../landing-e.css";
 
 export const metadata: Metadata = {
@@ -70,12 +71,12 @@ const serviceGroup = {
 
 const platformGroups = [
   {
-    name: "Competitor Intelligence Vault",
+    name: "Platform — task board, AI team & Vault",
     href: "/tools",
     tiers: [
-      { name: "Starter", price: "$49/mo", includes: ["1 competitor tracked"] },
-      { name: "Pro", price: "$99/mo", featured: true, includes: ["5 competitors", "Alerts"] },
-      { name: "Agency", price: "$249/mo", includes: ["Unlimited competitors", "White-label export"] },
+      { name: "Starter", price: "$49/mo", includes: ["AI task board + your full AI team", "1 competitor tracked"] },
+      { name: "Pro", price: "$99/mo", featured: true, includes: ["AI task board + your full AI team", "5 competitors", "Alerts"] },
+      { name: "Agency", price: "$249/mo", includes: ["AI task board + your full AI team", "Unlimited competitors", "White-label export"] },
     ],
   },
 ];
@@ -136,9 +137,11 @@ export default function PricingPage() {
         <section className="section bdc-section-platform">
           <div className="section-head reveal" style={{ marginBottom: 12 }}>
             <Eyebrow>Platform — self-serve</Eyebrow>
-            <LineReveal as="h2" lines={["Sign up and get instant access."]} />
+            <LineReveal as="h2" lines={["Every tier includes the full", "AI marketing team."]} />
             <p>
-              No onboarding call needed. Not ready to commit yet?{" "}
+              Every Platform tier below includes the task board and full AI team, copy, design,
+              video, legal review, and code, on top of the Vault access it&apos;s billed for. No
+              onboarding call needed. Not ready to commit yet?{" "}
               <Link href="/tools/score" style={{ color: "var(--accent)", fontWeight: 600 }}>
                 Cre8tive Score
               </Link>{" "}
@@ -162,7 +165,16 @@ export default function PricingPage() {
           </p>
         </section>
 
-        <section className="section section-bg" style={{ position: "relative" }}>
+        <section className="section section-bg">
+          <div className="section-head reveal">
+            <h2>What you&apos;re actually paying for.</h2>
+          </div>
+          <div className="reveal">
+            <Guardrails />
+          </div>
+        </section>
+
+        <section className="section section-bg-alt" style={{ position: "relative" }}>
           <DecorativeShapes corner="tr" />
           <div className="section-head reveal">
             <Eyebrow>FAQ</Eyebrow>

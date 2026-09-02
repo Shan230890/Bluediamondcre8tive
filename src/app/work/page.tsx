@@ -5,6 +5,7 @@ import { LineReveal } from "@/components/marketing/TextReveal";
 import { Pill, Eyebrow, TagChip } from "@/components/marketing/Pill";
 import { PrincipalBio } from "@/components/marketing/PrincipalBio";
 import { SectionBackground } from "@/components/marketing/SectionBackground";
+import { GalleryScroll } from "@/components/marketing/GalleryScroll";
 import "../landing-e.css";
 
 export const metadata: Metadata = {
@@ -82,13 +83,23 @@ export default function WorkPage() {
           </div>
         </section>
 
-        <section className="section section-bg">
+        <section className="section section-bg" style={{ paddingLeft: 0, paddingRight: 0 }}>
+          <div className="section-head reveal" style={{ padding: "0 24px" }}>
+            <h2>Drafted from something real, not a blank prompt.</h2>
+            <p>A sample of the review queue behind the work above.</p>
+          </div>
+          <div className="reveal">
+            <GalleryScroll />
+          </div>
+        </section>
+
+        <section className="section section-bg-alt">
           <div className="reveal">
             <PrincipalBio />
           </div>
         </section>
 
-        <section className="section section-bg-alt reveal text-center">
+        <section className="section section-bg reveal text-center">
           <LineReveal as="h2" lines={["Want results like these?"]} style={{ fontSize: "clamp(24px, 4vw, 32px)" } as React.CSSProperties} />
           <div className="ctas" style={{ marginTop: 20, display: "flex", justifyContent: "center" }}>
             <Pill href="/services" variant="dark" trailing="arrow">

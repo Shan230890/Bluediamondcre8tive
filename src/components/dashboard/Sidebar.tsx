@@ -13,11 +13,13 @@ import {
   LogOut,
   PanelLeftClose,
   PanelLeftOpen,
+  ListTodo,
 } from "lucide-react";
 import { LogoMark } from "@/components/LogoMark";
 
 const NAV_ITEMS = [
   { href: "/dashboard", label: "Overview", icon: LayoutDashboard },
+  { href: "/dashboard/tasks", label: "Tasks", icon: ListTodo },
   { href: "/dashboard/invoices", label: "Invoices", icon: Receipt },
   { href: "/dashboard/deliverables", label: "Deliverables", icon: FolderOpen },
   { href: "/dashboard/vault", label: "Vault", icon: ShieldCheck },

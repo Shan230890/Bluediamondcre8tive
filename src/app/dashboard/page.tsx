@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { Receipt, Layers, FolderOpen, ShieldCheck, GraduationCap, Users, ArrowRight, FileText, Radar } from "lucide-react";
+import { Receipt, Layers, FolderOpen, ShieldCheck, GraduationCap, Users, ArrowRight, FileText, Radar, ListTodo } from "lucide-react";
 import { createClient } from "@/lib/supabase/client";
 import { TiltCard } from "@/components/motion/TiltCard";
 
@@ -208,6 +208,14 @@ export default function DashboardOverviewPage() {
                 <h3>Quick links</h3>
               </div>
               <div className="dash-list">
+                <Link href="/dashboard/tasks" className="dash-row">
+                  <span className="dash-quick-link">
+                    <span className="dash-row-icon">
+                      <ListTodo size={16} />
+                    </span>
+                    <span className="dash-row-title">Tasks</span>
+                  </span>
+                </Link>
                 <Link href="/dashboard/invoices" className="dash-row">
                   <span className="dash-quick-link">
                     <span className="dash-row-icon">
