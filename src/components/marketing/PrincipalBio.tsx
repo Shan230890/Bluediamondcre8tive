@@ -1,30 +1,60 @@
 import { Eyebrow } from "./Pill";
 
+const LINKEDIN_URL = "https://www.linkedin.com/in/levana-naidoo-00175a95/";
+
+// lucide-react's installed version doesn't ship a LinkedIn glyph; inlined
+// directly rather than pulling in a second icon dependency for one icon.
+function LinkedInIcon({ size = 15 }: { size?: number }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+      <path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.86 0-2.15 1.45-2.15 2.94v5.67H9.34V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.38-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29ZM5.34 7.43a2.07 2.07 0 1 1 0-4.13 2.07 2.07 0 0 1 0 4.13ZM7.12 20.45H3.56V9h3.56v11.45Z" />
+    </svg>
+  );
+}
+
 /**
- * PLACEHOLDER -- pending real content.
- * Shan will supply the principal's actual name, headshot, and bio/LinkedIn
- * later. Until then this renders a generic, honest "our Principal" role
- * block, deliberately with no fabricated name or biography. Swap the
- * silhouette + copy below for the real thing when it lands; nothing else on
- * the page needs to change.
+ * Real principal bio. Every claim here is sourced directly from Levana's
+ * own LinkedIn export, nothing is invented. No headshot exists yet, so the
+ * avatar is a plain monogram rather than a placeholder silhouette pretending
+ * toward a photo that isn't there.
  */
 export function PrincipalBio() {
   return (
     <div className="bdc-principal-bio">
       <div className="bdc-principal-avatar" aria-hidden="true">
-        <svg viewBox="0 0 64 64" width="100%" height="100%">
-          <circle cx="32" cy="24" r="13" fill="rgba(var(--accent-rgb),0.25)" />
-          <path d="M8 58c3-14 14-22 24-22s21 8 24 22" fill="rgba(var(--accent-rgb),0.15)" />
-        </svg>
+        LN
       </div>
       <div>
         <Eyebrow>Principal-led</Eyebrow>
-        <h3 className="bdc-principal-title">Our Principal</h3>
-        <p className="bdc-principal-copy">
-          Every Services engagement is overseen by our principal, a single accountable
-          person who signs off on strategy and quality before anything reaches you. Full
-          bio and background coming soon.
+        <h3 className="bdc-principal-title">Levana Naidoo</h3>
+        <p className="bdc-principal-role">
+          Principal, Blue Diamond Cre8tive &middot; Director &amp; Co-founder, Blue Diamond Capital
         </p>
+        <p className="bdc-principal-copy">
+          Levana built Blue Diamond Capital&apos;s entire marketing function from nothing,
+          under one rule: every hour spent on it had to earn its place against revenue
+          and efficiency. That discipline is what turned marketing into a core skill
+          rather than a supporting one, and it is the same standard she holds every Blue
+          Diamond Cre8tive engagement to today.
+        </p>
+        <p className="bdc-principal-copy">
+          Before co-founding Blue Diamond Capital in 2023, a boutique property advisory
+          serving high-net-worth clients and luxury projects across Mauritius and South
+          Africa, she spent years managing commercial property portfolios and running
+          property advisory work. She holds a BSc Honours in Property Studies from the
+          University of Cape Town, awarded cum laude. Running Blue Diamond Capital&apos;s
+          marketing herself, on Claude, ChatGPT, DeepSeek, and a working stack of
+          marketing-specific AI tools, is what led her to start running the same system
+          for other brands. That work became Blue Diamond Cre8tive.
+        </p>
+        <p className="bdc-principal-copy">
+          Every Services engagement is overseen by Levana personally. Nothing ships until
+          she has reviewed the strategy and the work behind it.
+        </p>
+        <a href={LINKEDIN_URL} target="_blank" rel="noopener noreferrer" className="bdc-principal-linkedin">
+          <LinkedInIcon />
+          Connect on LinkedIn
+        </a>
       </div>
     </div>
   );
