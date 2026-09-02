@@ -10,6 +10,7 @@ import { PrincipalReviewShowcase } from "@/components/marketing/ShowcaseCards";
 import { TestimonialStats } from "@/components/marketing/TestimonialStats";
 import { ScheduleCallSection } from "@/components/marketing/ScheduleCallSection";
 import { Guardrails } from "@/components/marketing/Guardrails";
+import { QueuePanel } from "@/components/marketing/QueuePanel";
 import "../landing-e.css";
 
 export const metadata: Metadata = {
@@ -79,6 +80,12 @@ export default function ServicesPage() {
                 <span className="bdc-service-row-arrow"><ArrowRight size={16} /></span>
               </div>
             ))}
+          </div>
+          <div className="reveal" style={{ marginTop: 40, maxWidth: 420, marginLeft: "auto", marginRight: "auto" }}>
+            <p style={{ textAlign: "center", fontSize: 14, color: "var(--muted)", marginBottom: 16 }}>
+              What&apos;s waiting on you right now, on a live engagement.
+            </p>
+            <QueuePanel />
           </div>
         </section>
 

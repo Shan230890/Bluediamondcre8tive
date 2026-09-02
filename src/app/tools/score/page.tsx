@@ -6,6 +6,7 @@ import { MarketingShell } from "@/components/marketing/MarketingShell";
 import { LineReveal } from "@/components/marketing/TextReveal";
 import { Pill, Eyebrow } from "@/components/marketing/Pill";
 import { useReducedMotion } from "@/components/marketing/useReducedMotion";
+import { ChartShowcase } from "@/components/marketing/ChartShowcase";
 import "../../landing-e.css";
 
 const VISITOR_KEY = "bdc_score_visitor_id";
@@ -144,6 +145,12 @@ function ScoreFormInner() {
               technical feasibility, AI-visibility, competition, and white space. Three free scores,
               no credit card, no sales call.
             </p>
+          </div>
+        </section>
+
+        <section className="section section-bg">
+          <div className="reveal">
+            <ChartShowcase />
           </div>
         </section>
 

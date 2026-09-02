@@ -5,6 +5,7 @@ import { LineReveal } from "@/components/marketing/TextReveal";
 import { Pill, Eyebrow, TagChip } from "@/components/marketing/Pill";
 import { SectionBackground } from "@/components/marketing/SectionBackground";
 import { ChannelGrid } from "@/components/marketing/ChannelGrid";
+import { QualityChecklist } from "@/components/marketing/QualityChecklist";
 import "../landing-e.css";
 
 export const metadata: Metadata = {
@@ -264,6 +265,17 @@ export default function ToolsPage() {
             scraping, while we complete a legal review of target sites&apos; terms of service.
             Automated collection is a planned backend change once that review clears.
           </p>
+          <div className="reveal" style={{ marginTop: 36, maxWidth: 420, marginLeft: "auto", marginRight: "auto" }}>
+            <QualityChecklist
+              title="Every Vault entry, checked before it counts"
+              items={[
+                { label: "Sourced from a named, dated competitor scan", state: "pass" },
+                { label: "Speculative claims flagged, not stated as fact", state: "pass" },
+                { label: "Automated scraping (pending legal review)", state: "fail" },
+                { label: "Human review of anything you act on commercially", state: "pending" },
+              ]}
+            />
+          </div>
         </section>
       </>
     </MarketingShell>

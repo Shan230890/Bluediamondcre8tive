@@ -2,26 +2,19 @@
    brand icon file at giant display size, same as LogoMark's iconOnly path,
    not a next/image-optimizable content image. */
 import type { Metadata } from "next";
-import { ArrowRight, TrendingUp, Check } from "lucide-react";
+import { ArrowRight, TrendingUp } from "lucide-react";
 import { MarketingShell } from "@/components/marketing/MarketingShell";
 import { LiquidHero } from "@/components/marketing/LiquidHero";
 import { HeroCarousel } from "@/components/marketing/HeroCarousel";
 import { HeroScoreForm } from "@/components/marketing/HeroScoreForm";
 import { StatsPanel } from "@/components/marketing/StatsPanel";
 import { PillarGrid } from "@/components/marketing/PillarGrid";
-import { QualityChecklist } from "@/components/marketing/QualityChecklist";
 import { ScoreShowcase, VaultShowcase, TaskBoardShowcase } from "@/components/marketing/ShowcaseCards";
 import { PrincipalBio } from "@/components/marketing/PrincipalBio";
 import { DecorativeShapes } from "@/components/marketing/DecorativeShapes";
 import { LineReveal } from "@/components/marketing/TextReveal";
 import { Pill, Eyebrow, TagChip } from "@/components/marketing/Pill";
 import { SignalTicker } from "@/components/marketing/SignalTicker";
-import { ChannelGrid } from "@/components/marketing/ChannelGrid";
-import { ChartShowcase } from "@/components/marketing/ChartShowcase";
-import { GalleryScroll } from "@/components/marketing/GalleryScroll";
-import { QueuePanel } from "@/components/marketing/QueuePanel";
-import { Guardrails } from "@/components/marketing/Guardrails";
-import { TestimonialStats } from "@/components/marketing/TestimonialStats";
 import "./landing-e.css";
 
 export const metadata: Metadata = {
@@ -75,32 +68,6 @@ export default function HomePage() {
 
         {/* ================= 2. LIVE SIGNAL TICKER ================= */}
         <SignalTicker />
-
-        {/* ================= 2b. THIN STATUS + MARQUEE STRIP ================= */}
-        <div className="section-bg-alt reveal">
-          <div className="bdc-hero-status-bar" style={{ maxWidth: 1120, padding: "16px 24px" }}>
-            <span>Working since <strong>2025</strong></span>
-            <div className="marquee" style={{ flex: "1 1 320px", minWidth: 0 }}>
-              <div className="marquee-track">
-                {[...Array(2)].flatMap((_, i) =>
-                  [
-                    "Content calendars",
-                    "Paid campaigns",
-                    "Email flows",
-                    "Landing pages",
-                    "Brand design",
-                    "Competitor tracking",
-                    "Monthly reporting",
-                  ].map((item, j) => (
-                    <span className="marquee-item" key={`${i}-${j}`}>
-                      {item}
-                    </span>
-                  )),
-                )}
-              </div>
-            </div>
-          </div>
-        </div>
 
         {/* ================= 3. SERVICES — dark, agency-pitch treatment ================= */}
         <section className="section bdc-section-services reveal" id="services">
@@ -158,18 +125,6 @@ export default function HomePage() {
             <VaultShowcase />
           </div>
 
-          <div className="reveal" style={{ maxWidth: 420, margin: "0 auto" }}>
-            <QualityChecklist
-              title="Every Vault entry, checked before it counts"
-              items={[
-                { label: "Sourced from a named, dated competitor scan", state: "pass" },
-                { label: "Speculative claims flagged, not stated as fact", state: "pass" },
-                { label: "Automated scraping (pending legal review)", state: "fail" },
-                { label: "Human review of anything you act on commercially", state: "pending" },
-              ]}
-            />
-          </div>
-
           <div style={{ marginTop: 44, display: "flex", justifyContent: "center", gap: 12, flexWrap: "wrap" }}>
             <Pill href="/signup" variant="dark" trailing="arrow">
               Start free
@@ -177,64 +132,7 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* ================= 5. CHANNEL COVERAGE ================= */}
-        <section className="section section-bg-alt">
-          <div className="section-head reveal">
-            <Eyebrow>Full coverage</Eyebrow>
-            <LineReveal as="h2" lines={["Every channel worth", "being deliberate about."]} />
-            <p>Services and Platform draw from the same channel skillset, whether our principal is running it or you are.</p>
-          </div>
-          <div className="reveal">
-            <ChannelGrid />
-          </div>
-        </section>
-
-        {/* ================= 6. CRE8TIVE SCORE CHART ================= */}
-        <section className="section section-bg">
-          <div className="reveal">
-            <ChartShowcase />
-          </div>
-        </section>
-
-        {/* ================= 7. HORIZONTAL GALLERY ================= */}
-        <section className="section section-bg-alt" style={{ paddingLeft: 0, paddingRight: 0 }}>
-          <div className="section-head reveal" style={{ padding: "0 24px" }}>
-            <h2>Drafted from something real, not a blank prompt.</h2>
-            <p>Every item in your review queue traces back to an actual source.</p>
-          </div>
-          <div className="reveal">
-            <GalleryScroll />
-          </div>
-        </section>
-
-        {/* ================= 8. APPROVAL QUEUE ================= */}
-        <section className="section section-bg">
-          <div className="section-head reveal">
-            <h2>What&apos;s waiting on you right now.</h2>
-          </div>
-          <div className="reveal">
-            <QueuePanel />
-          </div>
-        </section>
-
-        {/* ================= 9. GUARDRAILS ================= */}
-        <section className="section section-bg-alt">
-          <div className="section-head reveal">
-            <h2>Nothing reaches you without a check first.</h2>
-          </div>
-          <div className="reveal">
-            <Guardrails />
-          </div>
-        </section>
-
-        {/* ================= 10. TESTIMONIAL + STATS ================= */}
-        <section className="section section-bg">
-          <div className="reveal">
-            <TestimonialStats />
-          </div>
-        </section>
-
-        {/* ================= 11. PROOF + STATS + FINAL CTA ================= */}
+        {/* ================= 5. PROOF + STATS + FINAL CTA ================= */}
         <section className="section section-bg-dark">
           <StatsPanel />
         </section>
@@ -277,46 +175,7 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* ================= 12. PRICING STRIP TEASER ================= */}
-        <section className="section section-bg text-center">
-          <div className="section-head reveal">
-            <Eyebrow>Pricing</Eyebrow>
-            <LineReveal as="h2" lines={["Two ways in,", "one account."]} />
-          </div>
-          <div className="grid grid-3 reveal" style={{ maxWidth: 900, margin: "0 auto" }}>
-            <div className="price-card">
-              <span className="tier-name">Starter</span>
-              <div className="tier-price" style={{ fontSize: 20 }}>$697&ndash;$997/mo</div>
-              <p style={{ fontSize: 13, color: "var(--muted)", marginTop: 6 }}>
-                <Check size={13} style={{ verticalAlign: -2, marginRight: 4, color: "var(--accent)" }} />
-                Content calendar, copy, design
-              </p>
-            </div>
-            <div className="price-card featured">
-              <span className="tier-name">Growth</span>
-              <div className="tier-price" style={{ fontSize: 20 }}>$1,997&ndash;$2,997/mo</div>
-              <p style={{ fontSize: 13, color: "var(--muted)", marginTop: 6 }}>
-                <Check size={13} style={{ verticalAlign: -2, marginRight: 4, color: "var(--accent)" }} />
-                Campaigns, Reddit, digital PR
-              </p>
-            </div>
-            <div className="price-card">
-              <span className="tier-name">Vault Pro</span>
-              <div className="tier-price" style={{ fontSize: 20 }}>$99/mo</div>
-              <p style={{ fontSize: 13, color: "var(--muted)", marginTop: 6 }}>
-                <Check size={13} style={{ verticalAlign: -2, marginRight: 4, color: "var(--accent)" }} />
-                5 competitors tracked
-              </p>
-            </div>
-          </div>
-          <div style={{ marginTop: 28 }} className="reveal">
-            <Pill href="/pricing" variant="dark" trailing="arrow">
-              See full pricing
-            </Pill>
-          </div>
-        </section>
-
-        {/* ================= 13. FOOTER (unchanged, new lockup applied there) ================= */}
+        {/* ================= FOOTER (unchanged, new lockup applied there) ================= */}
       </>
     </MarketingShell>
   );

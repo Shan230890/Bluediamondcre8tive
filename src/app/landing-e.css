@@ -3136,3 +3136,142 @@
   line-height: 1.6;
   margin: 0;
 }
+
+/* ---------------------------------------------------------------------
+   Pricing page — rich tier cards + feature comparison table.
+   Every color below is explicit (never inherited) because this page has
+   shipped invisible-text bugs before: a near-white literal or a "light"
+   tone landing on a light card. Both tier cards and the comparison table
+   sit on light backgrounds, so text here is always dark/muted-dark.
+   --------------------------------------------------------------------- */
+.landing-e .bdc-price-card-rich .tier-price {
+  color: var(--text-dark);
+}
+.landing-e .bdc-tier-pitch {
+  font-size: 14.5px;
+  font-weight: 600;
+  color: var(--text-dark);
+  margin-top: 10px;
+}
+.landing-e .bdc-tier-audience {
+  font-size: 13px;
+  font-style: italic;
+  color: var(--muted);
+  margin-top: 6px;
+  line-height: 1.5;
+}
+.landing-e .bdc-tier-trust {
+  font-size: 12px;
+  color: var(--muted);
+  text-align: center;
+  margin-top: 8px;
+}
+.landing-e .price-card .bdc-tier-includes {
+  margin-top: 20px;
+  padding-top: 20px;
+  border-top: 1px solid var(--border);
+}
+.landing-e .bdc-tier-details {
+  margin-top: 18px;
+  padding-top: 18px;
+  border-top: 1px solid var(--border);
+}
+.landing-e .bdc-tier-details-label {
+  display: block;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 10px;
+}
+.landing-e .price-card .bdc-tier-details ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  flex: none;
+}
+.landing-e .bdc-tier-details li {
+  font-size: 12.5px;
+  color: var(--body-c);
+  line-height: 1.5;
+  padding-left: 14px;
+  position: relative;
+}
+.landing-e .bdc-tier-details li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 7px;
+  width: 4px;
+  height: 4px;
+  border-radius: 999px;
+  background: var(--muted);
+}
+
+.landing-e .bdc-compare-block {
+  margin-top: 8px;
+}
+.landing-e .bdc-compare-title {
+  font-size: 13px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--accent-2);
+  margin-bottom: 16px;
+}
+.landing-e .bdc-compare-wrap {
+  overflow-x: auto;
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  background: var(--card);
+}
+.landing-e .bdc-compare-table {
+  width: 100%;
+  min-width: 560px;
+  border-collapse: collapse;
+  font-size: 13.5px;
+}
+.landing-e .bdc-compare-table th,
+.landing-e .bdc-compare-table td {
+  padding: 13px 16px;
+  text-align: center;
+  color: var(--body-c);
+  border-bottom: 1px solid var(--border);
+}
+.landing-e .bdc-compare-table thead th {
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--text-dark);
+  background: var(--card-alt);
+}
+.landing-e .bdc-compare-feature-head,
+.landing-e .bdc-compare-table td.bdc-compare-feature {
+  text-align: left;
+}
+.landing-e .bdc-compare-feature {
+  font-weight: 600;
+  color: var(--text-dark);
+  white-space: nowrap;
+}
+.landing-e .bdc-compare-table tbody tr:last-child th,
+.landing-e .bdc-compare-table tbody tr:last-child td {
+  border-bottom: none;
+}
+.landing-e .bdc-compare-yes {
+  color: var(--accent-2);
+}
+.landing-e .bdc-compare-no {
+  color: var(--muted);
+  opacity: 0.5;
+}
+@media (max-width: 640px) {
+  .landing-e .bdc-compare-feature {
+    white-space: normal;
+  }
+}
