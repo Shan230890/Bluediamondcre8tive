@@ -13,8 +13,8 @@ const CHANNELS: { kicker: string; title: string; body: string }[] = [
   },
   {
     kicker: "Services",
-    title: "Paid media & landing pages",
-    body: "Campaigns, email flows, and landing pages across the channels your budget actually justifies.",
+    title: "Paid media creative & budget planning",
+    body: "Creative direction and a recommended budget split across channels, email flows, and landing pages. You or your media buyer run the accounts, we never spend on your behalf.",
   },
   {
     kicker: "Services · Growth",
@@ -35,6 +35,16 @@ const CHANNELS: { kicker: string; title: string; body: string }[] = [
     kicker: "Platform · free",
     title: "Idea & positioning scoring",
     body: "Cre8tive Score checks originality, AI-visibility, and white space before you build.",
+  },
+  {
+    kicker: "Platform",
+    title: "AI Visibility Report",
+    body: "A deep-dive comparison of how often AI assistants mention your brand versus named competitors, a simulation, clearly labeled as directional.",
+  },
+  {
+    kicker: "Platform",
+    title: "Execution memory",
+    body: "Every closed task keeps its result and what you learned from it, so decisions compound instead of getting lost in old chats.",
   },
 ];
 

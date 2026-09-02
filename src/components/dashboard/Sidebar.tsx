@@ -6,6 +6,7 @@ import {
   LayoutDashboard,
   Receipt,
   FolderOpen,
+  FolderKanban,
   ShieldCheck,
   GraduationCap,
   Users,
@@ -14,16 +15,28 @@ import {
   PanelLeftClose,
   PanelLeftOpen,
   ListTodo,
+  Radar,
+  Megaphone,
+  Send,
+  History,
 } from "lucide-react";
 import { LogoMark } from "@/components/LogoMark";
 
 const NAV_ITEMS = [
   { href: "/dashboard", label: "Overview", icon: LayoutDashboard },
+  { href: "/dashboard/projects", label: "Projects", icon: FolderKanban },
   { href: "/dashboard/tasks", label: "Tasks", icon: ListTodo },
   { href: "/dashboard/invoices", label: "Invoices", icon: Receipt },
   { href: "/dashboard/deliverables", label: "Deliverables", icon: FolderOpen },
   { href: "/dashboard/vault", label: "Vault", icon: ShieldCheck },
   { href: "/dashboard/academy", label: "Academy", icon: GraduationCap },
+] as const;
+
+const GROWTH_ITEMS = [
+  { href: "/dashboard/ai-visibility", label: "AI Visibility Report", icon: Radar },
+  { href: "/dashboard/paid-media-plan", label: "Paid Media Plan", icon: Megaphone },
+  { href: "/dashboard/outbound", label: "Outbound Drafts", icon: Send },
+  { href: "/dashboard/memory", label: "Execution Memory", icon: History },
 ] as const;
 
 const TEAM_ITEM = { href: "/dashboard/team", label: "Your Cre8tive Team", icon: Users } as const;
@@ -87,6 +100,9 @@ export function Sidebar({
       <nav className="dash-nav">
         <p className="dash-nav-section-label">Menu</p>
         {NAV_ITEMS.map(renderLink)}
+
+        <p className="dash-nav-section-label">Growth</p>
+        {GROWTH_ITEMS.map(renderLink)}
 
         <p className="dash-nav-section-label">Team</p>
         {renderLink(TEAM_ITEM)}

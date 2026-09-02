@@ -1323,3 +1323,197 @@
     grid-template-columns: 1fr;
   }
 }
+
+/* ---------------------------------------------------------------------
+   Projects, AI Visibility, Paid Media Plan, Outbound, Execution Memory —
+   shared additions for the Part A-F feature set.
+---------------------------------------------------------------------- */
+
+.dashboard-e .pill-discovery {
+  background: rgba(var(--accent-2-rgb, 82, 119, 153), 0.14);
+  color: var(--accent-2);
+}
+
+.dashboard-e .pill-active {
+  background: rgba(var(--accent-rgb), 0.14);
+  color: var(--accent);
+}
+
+.dashboard-e .pill-review {
+  background: rgba(179, 130, 30, 0.14);
+  color: #8a6415;
+}
+
+.dashboard-e .pill-complete {
+  background: rgba(26, 122, 60, 0.12);
+  color: #1a7a3c;
+}
+
+.dashboard-e .dash-disclaimer {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  background: rgba(var(--accent-2-rgb, 82, 119, 153), 0.08);
+  border: 1px solid rgba(var(--accent-2-rgb, 82, 119, 153), 0.25);
+  border-radius: 12px;
+  padding: 12px 16px;
+  font-size: 12.5px;
+  line-height: 1.5;
+  color: var(--text-dark);
+  margin-bottom: 20px;
+}
+
+.dashboard-e .dash-disclaimer strong {
+  font-weight: 700;
+}
+
+.dashboard-e .checkbox-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 8px 14px;
+  margin-top: 4px;
+}
+
+@media (max-width: 640px) {
+  .dashboard-e .checkbox-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.dashboard-e .checkbox-grid label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  color: var(--text-dark);
+}
+
+.dashboard-e .checkbox-grid input {
+  width: auto;
+}
+
+.dashboard-e .content-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 20px;
+  margin-bottom: 16px;
+}
+
+.dashboard-e .content-card h3 {
+  font-size: 15px;
+  margin: 0 0 8px;
+  color: var(--text-dark);
+}
+
+.dashboard-e .content-card p {
+  font-size: 13.5px;
+  color: var(--body-c, var(--text-dark));
+  margin: 0 0 8px;
+}
+
+.dashboard-e .bar-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.dashboard-e .bar-row-label {
+  width: 140px;
+  flex-shrink: 0;
+  font-size: 12.5px;
+  color: var(--text-dark);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.dashboard-e .bar-track {
+  flex: 1;
+  height: 10px;
+  border-radius: 6px;
+  background: rgba(var(--accent-rgb), 0.08);
+  overflow: hidden;
+}
+
+.dashboard-e .bar-fill {
+  height: 100%;
+  border-radius: 6px;
+  background: var(--accent);
+}
+
+.dashboard-e .bar-fill.is-you {
+  background: var(--accent);
+}
+
+.dashboard-e .bar-fill.is-competitor {
+  background: var(--accent-2, #527799);
+}
+
+.dashboard-e .bar-row-value {
+  width: 42px;
+  flex-shrink: 0;
+  font-size: 12px;
+  font-weight: 600;
+  text-align: right;
+  color: var(--text-dark);
+}
+
+.dashboard-e .draft-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 14px 16px;
+  margin-bottom: 10px;
+  font-size: 13px;
+  white-space: pre-wrap;
+  position: relative;
+}
+
+.dashboard-e .draft-copy-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+
+.dashboard-e .memory-entry {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 16px 18px;
+  margin-bottom: 12px;
+}
+
+.dashboard-e .memory-entry-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 6px;
+}
+
+.dashboard-e .memory-entry-title {
+  font-weight: 600;
+  font-size: 14px;
+  color: var(--text-dark);
+}
+
+.dashboard-e .memory-entry-badges {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.dashboard-e .memory-badge {
+  font-size: 10.5px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  padding: 3px 8px;
+  border-radius: 999px;
+  background: rgba(var(--accent-rgb), 0.1);
+  color: var(--accent);
+  white-space: nowrap;
+}

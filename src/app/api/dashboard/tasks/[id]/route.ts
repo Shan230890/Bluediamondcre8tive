@@ -11,6 +11,8 @@ const UpdateTaskSchema = z.object({
   priority: z.enum(["low", "medium", "high"]).optional(),
   dueDate: z.string().date().nullable().optional(),
   assigneePersonaKey: z.enum(["henry", "harvey", "ray", "anna", "scott", "barry"]).nullable().optional(),
+  projectId: z.string().uuid().nullable().optional(),
+  outcomeNote: z.string().max(4000).nullable().optional(),
 });
 
 export async function PATCH(request: NextRequest, { params }: { params: Promise<{ id: string }> }) {
@@ -49,6 +51,8 @@ export async function PATCH(request: NextRequest, { params }: { params: Promise<
     // a persona is actually attached to the task.
     if (!input.assigneePersonaKey) update.auto_run = false;
   }
+  if (input.projectId !== undefined) update.project_id = input.projectId;
+  if (input.outcomeNote !== undefined) update.outcome_note = input.outcomeNote;
 
   if (Object.keys(update).length === 0) {
     return NextResponse.json({ error: "Nothing to update." }, { status: 400 });

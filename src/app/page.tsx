@@ -144,8 +144,11 @@ export default function HomePage() {
             <p>
               No onboarding call, no sales conversation. Sign up and get the same AI-native
               marketing team behind our Services silo, copywriting, design, video, legal, and code,
-              working for you on a task board you control, plus the Competitor Intelligence Vault and
-              a free Cre8tive Score to start.
+              now covering SEO and AI-search strategy, paid-media creative and budget planning,
+              email lifecycle copy, and signal-based outbound drafts, working for you on a project
+              workflow and task board you control. Plus the Competitor Intelligence Vault, a free
+              Cre8tive Score, a deeper AI Visibility Report, and execution memory that keeps a
+              record of what worked.
             </p>
           </div>
 

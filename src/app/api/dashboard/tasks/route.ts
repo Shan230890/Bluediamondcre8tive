@@ -15,9 +15,10 @@ const CreateTaskSchema = z.object({
   priority: z.enum(["low", "medium", "high"]).default("medium"),
   dueDate: z.string().date().optional().nullable(),
   assigneePersonaKey: z.enum(["henry", "harvey", "ray", "anna", "scott", "barry"]).optional().nullable(),
+  projectId: z.string().uuid().optional().nullable(),
 });
 
-export async function GET() {
+export async function GET(request: NextRequest) {
   const supabase = await createClient();
   const {
     data: { user },
@@ -26,11 +27,12 @@ export async function GET() {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 
-  const { data, error } = await supabase
-    .from("tasks")
-    .select("*")
-    .eq("client_id", user.id)
-    .order("created_at", { ascending: false });
+  const projectId = request.nextUrl.searchParams.get("projectId");
+
+  let query = supabase.from("tasks").select("*").eq("client_id", user.id);
+  if (projectId) query = query.eq("project_id", projectId);
+
+  const { data, error } = await query.order("created_at", { ascending: false });
 
   if (error) {
     console.error("[tasks] list failed:", error);
@@ -71,6 +73,7 @@ export async function POST(request: NextRequest) {
       priority: input.priority,
       due_date: input.dueDate || null,
       assignee_persona_key: input.assigneePersonaKey || null,
+      project_id: input.projectId || null,
     })
     .select("*")
     .single();
