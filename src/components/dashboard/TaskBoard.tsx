@@ -52,15 +52,27 @@ const EMPTY_FORM = {
 export function TaskBoard({
   projectId,
   projectOptions,
+  initialPrefill,
 }: {
   /** Filters fetched tasks to this project and attaches it to anything created here. */
   projectId?: string;
   /** When provided, the new-task form gets a project picker (used on the unfiltered /dashboard/tasks board). */
   projectOptions?: { id: string; name: string }[];
+  /** Opens the new-task form pre-populated on mount — used by /dashboard/templates "use this template" links (?template=<slug>). */
+  initialPrefill?: { title: string; description: string; assigneePersonaKey?: PersonaSlug };
 }) {
   const [tasks, setTasks] = useState<Task[] | null>(null);
-  const [showForm, setShowForm] = useState(false);
-  const [form, setForm] = useState(EMPTY_FORM);
+  const [showForm, setShowForm] = useState(!!initialPrefill);
+  const [form, setForm] = useState(() =>
+    initialPrefill
+      ? {
+          ...EMPTY_FORM,
+          title: initialPrefill.title,
+          description: initialPrefill.description,
+          assigneePersonaKey: initialPrefill.assigneePersonaKey ?? "",
+        }
+      : EMPTY_FORM,
+  );
   const [submitting, setSubmitting] = useState(false);
   const [formError, setFormError] = useState<string | null>(null);
   const [expandedReply, setExpandedReply] = useState<Record<string, boolean>>({});

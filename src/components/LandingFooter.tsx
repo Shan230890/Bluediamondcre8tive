@@ -42,6 +42,22 @@ export function LandingFooter() {
             </ul>
           </div>
           <div>
+            <h4>Use cases</h4>
+            <ul>
+              <li><Link href="/tools/content-led-growth" className="bdc-footer-link">Content-led growth</Link></li>
+              <li><Link href="/tools/performance-marketing" className="bdc-footer-link">Performance marketing</Link></li>
+              <li><Link href="/tools/outbound-automation" className="bdc-footer-link">Outbound automation</Link></li>
+            </ul>
+          </div>
+          <div>
+            <h4>For teams</h4>
+            <ul>
+              <li><Link href="/for/growth-managers" className="bdc-footer-link">Growth managers</Link></li>
+              <li><Link href="/for/founders" className="bdc-footer-link">Founders</Link></li>
+              <li><Link href="/for/growth-engineers" className="bdc-footer-link">Growth engineers</Link></li>
+            </ul>
+          </div>
+          <div>
             <h4>Company</h4>
             <ul>
               <li><Link href="/pricing" className="bdc-footer-link">Pricing</Link></li>

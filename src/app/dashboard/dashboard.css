@@ -1517,3 +1517,128 @@
   color: var(--accent);
   white-space: nowrap;
 }
+
+/* ---------------------------------------------------------------------
+   Templates gallery (/dashboard/templates)
+   --------------------------------------------------------------------- */
+.dashboard-e .template-search-row {
+  margin-bottom: 14px;
+}
+
+.dashboard-e .template-search-box {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  max-width: 420px;
+  padding: 10px 14px;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  background: var(--card);
+  color: var(--muted);
+}
+
+.dashboard-e .template-search-box input {
+  border: none;
+  padding: 0;
+  flex: 1;
+  font-size: 13.5px;
+  color: var(--text-dark);
+  background: transparent;
+}
+
+.dashboard-e .template-search-box input:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+.dashboard-e .template-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 22px;
+}
+
+.dashboard-e .template-tab {
+  font-size: 12.5px;
+  font-weight: 600;
+  padding: 7px 13px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: var(--card);
+  color: var(--body-c);
+  cursor: pointer;
+  transition: background 0.15s var(--ease), color 0.15s var(--ease), border-color 0.15s var(--ease);
+}
+
+.dashboard-e .template-tab:hover {
+  border-color: rgba(var(--accent-rgb), 0.4);
+}
+
+.dashboard-e .template-tab.active {
+  background: var(--dark);
+  border-color: var(--dark);
+  color: var(--text-light);
+}
+
+.dashboard-e .template-card {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 0;
+}
+
+.dashboard-e .template-card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+.dashboard-e .template-category-tag {
+  font-size: 10.5px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  padding: 3px 9px;
+  border-radius: 999px;
+  background: rgba(0, 0, 0, 0.06);
+  color: var(--body-c);
+}
+
+.dashboard-e .template-category-tag-custom {
+  background: rgba(var(--accent-rgb), 0.12);
+  color: var(--accent);
+}
+
+.dashboard-e .template-delete-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 26px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--muted);
+  cursor: pointer;
+  transition: color 0.15s var(--ease), border-color 0.15s var(--ease);
+}
+
+.dashboard-e .template-delete-btn:hover {
+  color: var(--accent);
+  border-color: rgba(var(--accent-rgb), 0.4);
+}
+
+.dashboard-e .template-card-bottom {
+  margin-top: auto;
+  padding-top: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.dashboard-e .template-use-btn {
+  font-size: 12.5px;
+  padding: 8px 14px;
+}

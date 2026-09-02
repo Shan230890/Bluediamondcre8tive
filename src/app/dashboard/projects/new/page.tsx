@@ -1,7 +1,7 @@
 "use client";
 
-import { useState } from "react";
-import { useRouter } from "next/navigation";
+import { Suspense, useEffect, useState } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
 
 const CHANNEL_OPTIONS: { value: string; label: string }[] = [
   { value: "seo_content", label: "SEO / content" },
@@ -14,13 +14,31 @@ const CHANNEL_OPTIONS: { value: string; label: string }[] = [
   { value: "web_app", label: "Web / app" },
 ];
 
-export default function NewProjectPage() {
+const CHANNEL_VALUES = new Set(CHANNEL_OPTIONS.map((c) => c.value));
+
+function NewProjectPageInner() {
   const router = useRouter();
+  const searchParams = useSearchParams();
   const [name, setName] = useState("");
   const [goals, setGoals] = useState("");
   const [industry, setIndustry] = useState("");
   const [audience, setAudience] = useState("");
   const [channels, setChannels] = useState<string[]>([]);
+
+  useEffect(() => {
+    // ?focus=seo_content,paid_media preselects channels of interest — the
+    // hand-off point from the /tools/* use-case marketing pages' CTAs, so a
+    // visitor arriving with a specific interest doesn't have to re-tell us.
+    const focus = searchParams.get("focus");
+    if (!focus) return;
+    const preselected = focus.split(",").map((v) => v.trim()).filter((v) => CHANNEL_VALUES.has(v));
+    if (preselected.length > 0) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
+      setChannels((prev) => Array.from(new Set([...prev, ...preselected])));
+    }
+    // Only ever applied once on mount from the initial query string.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
@@ -122,5 +140,13 @@ export default function NewProjectPage() {
         </div>
       </form>
     </div>
+  );
+}
+
+export default function NewProjectPage() {
+  return (
+    <Suspense fallback={null}>
+      <NewProjectPageInner />
+    </Suspense>
   );
 }

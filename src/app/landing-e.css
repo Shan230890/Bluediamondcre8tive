@@ -655,10 +655,15 @@
 }
 .landing-e .fs-footer .footer-cols {
   display: grid;
-  grid-template-columns: 2fr 1fr 1fr 1fr;
+  grid-template-columns: 2fr 1fr 1fr 1fr 1fr 1fr;
   gap: 32px;
   padding-bottom: 32px;
   border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+}
+@media (max-width: 960px) {
+  .landing-e .fs-footer .footer-cols {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
 }
 @media (max-width: 720px) {
   .landing-e .fs-footer .footer-cols {
@@ -3039,4 +3044,95 @@
   flex-shrink: 0;
   margin-top: 2px;
   color: var(--accent);
+}
+
+/* ---- Template teaser cards (Tools use-case + For role pages) ---- */
+.landing-e .template-teaser-card {
+  display: block;
+}
+.landing-e .template-teaser-card .bdc-tag-chip {
+  margin-bottom: 12px;
+  display: inline-block;
+}
+.landing-e .template-teaser-role {
+  display: block;
+  margin-top: 14px;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--accent);
+}
+
+/* ---- Old way / our way comparison (Tools use-case pages) ---- */
+.landing-e .bdc-compare-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  max-width: 920px;
+  margin: 0 auto;
+}
+@media (max-width: 720px) {
+  .landing-e .bdc-compare-grid {
+    grid-template-columns: 1fr;
+  }
+}
+.landing-e .bdc-compare-col h3 {
+  font-size: 16px;
+  margin-bottom: 16px;
+}
+.landing-e .bdc-compare-col.bdc-compare-old {
+  opacity: 0.85;
+}
+.landing-e .bdc-compare-item {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  font-size: 13.5px;
+  color: var(--body-c);
+  line-height: 1.55;
+  margin-bottom: 12px;
+}
+.landing-e .bdc-compare-item:last-child {
+  margin-bottom: 0;
+}
+.landing-e .bdc-compare-item svg {
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+.landing-e .bdc-compare-old .bdc-compare-item svg {
+  color: var(--muted);
+}
+.landing-e .bdc-compare-new .bdc-compare-item svg {
+  color: var(--accent);
+}
+
+/* ---- Role pages (/for/*) pain -> product mapping rows ---- */
+.landing-e .bdc-pain-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  background: var(--card);
+  border: 1px solid rgba(0, 0, 0, 0.04);
+  border-radius: 16px;
+  padding: 22px 24px;
+  margin-bottom: 16px;
+}
+@media (max-width: 720px) {
+  .landing-e .bdc-pain-row {
+    grid-template-columns: 1fr;
+  }
+}
+.landing-e .bdc-pain-row-label {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--muted);
+  margin-bottom: 6px;
+  display: block;
+}
+.landing-e .bdc-pain-row p {
+  font-size: 14px;
+  color: var(--body-c);
+  line-height: 1.6;
+  margin: 0;
 }
