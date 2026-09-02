@@ -1014,3 +1014,69 @@
   color: var(--muted);
   margin-top: 2px;
 }
+
+/* ---------------------------------------------------------------------
+   Vault summary chart card — real tracked-competitor/entry counts, with a
+   clearly-labeled illustrative trend line since there's no real per-week
+   score history to plot yet. Visual pattern ported from the marketing
+   site's ChartShowcase / the approved mockup's `.dash-chart`.
+   --------------------------------------------------------------------- */
+.dashboard-e .dash-chart-card {
+  background: var(--dark);
+  border-radius: 16px;
+  padding: 22px;
+  color: #fff;
+  margin-bottom: 24px;
+  position: relative;
+  overflow: hidden;
+}
+.dashboard-e .dash-chart-card-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 12px;
+  margin-bottom: 14px;
+  flex-wrap: wrap;
+}
+.dashboard-e .dash-chart-stat {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.dashboard-e .dash-chart-stat b {
+  font-size: 22px;
+  font-weight: 800;
+}
+.dashboard-e .dash-chart-stat span {
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.5);
+}
+.dashboard-e .dash-chart-illustrative-tag {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.45);
+  background: rgba(255, 255, 255, 0.08);
+  padding: 4px 9px;
+  border-radius: 999px;
+  white-space: nowrap;
+}
+.dashboard-e .dash-chart-legend {
+  display: flex;
+  gap: 14px;
+  margin-top: 10px;
+  font-size: 10.5px;
+  color: rgba(255, 255, 255, 0.5);
+  flex-wrap: wrap;
+}
+.dashboard-e .dash-chart-legend span {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+.dashboard-e .dash-chart-legend i {
+  width: 12px;
+  height: 2px;
+  display: inline-block;
+}

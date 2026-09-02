@@ -68,7 +68,7 @@ export function Sidebar({
   return (
     <aside className={`dash-sidebar ${open ? "open" : ""} ${collapsed ? "collapsed" : ""}`}>
       <div className="dash-sidebar-brand">
-        <LogoMark size="md" surface="dark" />
+        <LogoMark size="md" surface="dark" iconOnly />
         <span className="dash-sidebar-brand-text">Blue Diamond Cre8tive</span>
         {onToggleCollapsed && (
           <button

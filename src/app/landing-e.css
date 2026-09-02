@@ -888,6 +888,34 @@
   opacity: 1;
   transform: translateY(0);
 }
+
+/* Floating condensed pill once scrolled past the hero -- still frosted-light,
+   never a dark bar. Same element as the full header, just re-shaped. */
+.landing-e .bdc-header-condensed {
+  top: 14px;
+  left: 50%;
+  right: auto;
+  transform: translateX(-50%);
+  width: auto;
+  min-width: 0;
+  height: auto;
+  border-radius: 999px;
+  padding: 8px 10px 8px 16px;
+  gap: 16px;
+  background: rgba(233, 233, 233, 0.92);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.14);
+  border: 1px solid var(--border);
+}
+.landing-e .bdc-header-condensed.bdc-header-in {
+  transform: translateX(-50%) translateY(0);
+}
+@media (prefers-reduced-motion: no-preference) {
+  .landing-e .bdc-header {
+    transition: opacity 0.5s var(--ease-entrance), transform 0.5s var(--ease-entrance), top 0.35s var(--ease-spring),
+      left 0.35s var(--ease-spring), right 0.35s var(--ease-spring), width 0.35s var(--ease-spring),
+      border-radius 0.35s var(--ease-spring), padding 0.35s var(--ease-spring), background-color 0.35s var(--ease-spring);
+  }
+}
 .landing-e .bdc-header-brand {
   transition: transform 0.35s var(--ease-spring);
 }
@@ -2626,4 +2654,400 @@
     flex-direction: column;
     align-items: flex-start;
   }
+}
+
+/* =======================================================================
+   Mockup-derived sections — signal ticker, channel grid, animated chart,
+   horizontal gallery, approval queue, guardrails. Ported from the approved
+   static mockup, restyled onto Pattern E tokens (already the same palette).
+   Every glow/shadow below still traces to --accent-rgb.
+   ======================================================================= */
+
+/* ---- Live signal ticker ---- */
+.landing-e .bdc-ticker-caption {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 0 24px 10px;
+  font-size: 11.5px;
+  color: rgba(255, 255, 255, 0.4);
+  text-align: center;
+}
+.landing-e .bdc-ticker-wrap {
+  background: var(--dark);
+  overflow: hidden;
+  padding: 0 0 18px;
+  position: relative;
+}
+.landing-e .bdc-ticker-wrap::before,
+.landing-e .bdc-ticker-wrap::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 80px;
+  z-index: 2;
+}
+.landing-e .bdc-ticker-wrap::before {
+  left: 0;
+  background: linear-gradient(90deg, var(--dark), transparent);
+}
+.landing-e .bdc-ticker-wrap::after {
+  right: 0;
+  background: linear-gradient(270deg, var(--dark), transparent);
+}
+.landing-e .bdc-ticker-track {
+  display: flex;
+  gap: 14px;
+  width: max-content;
+  animation: bdc-tick 32s linear infinite;
+}
+@keyframes bdc-tick {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .landing-e .bdc-ticker-track {
+    animation: none;
+    flex-wrap: wrap;
+    width: 100%;
+  }
+}
+.landing-e .bdc-ticker-chip {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: rgba(255, 255, 255, 0.75);
+  font-size: 12px;
+  padding: 8px 16px;
+  border-radius: 999px;
+  white-space: nowrap;
+}
+.landing-e .bdc-ticker-chip .bdc-ticker-flag {
+  width: 6px;
+  height: 6px;
+  border-radius: 999px;
+  background: var(--accent);
+  flex-shrink: 0;
+}
+.landing-e .bdc-ticker-chip b {
+  color: #fff;
+  font-weight: 600;
+}
+
+/* ---- Channel coverage grid ---- */
+.landing-e .bdc-channel-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 14px;
+  max-width: 1080px;
+  margin: 0 auto;
+}
+.landing-e .bdc-channel-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 20px;
+  transition: transform 0.3s var(--ease-spring), box-shadow 0.3s var(--ease-spring), border-color 0.3s var(--ease-spring);
+}
+.landing-e .bdc-channel-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+  border-color: rgba(var(--accent-rgb), 0.3);
+}
+.landing-e .bdc-channel-card .bdc-channel-kicker {
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--accent-2);
+  margin-bottom: 8px;
+}
+.landing-e .bdc-channel-card h4 {
+  font-size: 15px;
+  font-weight: 700;
+  margin-bottom: 6px;
+  color: var(--text-dark);
+}
+.landing-e .bdc-channel-card p {
+  font-size: 13px;
+  color: var(--muted);
+  line-height: 1.55;
+}
+
+/* ---- Animated multi-line chart showcase ---- */
+.landing-e .bdc-chart-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px;
+  align-items: center;
+  max-width: 1080px;
+  margin: 0 auto;
+}
+@media (max-width: 860px) {
+  .landing-e .bdc-chart-section {
+    grid-template-columns: 1fr;
+  }
+}
+.landing-e .bdc-chart-copy .bdc-chart-tag {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--accent-2);
+  background: rgba(82, 119, 153, 0.12);
+  padding: 5px 11px;
+  border-radius: 999px;
+  margin-bottom: 14px;
+}
+.landing-e .bdc-chart-copy h3 {
+  font-size: 24px;
+  margin-bottom: 12px;
+  color: var(--text-dark);
+}
+.landing-e .bdc-chart-copy p {
+  color: var(--muted);
+  font-size: 14.5px;
+  line-height: 1.6;
+}
+.landing-e .bdc-chart-card {
+  background: var(--dark);
+  border-radius: 18px;
+  padding: 24px;
+  color: #fff;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.15);
+  position: relative;
+  overflow: hidden;
+}
+.landing-e .bdc-chart-card::before {
+  content: "";
+  position: absolute;
+  inset: -2px;
+  background: conic-gradient(from 0deg, rgba(var(--accent-rgb), 0.5), rgba(82, 119, 153, 0.5), rgba(var(--accent-rgb), 0.5));
+  z-index: 0;
+  opacity: 0.35;
+  filter: blur(30px);
+}
+.landing-e .bdc-chart-card-inner {
+  position: relative;
+  z-index: 1;
+}
+.landing-e .bdc-chart-card-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.5);
+  margin-bottom: 4px;
+}
+.landing-e .bdc-chart-card-head b {
+  color: #fff;
+  font-size: 14px;
+  display: block;
+}
+.landing-e .bdc-chart-card-head .bdc-chart-pill {
+  background: rgba(255, 255, 255, 0.08);
+  padding: 3px 9px;
+  border-radius: 999px;
+  font-size: 10.5px;
+}
+.landing-e .bdc-chart-card path.bdc-chart-line {
+  stroke-dasharray: 420;
+  stroke-dashoffset: 420;
+  transition: stroke-dashoffset 1.6s var(--ease-entrance);
+}
+.landing-e .bdc-chart-card.bdc-chart-in path.bdc-chart-line {
+  stroke-dashoffset: 0;
+}
+.landing-e .bdc-chart-card.bdc-chart-in path.bdc-chart-line:nth-of-type(2) {
+  transition-delay: 0.15s;
+}
+.landing-e .bdc-chart-legend {
+  display: flex;
+  gap: 16px;
+  margin-top: 14px;
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.5);
+  flex-wrap: wrap;
+}
+.landing-e .bdc-chart-legend span {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+.landing-e .bdc-chart-legend i {
+  width: 14px;
+  height: 2px;
+  display: inline-block;
+}
+@media (prefers-reduced-motion: reduce) {
+  .landing-e .bdc-chart-card path.bdc-chart-line {
+    stroke-dasharray: none;
+    stroke-dashoffset: 0;
+    transition: none;
+  }
+}
+
+/* ---- Horizontal-scroll generated-content gallery ---- */
+.landing-e .bdc-gallery-scroll {
+  display: flex;
+  gap: 14px;
+  overflow-x: auto;
+  padding: 6px 24px 20px;
+  scroll-snap-type: x proximity;
+  -webkit-overflow-scrolling: touch;
+}
+.landing-e .bdc-gallery-scroll::-webkit-scrollbar {
+  height: 6px;
+}
+.landing-e .bdc-gallery-scroll::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.15);
+  border-radius: 999px;
+}
+.landing-e .bdc-gallery-card {
+  flex: 0 0 260px;
+  scroll-snap-align: start;
+  background: var(--dark);
+  color: #fff;
+  border-radius: 16px;
+  padding: 22px;
+  transition: transform 0.3s var(--ease-entrance);
+}
+.landing-e .bdc-gallery-card:hover {
+  transform: translateY(-5px);
+}
+.landing-e .bdc-gallery-card h4 {
+  font-size: 17px;
+  font-weight: 700;
+  line-height: 1.35;
+  margin-bottom: 16px;
+  color: #fff;
+}
+.landing-e .bdc-gallery-src {
+  display: inline-block;
+  font-size: 10.5px;
+  color: rgba(255, 255, 255, 0.55);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  padding: 4px 10px;
+  border-radius: 999px;
+  margin-bottom: 14px;
+}
+.landing-e .bdc-gallery-stats {
+  font-size: 11.5px;
+  color: rgba(255, 255, 255, 0.4);
+  margin-bottom: 10px;
+}
+.landing-e .bdc-gallery-status {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #4fbf82;
+}
+.landing-e .bdc-gallery-status i {
+  width: 6px;
+  height: 6px;
+  border-radius: 999px;
+  background: #4fbf82;
+}
+
+/* ---- Approval queue panel ---- */
+.landing-e .bdc-queue-panel {
+  max-width: 640px;
+  margin: 0 auto;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  overflow: hidden;
+}
+.landing-e .bdc-queue-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 18px 22px;
+  border-bottom: 1px solid var(--border);
+}
+.landing-e .bdc-queue-head b {
+  font-size: 13px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.landing-e .bdc-queue-head span {
+  font-size: 12px;
+  color: var(--muted);
+}
+.landing-e .bdc-queue-row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 22px;
+  border-top: 1px solid var(--border);
+}
+.landing-e .bdc-queue-row:first-of-type {
+  border-top: none;
+}
+.landing-e .bdc-queue-check {
+  width: 18px;
+  height: 18px;
+  border-radius: 5px;
+  border: 2px solid var(--border);
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+}
+.landing-e .bdc-queue-check.bdc-queue-done {
+  background: var(--accent);
+  border-color: var(--accent);
+}
+.landing-e .bdc-queue-row-body {
+  flex: 1;
+  min-width: 0;
+}
+.landing-e .bdc-queue-row-body b {
+  display: block;
+  font-size: 13.5px;
+  color: var(--text-dark);
+}
+.landing-e .bdc-queue-row-body span {
+  font-size: 11.5px;
+  color: var(--muted);
+}
+
+/* ---- Guardrails ---- */
+.landing-e .bdc-guardrails {
+  max-width: 640px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.landing-e .bdc-guard-row {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 14px 18px;
+  font-size: 13.5px;
+  color: var(--text-dark);
+  line-height: 1.5;
+}
+.landing-e .bdc-guard-row svg {
+  flex-shrink: 0;
+  margin-top: 2px;
+  color: var(--accent);
 }

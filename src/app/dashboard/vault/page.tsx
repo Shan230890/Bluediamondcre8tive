@@ -153,6 +153,50 @@ export default function VaultPage() {
         pending legal review — until that clears, everything here is sourced by hand.
       </div>
 
+      {entries !== null && entries.length > 0 && (
+        <div className="dash-chart-card">
+          <div className="dash-chart-card-head">
+            <div className="dash-chart-stat">
+              <b>{competitorNames.length}</b>
+              <span>Competitor{competitorNames.length === 1 ? "" : "s"} tracked, real</span>
+            </div>
+            <div className="dash-chart-stat">
+              <b>{entries.length}</b>
+              <span>Total logged entries, real</span>
+            </div>
+            <div className="dash-chart-stat">
+              <b>{new Date(entries[0].created_at).toLocaleDateString()}</b>
+              <span>Most recent scan, real</span>
+            </div>
+            <span className="dash-chart-illustrative-tag">Trend line below is illustrative</span>
+          </div>
+          <svg viewBox="0 0 260 60" width="100%" height="60">
+            <path
+              d="M0,48 C40,46 60,42 90,40 C120,38 140,36 170,32 C200,28 220,26 260,22"
+              fill="none"
+              stroke="rgba(255,255,255,0.25)"
+              strokeWidth={2}
+            />
+            <path
+              d="M0,45 C40,38 60,40 90,28 C120,18 140,24 170,14 C200,6 220,10 260,4"
+              fill="none"
+              stroke="var(--accent)"
+              strokeWidth={2.2}
+            />
+          </svg>
+          <div className="dash-chart-legend">
+            <span>
+              <i style={{ background: "var(--accent)" }} />
+              Category coverage (illustrative concept)
+            </span>
+            <span>
+              <i style={{ background: "rgba(255,255,255,0.25)" }} />
+              Category average (illustrative concept)
+            </span>
+          </div>
+        </div>
+      )}
+
       {entries === null ? (
         <div className="dash-list" style={{ marginBottom: 24 }}>
           <div className="skel skel-row" />

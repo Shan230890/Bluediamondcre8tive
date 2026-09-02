@@ -27,7 +27,6 @@ export function LandingFooter() {
           <div>
             <div className="footer-brand">
               <LogoMark size="lg" surface="dark" />
-              <span>Blue Diamond Cre8tive</span>
             </div>
             <p className="footer-tagline">
               We exist because busy brands don&apos;t need another vendor. They need one

@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Inter, Quicksand, Poppins } from "next/font/google";
 import "./globals.css";
 
 /**
@@ -16,6 +16,25 @@ const inter = Inter({
   display: "swap",
 });
 
+/**
+ * Quicksand + Poppins are used ONLY for the "blue diamond / CRE8TIVE" logo
+ * lockup (see LogoMark.tsx) -- not the body/UI font anywhere else on the
+ * site, which stays Inter. Matches the real reference logo: "blue diamond"
+ * in Quicksand 500/600, "CRE8TIVE" in Poppins 800.
+ */
+const quicksand = Quicksand({
+  variable: "--font-quicksand",
+  subsets: ["latin"],
+  weight: ["500", "600"],
+  display: "swap",
+});
+const poppins = Poppins({
+  variable: "--font-poppins",
+  subsets: ["latin"],
+  weight: ["800"],
+  display: "swap",
+});
+
 export const metadata: Metadata = {
   title: "Blue Diamond Cre8tive — AI-native marketing, tools, and courses",
   description:
@@ -28,7 +47,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${inter.variable} h-full antialiased`}>
+    <html lang="en" className={`${inter.variable} ${quicksand.variable} ${poppins.variable} h-full antialiased`}>
       <body className="min-h-full flex flex-col">
         {/* No-JS fallback for ScrollReveal — without this, a visitor with
             JS disabled never gets .in added and sections stay invisible. */}

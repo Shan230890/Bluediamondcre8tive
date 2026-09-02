@@ -54,7 +54,6 @@ export function NavOverlay({ open, onClose }: { open: boolean; onClose: () => vo
       <div className="bdc-nav-overlay-top">
         <Link href="/" className="fs-wordmark bdc-header-brand" onClick={onClose}>
           <LogoMark size="md" surface="dark" />
-          <span>Blue Diamond Cre8tive</span>
         </Link>
         <button type="button" className="bdc-nav-overlay-close" onClick={onClose} aria-label="Close menu">
           <X size={20} />
