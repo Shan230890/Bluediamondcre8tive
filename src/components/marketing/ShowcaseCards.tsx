@@ -3,8 +3,8 @@ import { ArrowRight, CheckCircle2, TrendingUp, TrendingDown, Minus } from "lucid
 
 /**
  * Product-screenshot showcase cards, embedded directly in the homepage
- * scroll rather than hidden behind a separate product page — Metaflow's
- * pattern. Each pairs a short pitch with a realistic mockup UI card built
+ * scroll rather than hidden behind a separate product page. Each pairs a
+ * short pitch with a realistic mockup UI card built
  * from our own product's real shape (score axes, vault rows, academy
  * tiers, a principal-review stamp), all clearly illustrative.
  */

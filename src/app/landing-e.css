@@ -1964,8 +1964,8 @@
 }
 
 /* =======================================================================
-   Metaflow-pattern additions — hero score capture, pillar grid, testimonial
-   + stats, product showcases, quality checklist, qualify grid, distinct
+   Hero score capture, pillar grid, testimonial + stats, product showcases,
+   quality checklist, qualify grid, distinct
    Services/Platform section treatments. Every glow/shadow still derives
    only from --accent-rgb; no new hues introduced.
    ======================================================================= */
@@ -2172,7 +2172,7 @@
   line-height: 1.5;
 }
 
-/* Product showcases (scroll-embedded, Metaflow-style) */
+/* Product showcases (scroll-embedded) */
 .landing-e .bdc-showcase {
   display: grid;
   grid-template-columns: 0.85fr 1.15fr;

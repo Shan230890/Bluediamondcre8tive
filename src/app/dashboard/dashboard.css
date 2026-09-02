@@ -918,8 +918,8 @@
 }
 
 /* ---------------------------------------------------------------------
-   Metaflow-pattern additions, reskinned to the dashboard surface —
-   quality-check checklist + a recent-activity timeline. Same tokens as
+   Quality-check checklist + a recent-activity timeline, reskinned to the
+   dashboard surface. Same tokens as
    landing-e's equivalents, no leakage between the two stylesheets.
    --------------------------------------------------------------------- */
 .dashboard-e .dash-checklist-card {

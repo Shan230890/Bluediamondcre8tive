@@ -1,7 +1,7 @@
 import { Check, X } from "lucide-react";
 
 /**
- * "Who it's for / not a fit" self-qualifying section, Metaflow-style two
+ * "Who it's for / not a fit" self-qualifying section, two
  * checklist columns, scoped to the Services tier per Shan's instruction
  * (this is a principal-led engagement qualifier, not a Platform pattern).
  */

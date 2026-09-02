@@ -4,9 +4,9 @@ import { ShieldCheck, Users2, Scale, Radar } from "lucide-react";
 type Pillar = { icon: LucideIcon; title: string; body: string };
 
 /**
- * "The harness is the product" positioning grid — structural pattern
- * borrowed from Metaflow's 2x2 philosophy cards, filled with claims that are
- * actually true of this system (principal review step, six-persona
+ * "The harness is the product" positioning grid — a 2x2 philosophy-cards
+ * layout, filled with claims that are actually true of this system
+ * (principal review step, six-persona
  * production team, Vault's manual-entry legal guardrail, real client
  * context in the dashboard) rather than invented capabilities.
  */

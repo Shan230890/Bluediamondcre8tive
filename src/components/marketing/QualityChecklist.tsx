@@ -5,7 +5,7 @@ type ChecklistItem = { label: string; state: "pass" | "fail" | "pending" };
 const ICONS = { pass: Check, fail: X, pending: Minus };
 
 /**
- * Quality-check checklist pattern (Metaflow's "Search intent matched /
+ * Quality-check checklist pattern ("Search intent matched /
  * Unsupported claims flagged / Human editor review required" card),
  * reskinned to Pattern E. Ties back to the site-wide AI-liability
  * disclaimer at /disclaimer — every AI-assisted draft is reviewed by a

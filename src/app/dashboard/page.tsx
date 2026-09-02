@@ -81,8 +81,8 @@ export default function DashboardOverviewPage() {
       });
 
       // Recent-activity feed, built from real rows already on the account
-      // (deliverables + Vault scans), merged and sorted by recency — the
-      // Metaflow-style "running feed" pattern, no fabricated content.
+      // (deliverables + Vault scans), merged and sorted by recency — a
+      // running-feed pattern, no fabricated content.
       const deliverableItems: ActivityItem[] = (deliverables ?? []).map((d: { id: string; title: string; type: string | null; created_at: string }) => ({
         id: `deliverable-${d.id}`,
         kind: "deliverable",

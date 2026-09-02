@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import { ArrowRight } from "lucide-react";
 
 /**
- * Hero-embedded lightweight Cre8tive Score capture, modeled on Metaflow's
+ * Hero-embedded lightweight Cre8tive Score capture: an
  * "Enter your website -> Get my free GTM report" hero pattern. This does NOT
  * call /api/score directly (that endpoint requires an email + a 20-2000
  * char description per its zod schema in src/app/api/score/route.ts) — it

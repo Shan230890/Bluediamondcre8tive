@@ -1,6 +1,6 @@
 /**
- * Testimonial-with-quantified-stats block, structural pattern borrowed from
- * Metaflow's client-logo + quote + 2-3 big numbers layout.
+ * Testimonial-with-quantified-stats block: client-logo + quote + 2-3 big
+ * numbers layout.
  *
  * We do not have a real client testimonial with verified numbers yet, so
  * this renders an explicitly-labeled illustrative example rather than
