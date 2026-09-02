@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { History, ChevronDown, ChevronUp } from "lucide-react";
 import { PERSONAS, type PersonaSlug } from "@/lib/personas/blue-diamond";
+import { PersonaAvatar } from "@/components/dashboard/PersonaAvatar";
 
 interface Task {
   id: string;
@@ -100,7 +101,16 @@ export default function ExecutionMemoryPage() {
                 <span className="memory-entry-title">{task.title}</span>
                 <div className="memory-entry-badges">
                   <span className="memory-badge">{projectName}</span>
-                  <span className="memory-badge">{persona ? `${persona.emoji} ${persona.name}` : "Unassigned"}</span>
+                  <span className="memory-badge">
+                    {persona ? (
+                      <>
+                        <PersonaAvatar slug={persona.slug} name={persona.name} className="badge-avatar" />
+                        {persona.name}
+                      </>
+                    ) : (
+                      "Unassigned"
+                    )}
+                  </span>
                   <span className="memory-badge">{task.status}</span>
                 </div>
               </div>

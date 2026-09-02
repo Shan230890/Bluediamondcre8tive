@@ -2,6 +2,7 @@ import Link from "next/link";
 import { ArrowRight, Plus } from "lucide-react";
 import { PERSONA_SLUGS, PERSONAS } from "@/lib/personas/blue-diamond";
 import { TiltCard } from "@/components/motion/TiltCard";
+import { PersonaAvatar } from "@/components/dashboard/PersonaAvatar";
 
 export default function TeamPage() {
   return (
@@ -17,7 +18,7 @@ export default function TeamPage() {
           return (
             <Link key={slug} href={`/dashboard/team/${slug}`} style={{ display: "block" }}>
               <TiltCard tilt="flat" className="persona-card">
-                <span className="persona-avatar">{persona.emoji}</span>
+                <PersonaAvatar slug={persona.slug} name={persona.name} />
                 <span className="persona-name">{persona.name}</span>
                 <span className="persona-role">{persona.role}</span>
                 <p className="persona-oneliner">{persona.oneLiner}</p>

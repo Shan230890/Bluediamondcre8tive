@@ -249,6 +249,152 @@
   display: none;
 }
 
+/* "Your Cre8tive Team" sidebar disclosure — header row (chevron toggle +
+   link to the roster overview) plus, when expanded, one row per persona
+   linking straight to that persona's own page (which already contains the
+   full chat UI, so there's no separate chat deep-link to build). */
+.dashboard-e .dash-team-header {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  padding: 0;
+}
+
+.dashboard-e .dash-team-header.active {
+  background: rgba(var(--accent-rgb), 0.16);
+  border-left-color: var(--accent);
+}
+
+.dashboard-e .dash-team-header:hover {
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.dashboard-e .dash-team-chevron-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 34px;
+  flex-shrink: 0;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.dashboard-e .dash-team-chevron-btn:hover {
+  color: #fff;
+}
+
+.dashboard-e .dash-sidebar.collapsed .dash-team-chevron-btn {
+  display: none;
+}
+
+.dashboard-e .dash-team-chevron {
+  transition: transform 0.15s var(--ease);
+}
+
+.dashboard-e .dash-team-chevron.expanded {
+  transform: rotate(180deg);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dashboard-e .dash-team-chevron {
+    transition: none;
+  }
+}
+
+.dashboard-e .dash-team-header-link {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  flex: 1;
+  min-width: 0;
+  padding: 9px 12px 9px 2px;
+  font-size: 13.5px;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.68);
+  white-space: nowrap;
+}
+
+.dashboard-e .dash-team-header-link:hover {
+  color: #fff;
+}
+
+.dashboard-e .dash-team-header.active .dash-team-header-link {
+  color: #fff;
+  font-weight: 600;
+}
+
+.dashboard-e .dash-sidebar.collapsed .dash-team-header-link {
+  justify-content: center;
+  padding: 9px 0;
+}
+
+.dashboard-e .dash-team-rows {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  padding: 2px 0 4px 28px;
+}
+
+.dashboard-e .dash-team-row {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding: 6px 10px 6px 6px;
+  border-radius: 7px;
+  color: rgba(255, 255, 255, 0.68);
+  transition: background-color 0.15s var(--ease), color 0.15s var(--ease);
+}
+
+.dashboard-e .dash-team-row:hover {
+  background: rgba(255, 255, 255, 0.06);
+  color: #fff;
+}
+
+.dashboard-e .dash-team-row.active {
+  background: rgba(var(--accent-rgb), 0.16);
+  color: #fff;
+}
+
+.dashboard-e .sidebar-persona-avatar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  border-radius: 7px;
+  flex-shrink: 0;
+}
+
+.dashboard-e .dash-team-row-text {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  overflow: hidden;
+}
+
+.dashboard-e .dash-team-row-name {
+  font-size: 12.5px;
+  font-weight: 600;
+  line-height: 1.3;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.dashboard-e .dash-team-row-role {
+  font-size: 10.5px;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.45);
+  line-height: 1.3;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.dashboard-e .dash-team-row.active .dash-team-row-role {
+  color: rgba(255, 255, 255, 0.75);
+}
+
 .dashboard-e .dash-sidebar-footer {
   padding: 12px 18px 18px;
   border-top: 1px solid rgba(255, 255, 255, 0.1);
@@ -707,16 +853,39 @@
   color: var(--accent);
 }
 
-/* Monogram avatar variant — used by custom agents in place of a persona
-   emoji (this app avoids icon identities for client-built agents). Applies
-   on top of persona-avatar / chat-header-avatar / chat-row-avatar. */
+/* Monogram avatar variant — text initials in place of an icon/emoji (this
+   app never uses icon/emoji identities for agents, built-in personas or
+   client-built custom agents alike). Applies on top of whatever
+   avatar-shaped base class the call site uses. Built-in personas set an
+   inline background + white text per PERSONA_AVATAR_COLORS (avatar.ts);
+   custom agents have no inline color and fall back to the accent tint
+   below. */
 .dashboard-e .persona-avatar.monogram,
 .dashboard-e .chat-header-avatar.monogram,
-.dashboard-e .chat-row-avatar.monogram {
+.dashboard-e .chat-row-avatar.monogram,
+.dashboard-e .kanban-assignee-avatar.monogram,
+.dashboard-e .badge-avatar.monogram,
+.dashboard-e .sidebar-persona-avatar.monogram {
   font-size: 13px;
   font-weight: 700;
   color: var(--accent);
   letter-spacing: 0.02em;
+}
+
+.dashboard-e .kanban-assignee-avatar.monogram,
+.dashboard-e .badge-avatar.monogram {
+  font-size: 10px;
+}
+
+/* Small monogram chip used inside the Execution Memory pill badges. */
+.dashboard-e .badge-avatar {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 15px;
+  height: 15px;
+  border-radius: 5px;
+  flex-shrink: 0;
 }
 
 /* Chat */
@@ -1519,6 +1688,9 @@
 }
 
 .dashboard-e .memory-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
   font-size: 10.5px;
   font-weight: 600;
   text-transform: uppercase;

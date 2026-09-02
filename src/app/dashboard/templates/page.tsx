@@ -5,6 +5,7 @@ import Link from "next/link";
 import { Search, LayoutTemplate, Trash2, Plus } from "lucide-react";
 import { TASK_TEMPLATES, TEMPLATE_CATEGORIES, type TemplateCategory } from "@/lib/task-templates/catalog";
 import { PERSONA_SLUGS, PERSONAS, type PersonaSlug } from "@/lib/personas/blue-diamond";
+import { PersonaAvatar } from "@/components/dashboard/PersonaAvatar";
 
 /**
  * /dashboard/templates — searchable, filterable gallery of the curated task
@@ -163,7 +164,7 @@ export default function TemplatesPage() {
                 <p>{t.description}</p>
                 <div className="template-card-bottom">
                   <span className="kanban-assignee">
-                    <span className="kanban-assignee-avatar">{persona.emoji}</span>
+                    <PersonaAvatar slug={persona.slug} name={persona.name} className="kanban-assignee-avatar" />
                     {persona.name}
                   </span>
                   <Link href={`/dashboard/tasks?template=${t.slug}`} className="btn-solid template-use-btn">
@@ -221,7 +222,7 @@ export default function TemplatesPage() {
               <option value="">Unassigned</option>
               {PERSONA_SLUGS.map((slug) => (
                 <option key={slug} value={slug}>
-                  {PERSONAS[slug].emoji} {PERSONAS[slug].name} — {PERSONAS[slug].role}
+                  {PERSONAS[slug].name} — {PERSONAS[slug].role}
                 </option>
               ))}
             </select>
@@ -274,7 +275,11 @@ export default function TemplatesPage() {
                 <p>{t.instructions}</p>
                 <div className="template-card-bottom">
                   <span className="kanban-assignee">
-                    <span className="kanban-assignee-avatar">{persona ? persona.emoji : "—"}</span>
+                    {persona ? (
+                      <PersonaAvatar slug={persona.slug} name={persona.name} className="kanban-assignee-avatar" />
+                    ) : (
+                      <span className="kanban-assignee-avatar">—</span>
+                    )}
                     {persona ? persona.name : "Unassigned"}
                   </span>
                   <Link href={`/dashboard/tasks?customTemplateId=${t.id}`} className="btn-solid template-use-btn">

@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import {
@@ -21,8 +22,22 @@ import {
   Send,
   History,
   Sparkles,
+  ChevronDown,
 } from "lucide-react";
 import { LogoMark } from "@/components/LogoMark";
+import { PERSONA_SLUGS, PERSONAS } from "@/lib/personas/blue-diamond";
+import { PersonaAvatar } from "@/components/dashboard/PersonaAvatar";
+
+/**
+ * Whether the "Your Cre8tive Team" disclosure is expanded, persisted per
+ * browser. Just one boolean — unlike Opsara's per-department `Set<string>`,
+ * this app has a single fixed six-persona team with nothing to nest under
+ * a persona besides that persona's own chat page, so there's only one
+ * section to disclose. Defaults to expanded: six rows is a short, useful
+ * list worth showing by default rather than making every client find and
+ * click a toggle on first load.
+ */
+const TEAM_EXPANDED_KEY = "bdc-sidebar-team-expanded";
 
 const NAV_ITEMS = [
   { href: "/dashboard", label: "Overview", icon: LayoutDashboard },
@@ -42,7 +57,6 @@ const GROWTH_ITEMS = [
   { href: "/dashboard/memory", label: "Execution Memory", icon: History },
 ] as const;
 
-const TEAM_ITEM = { href: "/dashboard/team", label: "Your Cre8tive Team", icon: Users } as const;
 const CUSTOM_AGENTS_ITEM = { href: "/dashboard/team/custom", label: "Custom agents", icon: Sparkles } as const;
 const SETTINGS_ITEM = { href: "/dashboard/settings", label: "Settings", icon: Settings } as const;
 
@@ -62,6 +76,30 @@ export function Sidebar({
   onToggleCollapsed?: () => void;
 }) {
   const pathname = usePathname();
+  const [teamExpanded, setTeamExpanded] = useState(true);
+
+  useEffect(() => {
+    try {
+      const stored = window.localStorage.getItem(TEAM_EXPANDED_KEY);
+      // One-time read of a client-only localStorage preference on mount.
+      // eslint-disable-next-line react-hooks/set-state-in-effect
+      if (stored !== null) setTeamExpanded(stored === "1");
+    } catch {
+      // localStorage unavailable (e.g. private browsing) — keep the expanded default.
+    }
+  }, []);
+
+  function toggleTeam() {
+    setTeamExpanded((prev) => {
+      const next = !prev;
+      try {
+        window.localStorage.setItem(TEAM_EXPANDED_KEY, next ? "1" : "0");
+      } catch {
+        // ignore — expand state just won't persist this session
+      }
+      return next;
+    });
+  }
 
   function isActive(href: string) {
     return href === "/dashboard" ? pathname === "/dashboard" : pathname.startsWith(href);
@@ -109,7 +147,50 @@ export function Sidebar({
         {GROWTH_ITEMS.map(renderLink)}
 
         <p className="dash-nav-section-label">Team</p>
-        {renderLink(TEAM_ITEM)}
+        <div className="dash-team-disclosure">
+          <div className={`dash-nav-link dash-team-header ${pathname === "/dashboard/team" ? "active" : ""}`}>
+            <button
+              type="button"
+              className="dash-team-chevron-btn"
+              onClick={toggleTeam}
+              aria-expanded={teamExpanded}
+              aria-label={teamExpanded ? "Collapse Your Cre8tive Team" : "Expand Your Cre8tive Team"}
+            >
+              <ChevronDown size={14} className={`dash-team-chevron ${teamExpanded ? "expanded" : ""}`} />
+            </button>
+            <Link
+              href="/dashboard/team"
+              onClick={onNavigate}
+              title={collapsed ? "Your Cre8tive Team" : undefined}
+              className="dash-team-header-link"
+            >
+              <Users size={16} strokeWidth={2} />
+              <span className="dash-nav-label">Your Cre8tive Team</span>
+            </Link>
+          </div>
+          {teamExpanded && !collapsed && (
+            <div className="dash-team-rows">
+              {PERSONA_SLUGS.map((slug) => {
+                const persona = PERSONAS[slug];
+                const href = `/dashboard/team/${slug}`;
+                return (
+                  <Link
+                    key={slug}
+                    href={href}
+                    onClick={onNavigate}
+                    className={`dash-team-row ${pathname === href ? "active" : ""}`}
+                  >
+                    <PersonaAvatar slug={slug} name={persona.name} className="sidebar-persona-avatar" />
+                    <span className="dash-team-row-text">
+                      <span className="dash-team-row-name">{persona.name}</span>
+                      <span className="dash-team-row-role">{persona.role}</span>
+                    </span>
+                  </Link>
+                );
+              })}
+            </div>
+          )}
+        </div>
         {renderLink(CUSTOM_AGENTS_ITEM)}
 
         <p className="dash-nav-section-label">Account</p>

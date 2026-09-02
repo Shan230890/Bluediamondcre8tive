@@ -20,15 +20,7 @@ const STARTER_TOPIC: Record<string, string> = {
   barry: "a build, bug, or technical question",
 };
 
-/** Initials shown in the monogram avatar for agents with no emoji (custom agents). */
-function initials(name: string): string {
-  return name
-    .trim()
-    .split(/\s+/)
-    .slice(0, 2)
-    .map((part) => part[0]?.toUpperCase() ?? "")
-    .join("");
-}
+import { initials } from "@/lib/personas/avatar";
 
 /**
  * Chat state is in-memory/per-session only — no persistence to Supabase in
@@ -37,20 +29,23 @@ function initials(name: string): string {
  *
  * Generalized to also drive custom-agent chat: pass `apiPath` to hit a
  * different route than the built-in `/api/dashboard/team/:slug/chat`
- * pattern, and omit `emoji` to fall back to a text monogram (custom agents
- * don't get persona icons).
+ * pattern. Every agent (built-in persona or custom) renders as a text
+ * monogram — this app never uses icon/emoji identities for agents. Pass
+ * `avatarColor` for the six built-in personas' fixed per-persona color
+ * (see src/lib/personas/avatar.ts); custom agents omit it and get the
+ * default accent-tinted monogram.
  */
 export function PersonaChat({
   slug,
   name,
   role,
-  emoji,
+  avatarColor,
   apiPath,
 }: {
   slug: string;
   name: string;
   role: string;
-  emoji?: string;
+  avatarColor?: string;
   /** Defaults to the built-in persona chat route if not given. */
   apiPath?: string;
 }) {
@@ -103,13 +98,13 @@ export function PersonaChat({
   }
 
   const topic = STARTER_TOPIC[slug] ?? "how they can help";
-  const avatarContent = emoji ?? initials(name);
-  const avatarClass = emoji ? "" : " monogram";
+  const avatarContent = initials(name);
+  const avatarStyle = avatarColor ? { background: avatarColor, color: "#fff" } : undefined;
 
   return (
     <div className="chat-shell">
       <div className="chat-header">
-        <span className={`chat-header-avatar${avatarClass}`}>{avatarContent}</span>
+        <span className="chat-header-avatar monogram" style={avatarStyle}>{avatarContent}</span>
         <div>
           <div className="chat-header-name">{name}</div>
           <div className="chat-header-role">{role}</div>
@@ -122,7 +117,7 @@ export function PersonaChat({
 
       {messages.length === 0 ? (
         <div className="chat-empty">
-          <span className={`persona-avatar${avatarClass}`}>{avatarContent}</span>
+          <span className="persona-avatar monogram" style={avatarStyle}>{avatarContent}</span>
           <p className="chat-empty-title">Chat with {name}</p>
           <p className="chat-empty-sub">Ask {name} about {topic}.</p>
         </div>
@@ -130,13 +125,13 @@ export function PersonaChat({
         <div className="chat-messages">
           {messages.map((m, i) => (
             <div key={i} className={`chat-row ${m.role}`}>
-              {m.role === "assistant" && <span className={`chat-row-avatar${avatarClass}`}>{avatarContent}</span>}
+              {m.role === "assistant" && <span className="chat-row-avatar monogram" style={avatarStyle}>{avatarContent}</span>}
               <div className={`chat-bubble ${m.role}`}>{m.content}</div>
             </div>
           ))}
           {pending && (
             <div className="chat-row assistant">
-              <span className={`chat-row-avatar${avatarClass}`}>{avatarContent}</span>
+              <span className="chat-row-avatar monogram" style={avatarStyle}>{avatarContent}</span>
               <div className="chat-bubble assistant chat-typing">
                 <span />
                 <span />

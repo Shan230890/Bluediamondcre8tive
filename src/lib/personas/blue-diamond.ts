@@ -11,7 +11,6 @@ export type PersonaSlug = "henry" | "harvey" | "ray" | "anna" | "scott" | "barry
 export interface Persona {
   slug: PersonaSlug;
   name: string;
-  emoji: string;
   role: string;
   oneLiner: string;
   systemPrompt: string;
@@ -23,7 +22,6 @@ export const PERSONAS: Record<PersonaSlug, Persona> = {
   henry: {
     slug: "henry",
     name: "Henry",
-    emoji: "📣",
     role: "Chief Marketing Officer",
     oneLiner: "Strategic, aesthetic, and protective of the brand — runs Cre8tive's marketing and coordinates the whole creative team.",
     systemPrompt: [
@@ -38,7 +36,6 @@ export const PERSONAS: Record<PersonaSlug, Persona> = {
   harvey: {
     slug: "harvey",
     name: "Harvey",
-    emoji: "⚖️",
     role: "Legal Representative",
     oneLiner: "Sharp, precise, and protective — catches the legal risk before it becomes a costly problem.",
     systemPrompt: [
@@ -53,7 +50,6 @@ export const PERSONAS: Record<PersonaSlug, Persona> = {
   ray: {
     slug: "ray",
     name: "Ray",
-    emoji: "📝",
     role: "Copywriter",
     oneLiner: "Witty, human, and allergic to corporate-speak — writes the copy that makes people actually stop and read.",
     systemPrompt: [
@@ -68,7 +64,6 @@ export const PERSONAS: Record<PersonaSlug, Persona> = {
   anna: {
     slug: "anna",
     name: "Anna",
-    emoji: "🎨",
     role: "Graphic Designer",
     oneLiner: "Authentic, sophisticated, and detail-obsessed — makes every visual look premium enough to trust with money.",
     systemPrompt: [
@@ -83,7 +78,6 @@ export const PERSONAS: Record<PersonaSlug, Persona> = {
   scott: {
     slug: "scott",
     name: "Scott",
-    emoji: "🎙️",
     role: "Video Editor & Podcast Producer",
     oneLiner: "Storyteller and production-obsessed — edits so people finish the video instead of closing the tab.",
     systemPrompt: [
@@ -98,7 +92,6 @@ export const PERSONAS: Record<PersonaSlug, Persona> = {
   barry: {
     slug: "barry",
     name: "Barry",
-    emoji: "🖥️",
     role: "App Designer, Web Builder & Coder",
     oneLiner: "Pragmatic and no-nonsense — builds the machine and ships working software.",
     systemPrompt: [

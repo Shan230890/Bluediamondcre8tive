@@ -5,6 +5,7 @@ import { DndContext, type DragEndEvent } from "@dnd-kit/core";
 import { ListTodo, Plus, ChevronDown, ChevronUp, Sparkles } from "lucide-react";
 import { PERSONA_SLUGS, PERSONAS, type PersonaSlug } from "@/lib/personas/blue-diamond";
 import { DraggableCard, DroppableColumn } from "@/components/dashboard/Kanban";
+import { PersonaAvatar } from "@/components/dashboard/PersonaAvatar";
 
 /**
  * Shared kanban board, factored out of the original standalone
@@ -243,7 +244,7 @@ export function TaskBoard({
               <option value="">Unassigned</option>
               {PERSONA_SLUGS.map((slug) => (
                 <option key={slug} value={slug}>
-                  {PERSONAS[slug].emoji} {PERSONAS[slug].name} — {PERSONAS[slug].role}
+                  {PERSONAS[slug].name} — {PERSONAS[slug].role}
                 </option>
               ))}
             </select>
@@ -311,7 +312,11 @@ export function TaskBoard({
                         {task.description && <p className="kanban-card-desc">{task.description}</p>}
                         <div className="kanban-card-meta">
                           <span className="kanban-assignee">
-                            <span className="kanban-assignee-avatar">{persona ? persona.emoji : "—"}</span>
+                            {persona ? (
+                              <PersonaAvatar slug={persona.slug} name={persona.name} className="kanban-assignee-avatar" />
+                            ) : (
+                              <span className="kanban-assignee-avatar">—</span>
+                            )}
                             {persona ? persona.name : "Unassigned"}
                           </span>
                           {task.due_date && <span className="kanban-due">Due {new Date(task.due_date).toLocaleDateString()}</span>}
@@ -345,7 +350,7 @@ export function TaskBoard({
                             <option value="">Assign to…</option>
                             {PERSONA_SLUGS.map((slug) => (
                               <option key={slug} value={slug}>
-                                {PERSONAS[slug].emoji} {PERSONAS[slug].name}
+                                {PERSONAS[slug].name}
                               </option>
                             ))}
                           </select>
