@@ -315,7 +315,7 @@ export default function PricingPage() {
           <SectionBackground watermark="PRICING" />
           <div className="fs-hero-inner">
             <span className="payments-note" style={{ marginTop: 0, marginBottom: 18 }}>
-              Two ways to work with us
+              Start on the Platform, or hand it off entirely
             </span>
             <LineReveal
               as="h1"
@@ -324,30 +324,14 @@ export default function PricingPage() {
               style={{ fontSize: "clamp(30px, 5vw, 44px)" } as React.CSSProperties}
             />
             <p className="lead">
-              Services are principal-led and done-for-you, billed monthly. The Platform is a
-              self-serve product you run yourself, no onboarding call needed.
+              The Platform is self-serve, no onboarding call, start free today. Prefer it
+              done for you? Services is principal-led, billed monthly.
             </p>
             <p style={{ marginTop: 12, fontSize: 13.5, color: "var(--muted)" }}>
               Every deliverable, on either side, is reviewed before it ships.
             </p>
           </div>
         </section>
-
-        <section className="section bdc-section-services">
-          <div className="bdc-silo-group-head" style={{ marginBottom: 22 }}>
-            <Eyebrow>Services — principal-led</Eyebrow>
-            <span className="bdc-silo-group-note">Done-for-you. Onboarding call required.</span>
-          </div>
-          <div className="grid grid-3">
-            {serviceTiers.map((tier) => (
-              <TierCard tier={tier} key={tier.name} />
-            ))}
-          </div>
-        </section>
-
-        <div className="bdc-silo-divider">
-          <span className="bdc-silo-divider-label">Two different ways to work with us</span>
-        </div>
 
         <section className="section bdc-section-platform">
           <div className="section-head reveal" style={{ marginBottom: 12 }}>
@@ -371,6 +355,22 @@ export default function PricingPage() {
           </div>
         </section>
 
+        <div className="bdc-silo-divider">
+          <span className="bdc-silo-divider-label">Prefer it done for you instead?</span>
+        </div>
+
+        <section className="section bdc-section-services">
+          <div className="bdc-silo-group-head" style={{ marginBottom: 22 }}>
+            <Eyebrow>Services — principal-led</Eyebrow>
+            <span className="bdc-silo-group-note">Done-for-you. Onboarding call required.</span>
+          </div>
+          <div className="grid grid-3">
+            {serviceTiers.map((tier) => (
+              <TierCard tier={tier} key={tier.name} />
+            ))}
+          </div>
+        </section>
+
         <section className="section section-bg text-center">
           <span className="payments-note">Payments launching soon. Every CTA above routes to our team for now.</span>
         </section>
@@ -381,9 +381,9 @@ export default function PricingPage() {
             <LineReveal as="h2" lines={["Every feature,", "mapped honestly."]} />
             <p>The exact same breakdown as the cards above, side by side.</p>
           </div>
-          <ComparisonTable title="Services" tierNames={["Starter", "Growth", "Signature"]} rows={servicesComparison} />
+          <ComparisonTable title="Platform" tierNames={["Starter", "Pro", "Agency"]} rows={platformComparison} />
           <div style={{ marginTop: 40 }}>
-            <ComparisonTable title="Platform" tierNames={["Starter", "Pro", "Agency"]} rows={platformComparison} />
+            <ComparisonTable title="Services" tierNames={["Starter", "Growth", "Signature"]} rows={servicesComparison} />
           </div>
         </section>
 
@@ -408,14 +408,14 @@ export default function PricingPage() {
         <section className="section section-bg text-center reveal">
           <LineReveal as="h2" lines={["Ready to pick a side?"]} style={{ fontSize: "clamp(24px, 4vw, 32px)" } as React.CSSProperties} />
           <p style={{ maxWidth: 420, margin: "16px auto 0", fontSize: 15, color: "var(--body-c)" }}>
-            Talk to us about Services, or start free on the Platform today.
+            Start free on the Platform today, or talk to us about Services.
           </p>
           <div style={{ marginTop: 24, display: "flex", justifyContent: "center", gap: 12, flexWrap: "wrap" }}>
-            <Pill href="/services#schedule-call" variant="dark" trailing="arrow">
-              Talk to us
-            </Pill>
-            <Pill href="/signup" variant="outline">
+            <Pill href="/signup" variant="dark" trailing="arrow">
               Start free
+            </Pill>
+            <Pill href="/services#schedule-call" variant="outline">
+              Talk to us
             </Pill>
           </div>
         </section>
