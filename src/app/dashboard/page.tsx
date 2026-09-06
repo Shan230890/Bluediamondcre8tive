@@ -5,6 +5,8 @@ import Link from "next/link";
 import { Receipt, Layers, FolderOpen, ShieldCheck, GraduationCap, Users, ArrowRight, FileText, Radar, ListTodo } from "lucide-react";
 import { createClient } from "@/lib/supabase/client";
 import { TiltCard } from "@/components/motion/TiltCard";
+import { NewHereCard } from "@/components/dashboard/NewHereCard";
+import { HelpPanel } from "@/components/dashboard/HelpPanel";
 
 interface Stats {
   openInvoices: number;
@@ -111,6 +113,13 @@ export default function DashboardOverviewPage() {
 
   return (
     <div>
+      <HelpPanel title="Overview">
+        <p>
+          Your dashboard home: open invoices, your active services tier, recent deliverables, and a
+          running feed of recent activity across Deliverables and the Vault.
+        </p>
+        <p>New here? Use the &quot;New to the Platform?&quot; card below, or the help bot in the bottom-right corner, to take a guided tour of the sidebar.</p>
+      </HelpPanel>
       <p className="dash-eyebrow">{WEEKDAY_FORMAT.format(new Date())}</p>
       <div className="dash-page-head" style={{ marginBottom: 28 }}>
         <div>
@@ -121,6 +130,8 @@ export default function DashboardOverviewPage() {
           <p>Here&apos;s a quick look at where things stand.</p>
         </div>
       </div>
+
+      <NewHereCard />
 
       {loading ? (
         <>

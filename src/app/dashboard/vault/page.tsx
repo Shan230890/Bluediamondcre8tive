@@ -2,6 +2,7 @@
 
 import { useEffect, useMemo, useState } from "react";
 import { ShieldCheck, Check, Minus } from "lucide-react";
+import { HelpPanel } from "@/components/dashboard/HelpPanel";
 import { createClient } from "@/lib/supabase/client";
 import { getCompetitorLimit } from "@/lib/vault/tier-limits";
 import { WeeklyScanEntrySchema } from "@/lib/vault/schema";
@@ -135,6 +136,13 @@ export default function VaultPage() {
 
   return (
     <div>
+      <HelpPanel title="Competitor Intelligence Vault">
+        <p>
+          Hand-entered competitor research: log a weekly scan or monthly review for each competitor
+          you track, plus white-space notes on where you have an opening.
+        </p>
+        <p>Entries are added manually through the form below, not scraped automatically. Your tier sets how many competitors you can track.</p>
+      </HelpPanel>
       <div className="dash-page-head">
         <h1>Competitor Intelligence Vault</h1>
         <p>

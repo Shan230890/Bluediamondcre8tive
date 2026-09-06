@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { FolderKanban, Plus } from "lucide-react";
+import { HelpPanel } from "@/components/dashboard/HelpPanel";
 
 interface ProjectRow {
   id: string;
@@ -31,6 +32,14 @@ export default function ProjectsPage() {
 
   return (
     <div>
+      <HelpPanel title="Projects">
+        <p>
+          Each project is one client brief: goals, industry, audience, and channels of interest.
+          Creating one hands the brief to your team, which drafts a starter task list on the project&apos;s
+          board.
+        </p>
+        <p>Status moves through discovery, active, review, and complete as the work progresses.</p>
+      </HelpPanel>
       <div className="dash-page-head">
         <div>
           <h1>Projects</h1>

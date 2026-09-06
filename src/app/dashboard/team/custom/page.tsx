@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { Trash2, Plus, Pencil, ArrowRight } from "lucide-react";
+import { HelpPanel } from "@/components/dashboard/HelpPanel";
 
 interface CustomAgent {
   id: string;
@@ -115,6 +116,13 @@ export default function CustomAgentsPage() {
 
   return (
     <div>
+      <HelpPanel title="Custom agents">
+        <p>
+          Build an AI agent for marketing work your six-person team doesn&apos;t already cover, with a
+          name, mission, and system prompt you write.
+        </p>
+        <p>Every custom agent is locked to marketing tasks for your own business only, no matter how a request is phrased.</p>
+      </HelpPanel>
       <div className="dash-page-head">
         <div>
           <h1>Custom agents</h1>

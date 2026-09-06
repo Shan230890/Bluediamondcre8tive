@@ -105,7 +105,7 @@ export function Sidebar({
     return href === "/dashboard" ? pathname === "/dashboard" : pathname.startsWith(href);
   }
 
-  function renderLink(item: { href: string; label: string; icon: typeof LayoutDashboard }) {
+  function renderLink(item: { href: string; label: string; icon: typeof LayoutDashboard }, tourId?: string) {
     const Icon = item.icon;
     const active = isActive(item.href);
     return (
@@ -115,12 +115,20 @@ export function Sidebar({
         onClick={onNavigate}
         title={collapsed ? item.label : undefined}
         className={`dash-nav-link ${active ? "active" : ""}`}
+        data-tour={tourId}
       >
         <Icon size={16} strokeWidth={2} />
         <span className="dash-nav-label">{item.label}</span>
       </Link>
     );
   }
+
+  const NAV_TOUR_IDS: Record<string, string> = {
+    "/dashboard": "overview",
+    "/dashboard/projects": "projects",
+    "/dashboard/tasks": "tasks",
+    "/dashboard/templates": "templates",
+  };
 
   return (
     <aside className={`dash-sidebar ${open ? "open" : ""} ${collapsed ? "collapsed" : ""}`}>
@@ -141,13 +149,15 @@ export function Sidebar({
       </div>
       <nav className="dash-nav">
         <p className="dash-nav-section-label">Menu</p>
-        {NAV_ITEMS.map(renderLink)}
+        {NAV_ITEMS.map((item) => renderLink(item, NAV_TOUR_IDS[item.href]))}
 
         <p className="dash-nav-section-label">Growth</p>
-        {GROWTH_ITEMS.map(renderLink)}
+        <div className="dash-nav-group" data-tour="growth">
+          {GROWTH_ITEMS.map((item) => renderLink(item))}
+        </div>
 
         <p className="dash-nav-section-label">Team</p>
-        <div className="dash-team-disclosure">
+        <div className="dash-team-disclosure" data-tour="team">
           <div className={`dash-nav-link dash-team-header ${pathname === "/dashboard/team" ? "active" : ""}`}>
             <button
               type="button"
@@ -191,10 +201,10 @@ export function Sidebar({
             </div>
           )}
         </div>
-        {renderLink(CUSTOM_AGENTS_ITEM)}
+        {renderLink(CUSTOM_AGENTS_ITEM, "custom-agents")}
 
         <p className="dash-nav-section-label">Account</p>
-        {renderLink(SETTINGS_ITEM)}
+        {renderLink(SETTINGS_ITEM, "settings")}
       </nav>
       <div className="dash-sidebar-footer">
         <button type="button" className="dash-signout" onClick={onSignOut} title={collapsed ? "Sign out" : undefined}>

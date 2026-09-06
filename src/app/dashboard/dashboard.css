@@ -2009,3 +2009,351 @@
   font-size: 12.5px;
   padding: 8px 14px;
 }
+
+/* ---------------------------------------------------------------------
+   Per-page "?" HelpPanel — fixed top-right toggle + floating panel.
+   Adapted from Opsara's HelpPanel pattern onto this app's own Pattern E
+   dashboard tokens. No backdrop, no first-visit auto-show.
+   --------------------------------------------------------------------- */
+.dashboard-e .help-panel-btn {
+  position: fixed;
+  top: 18px;
+  right: 24px;
+  z-index: 45;
+  width: 34px;
+  height: 34px;
+  border-radius: 999px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--card);
+  border: 1px solid var(--border);
+  color: var(--accent-2);
+  cursor: pointer;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.1);
+  transition: transform 0.15s var(--ease), box-shadow 0.15s var(--ease);
+}
+
+.dashboard-e .help-panel-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.14);
+}
+
+@media (max-width: 860px) {
+  .dashboard-e .help-panel-btn {
+    top: 74px;
+    right: 16px;
+  }
+}
+
+.dashboard-e .help-panel {
+  position: fixed;
+  top: 60px;
+  right: 24px;
+  z-index: 46;
+  width: 320px;
+  max-width: calc(100vw - 32px);
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.16);
+  overflow: hidden;
+}
+
+@media (max-width: 860px) {
+  .dashboard-e .help-panel {
+    top: 116px;
+    right: 16px;
+  }
+}
+
+.dashboard-e .help-panel-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 12px 14px;
+  border-bottom: 1px solid var(--border);
+  background: var(--card-alt);
+}
+
+.dashboard-e .help-panel-title {
+  font-size: 13.5px;
+  font-weight: 700;
+  color: var(--text-dark);
+}
+
+.dashboard-e .help-panel-close {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  border-radius: 7px;
+  border: none;
+  background: transparent;
+  color: var(--muted);
+  cursor: pointer;
+}
+
+.dashboard-e .help-panel-close:hover {
+  color: var(--text-dark);
+}
+
+.dashboard-e .help-panel-body {
+  padding: 14px 16px;
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--body-c);
+  max-height: 60vh;
+  overflow-y: auto;
+}
+
+.dashboard-e .help-panel-body p {
+  margin: 0 0 10px;
+}
+
+.dashboard-e .help-panel-body p:last-child {
+  margin-bottom: 0;
+}
+
+/* ---------------------------------------------------------------------
+   Help Assistant widget — floating bottom-right toggle + two-tab panel
+   ("Ask a question" / "Browse guide"). Mounted once from DashboardShell,
+   never collides with a page's own top-right HelpPanel.
+   --------------------------------------------------------------------- */
+.dashboard-e .help-widget-btn {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 50;
+  width: 52px;
+  height: 52px;
+  border-radius: 999px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--dark);
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.28);
+  transition: transform 0.15s var(--ease), box-shadow 0.15s var(--ease);
+}
+
+.dashboard-e .help-widget-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 14px 34px rgba(0, 0, 0, 0.32);
+}
+
+@media (max-width: 860px) {
+  .dashboard-e .help-widget-btn {
+    bottom: 18px;
+    right: 18px;
+  }
+}
+
+.dashboard-e .help-widget-panel {
+  position: fixed;
+  bottom: 88px;
+  right: 24px;
+  z-index: 51;
+  width: 360px;
+  max-width: calc(100vw - 32px);
+  max-height: 72vh;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  box-shadow: 0 20px 48px rgba(0, 0, 0, 0.22);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+@media (max-width: 860px) {
+  .dashboard-e .help-widget-panel {
+    bottom: 78px;
+    right: 18px;
+  }
+}
+
+.dashboard-e .help-widget-tabs {
+  display: flex;
+  border-bottom: 1px solid var(--border);
+  flex-shrink: 0;
+}
+
+.dashboard-e .help-widget-tab {
+  flex: 1;
+  padding: 12px 10px;
+  font-size: 12.5px;
+  font-weight: 700;
+  text-align: center;
+  background: transparent;
+  border: none;
+  color: var(--muted);
+  cursor: pointer;
+  border-bottom: 2px solid transparent;
+}
+
+.dashboard-e .help-widget-tab.active {
+  color: var(--accent);
+  border-bottom-color: var(--accent);
+}
+
+.dashboard-e .help-widget-body {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.dashboard-e .help-widget-body .chat-shell {
+  height: 100%;
+  min-height: 0;
+  border: none;
+  border-radius: 0;
+}
+
+.dashboard-e .help-guide-list {
+  flex: 1;
+  overflow-y: auto;
+  padding: 14px 16px;
+}
+
+.dashboard-e .help-guide-tour-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 12px;
+  margin-bottom: 12px;
+  background: rgba(var(--accent-rgb), 0.06);
+  border: 1px solid rgba(var(--accent-rgb), 0.18);
+  border-radius: 10px;
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--text-dark);
+}
+
+.dashboard-e .help-guide-tour-btn {
+  margin-left: auto;
+  padding: 6px 12px;
+  font-size: 11.5px;
+}
+
+.dashboard-e .help-guide-topic {
+  border-bottom: 1px solid var(--border);
+}
+
+.dashboard-e .help-guide-topic:last-child {
+  border-bottom: none;
+}
+
+.dashboard-e .help-guide-topic-head {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 11px 2px;
+  background: none;
+  border: none;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-dark);
+  cursor: pointer;
+  text-align: left;
+}
+
+.dashboard-e .help-guide-chevron {
+  transition: transform 0.15s var(--ease);
+  flex-shrink: 0;
+  color: var(--muted);
+}
+
+.dashboard-e .help-guide-chevron.expanded {
+  transform: rotate(180deg);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dashboard-e .help-guide-chevron {
+    transition: none;
+  }
+}
+
+.dashboard-e .help-guide-topic-body {
+  padding: 0 2px 12px;
+  font-size: 12.5px;
+  line-height: 1.6;
+  color: var(--body-c);
+}
+
+.dashboard-e .help-guide-topic-body p {
+  margin: 0 0 8px;
+}
+
+.dashboard-e .help-guide-topic-body p:last-child {
+  margin-bottom: 0;
+}
+
+/* Sidebar nav-group wrapper (Growth section) — same 2px gap as .dash-nav's
+   direct-child links, used only where a data-tour attribute needs to wrap
+   multiple links without changing their visual spacing. */
+.dashboard-e .dash-nav-group {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+/* "New to the Platform?" dismissible card (dashboard home) */
+.dashboard-e .new-here-card {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  position: relative;
+  flex-wrap: wrap;
+}
+
+.dashboard-e .new-here-card h3 {
+  font-size: 14.5px;
+  margin: 0 0 3px;
+}
+
+.dashboard-e .new-here-card p {
+  margin: 0;
+  font-size: 12.5px;
+  color: var(--body-c);
+}
+
+.dashboard-e .new-here-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 11px;
+  background: rgba(var(--accent-rgb), 0.1);
+  color: var(--accent);
+  flex-shrink: 0;
+}
+
+.dashboard-e .new-here-dismiss {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  border-radius: 7px;
+  border: none;
+  background: transparent;
+  color: var(--muted);
+  cursor: pointer;
+}
+
+.dashboard-e .new-here-dismiss:hover {
+  color: var(--text-dark);
+}

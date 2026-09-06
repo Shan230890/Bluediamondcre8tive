@@ -2,6 +2,7 @@
 
 import { Suspense, useEffect, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
+import { HelpPanel } from "@/components/dashboard/HelpPanel";
 
 const CHANNEL_OPTIONS: { value: string; label: string }[] = [
   { value: "seo_content", label: "SEO / content" },
@@ -71,6 +72,13 @@ function NewProjectPageInner() {
 
   return (
     <div>
+      <HelpPanel title="New project">
+        <p>
+          The more specific your goals and audience, the better the starter task list Henry drafts.
+          Channels of interest just help the team pick relevant task categories, you can add or
+          remove tasks afterward on the board.
+        </p>
+      </HelpPanel>
       <div className="dash-page-head">
         <div>
           <h1>New project</h1>

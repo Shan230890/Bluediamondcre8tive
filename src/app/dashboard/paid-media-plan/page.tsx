@@ -3,6 +3,7 @@
 import { Suspense, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import { Megaphone } from "lucide-react";
+import { HelpPanel } from "@/components/dashboard/HelpPanel";
 
 const CHANNEL_OPTIONS: { value: string; label: string }[] = [
   { value: "google", label: "Google" },
@@ -70,6 +71,13 @@ function PaidMediaPlanInner() {
 
   return (
     <div>
+      <HelpPanel title="Paid Media Plan">
+        <p>
+          Pick a total budget, channels, and a goal. Henry produces creative direction and a
+          recommended budget split across the channels you picked.
+        </p>
+        <p>This is planning output only, Blue Diamond Cre8tive never manages a live ad account or spends your money, execution sits with you or your media buyer.</p>
+      </HelpPanel>
       <div className="dash-page-head">
         <div>
           <h1>Paid Media Plan</h1>

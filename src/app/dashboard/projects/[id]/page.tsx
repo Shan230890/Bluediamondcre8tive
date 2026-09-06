@@ -3,6 +3,7 @@
 import { useEffect, useState, use as usePromise } from "react";
 import Link from "next/link";
 import { TaskBoard } from "@/components/dashboard/TaskBoard";
+import { HelpPanel } from "@/components/dashboard/HelpPanel";
 
 type ProjectStatus = "discovery" | "active" | "review" | "complete";
 
@@ -77,6 +78,14 @@ export default function ProjectDetailPage({ params }: { params: Promise<{ id: st
 
   return (
     <div>
+      <HelpPanel title="Project detail">
+        <p>
+          The brief you wrote when you created this project, plus its task board below and shortcuts
+          to generate a Paid Media Plan, draft Outbound messaging, or run an AI Visibility Report
+          scoped to this project.
+        </p>
+        <p>Change the status dropdown as the project moves from discovery through to complete.</p>
+      </HelpPanel>
       <div className="dash-page-head">
         <div>
           <h1>{project.name}</h1>

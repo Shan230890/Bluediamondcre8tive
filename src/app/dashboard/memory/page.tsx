@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { History, ChevronDown, ChevronUp } from "lucide-react";
+import { HelpPanel } from "@/components/dashboard/HelpPanel";
 import { PERSONAS, type PersonaSlug } from "@/lib/personas/blue-diamond";
 import { PersonaAvatar } from "@/components/dashboard/PersonaAvatar";
 import { FormattedAiText } from "@/lib/format/render-ai-text";
@@ -71,6 +72,13 @@ export default function ExecutionMemoryPage() {
 
   return (
     <div>
+      <HelpPanel title="Execution Memory">
+        <p>
+          Every task your team has closed, done or dismissed, kept here with the AI&apos;s reply and any
+          outcome note you add.
+        </p>
+        <p>It exists so the next brief can build on what already happened instead of starting from zero.</p>
+      </HelpPanel>
       <div className="dash-page-head">
         <div>
           <h1>Execution Memory</h1>

@@ -3,6 +3,7 @@
 import { Suspense, useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import { TaskBoard } from "@/components/dashboard/TaskBoard";
+import { HelpPanel } from "@/components/dashboard/HelpPanel";
 import { getTemplate } from "@/lib/task-templates/catalog";
 import type { PersonaSlug } from "@/lib/personas/blue-diamond";
 
@@ -65,6 +66,14 @@ function TasksPageInner() {
 
   return (
     <div>
+      <HelpPanel title="Tasks">
+        <p>
+          Your kanban board: open, done, and dismissed tasks. Assign a task to one of your six
+          Cre8tive Team personas (or a custom agent) and it runs the work and posts a reply for you
+          to review.
+        </p>
+        <p>Arrived here from a template? Its title and description are already prefilled below, edit before assigning.</p>
+      </HelpPanel>
       <div className="dash-page-head">
         <div>
           <h1>Tasks</h1>

@@ -5,6 +5,8 @@ import { useRouter } from "next/navigation";
 import { PanelLeftOpen } from "lucide-react";
 import { createClient } from "@/lib/supabase/client";
 import { Sidebar } from "@/components/dashboard/Sidebar";
+import { HelpGuideWidget } from "@/components/dashboard/HelpGuideWidget";
+import { AppTour } from "@/components/dashboard/AppTour";
 import "@/app/dashboard/dashboard.css";
 
 const COLLAPSED_KEY = "bdc-sidebar-collapsed";
@@ -122,6 +124,8 @@ export function DashboardShell({
           {children}
         </main>
       </div>
+      <HelpGuideWidget />
+      <AppTour />
     </div>
   );
 }

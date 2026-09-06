@@ -61,6 +61,7 @@ export function LandingFooter() {
             <h4>Company</h4>
             <ul>
               <li><Link href="/pricing" className="bdc-footer-link">Pricing</Link></li>
+              <li><Link href="/roadmap" className="bdc-footer-link">Roadmap</Link></li>
               <li><Link href="/contact" className="bdc-footer-link">Contact</Link></li>
               <li><Link href="/login" className="bdc-footer-link">Log in</Link></li>
               <li><Link href="/signup" className="bdc-footer-link">Sign up</Link></li>

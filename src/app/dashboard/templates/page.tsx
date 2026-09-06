@@ -3,6 +3,7 @@
 import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import { Search, LayoutTemplate, Trash2, Plus } from "lucide-react";
+import { HelpPanel } from "@/components/dashboard/HelpPanel";
 import { TASK_TEMPLATES, TEMPLATE_CATEGORIES, type TemplateCategory } from "@/lib/task-templates/catalog";
 import { PERSONA_SLUGS, PERSONAS, type PersonaSlug } from "@/lib/personas/blue-diamond";
 import { PersonaAvatar } from "@/components/dashboard/PersonaAvatar";
@@ -103,6 +104,13 @@ export default function TemplatesPage() {
 
   return (
     <div>
+      <HelpPanel title="Templates">
+        <p>
+          A curated library of ready-made task briefs across ten categories. Click &quot;Use this
+          template&quot; to prefill the new-task form on Tasks, then edit it before assigning.
+        </p>
+        <p>Save your own custom templates below for work you repeat often, they show up alongside the curated ones.</p>
+      </HelpPanel>
       <div className="dash-page-head">
         <div>
           <h1>Templates</h1>

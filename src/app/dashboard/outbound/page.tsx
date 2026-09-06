@@ -3,6 +3,7 @@
 import { Suspense, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import { Send, Copy, Check } from "lucide-react";
+import { HelpPanel } from "@/components/dashboard/HelpPanel";
 
 interface OutboundDeliverable {
   id: string;
@@ -72,6 +73,13 @@ function OutboundPageInner() {
 
   return (
     <div>
+      <HelpPanel title="Outbound Drafts">
+        <p>
+          Describe your ICP (target title, industry, company size, pain point) and Ray drafts cold
+          email and LinkedIn opener copy using placeholder tokens like [First name] and [Company].
+        </p>
+        <p>These are drafts only, there is no real contact sourcing, scraping, or automated sending, you personalize and send everything yourself.</p>
+      </HelpPanel>
       <div className="dash-page-head">
         <div>
           <h1>Outbound Drafts</h1>

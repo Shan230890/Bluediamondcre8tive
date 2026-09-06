@@ -3,10 +3,19 @@ import { ArrowRight, Plus } from "lucide-react";
 import { PERSONA_SLUGS, PERSONAS } from "@/lib/personas/blue-diamond";
 import { TiltCard } from "@/components/motion/TiltCard";
 import { PersonaAvatar } from "@/components/dashboard/PersonaAvatar";
+import { HelpPanel } from "@/components/dashboard/HelpPanel";
 
 export default function TeamPage() {
   return (
     <div>
+      <HelpPanel title="Your Cre8tive Team">
+        <p>
+          Six built-in AI personas, each grounded in a real role: Henry (CMO), Harvey (Legal), Ray
+          (Copywriter), Anna (Graphic Designer), Scott (Video Editor & Podcast Producer), and Barry
+          (App Designer, Web Builder & Coder).
+        </p>
+        <p>Click a card to chat directly, or assign them tasks from the Tasks board.</p>
+      </HelpPanel>
       <div className="dash-page-head">
         <h1>Your Cre8tive Team</h1>
         <p>Chat with the AI personas behind Blue Diamond Cre8tive&apos;s marketing team.</p>

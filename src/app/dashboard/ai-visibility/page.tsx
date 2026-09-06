@@ -3,6 +3,7 @@
 import { Suspense, useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import { Radar } from "lucide-react";
+import { HelpPanel } from "@/components/dashboard/HelpPanel";
 
 interface GeoAeoProbe {
   probe: string;
@@ -136,6 +137,14 @@ function AiVisibilityPageInner() {
 
   return (
     <div>
+      <HelpPanel title="AI Visibility Report">
+        <p>
+          A simulation of how a brand might show up in AI-assistant answers, modeled against
+          ChatGPT-style, Claude-style, Perplexity-style, and Google AI Overviews-style judges. This is
+          not a live query against those real products.
+        </p>
+        <p>Enter your brand, category, and up to three named competitors to get a scored comparison and sample probe responses.</p>
+      </HelpPanel>
       <div className="dash-page-head">
         <div>
           <h1>AI Visibility Report</h1>
