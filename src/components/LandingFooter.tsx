@@ -37,7 +37,7 @@ export function LandingFooter() {
             <h4>Silos</h4>
             <ul>
               <li><Link href="/services" className="bdc-footer-link">Services</Link></li>
-              <li><Link href="/tools" className="bdc-footer-link">Tools</Link></li>
+              <li><Link href="/tools" className="bdc-footer-link">Platform</Link></li>
               <li><Link href="/work" className="bdc-footer-link">Work</Link></li>
             </ul>
           </div>

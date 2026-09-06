@@ -9,7 +9,7 @@ import { useRequestModal } from "./RequestModalContext";
 
 const LINKS = [
   { href: "/services", label: "Services" },
-  { href: "/tools", label: "Tools" },
+  { href: "/tools", label: "Platform" },
   { href: "/tools/score", label: "Cre8tive Score (free)" },
   { href: "/tools/vault", label: "Vault preview" },
   { href: "/work", label: "Work" },

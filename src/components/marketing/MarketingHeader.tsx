@@ -37,7 +37,7 @@ export function MarketingHeader() {
         {!condensed && (
           <nav className="bdc-header-nav">
             <Link href="/services">Services</Link>
-            <Link href="/tools">Tools</Link>
+            <Link href="/tools">Platform</Link>
             <Link href="/work">Work</Link>
             <Link href="/pricing">Pricing</Link>
           </nav>

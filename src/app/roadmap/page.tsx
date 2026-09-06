@@ -4,6 +4,7 @@ import { MarketingShell } from "@/components/marketing/MarketingShell";
 import { LineReveal } from "@/components/marketing/TextReveal";
 import { Pill, Eyebrow } from "@/components/marketing/Pill";
 import { SectionBackground } from "@/components/marketing/SectionBackground";
+import { RoadmapFlow } from "@/components/marketing/RoadmapFlow";
 import "../landing-e.css";
 
 export const metadata: Metadata = {
@@ -23,21 +24,25 @@ const STEPS = [
   {
     num: "01",
     title: "Brief",
+    short: "Tell your team what you're trying to do, once.",
     body: "You tell your team what you're trying to do once: your goals, your industry, and who you're trying to reach, plus which channels you care about. That single brief becomes a project, and everything that follows works from it. Starting from a Template is the fastest way in, pick a ready-made brief close to what you need and adjust it instead of writing from a blank page.",
   },
   {
     num: "02",
     title: "AI drafts starter tasks",
+    short: "Your team turns the brief into a real task list.",
     body: "Your six-person AI team reads the brief and turns it into a starter task list, ready to assign. Nothing ships from this step alone, it's a first draft of the work worth doing, scoped to your actual goals and audience rather than a generic checklist.",
   },
   {
     num: "03",
     title: "Task board",
+    short: "Each task gets assigned to the right specialist.",
     body: "Each task moves across a kanban board from open to done. You assign a task to whichever specialist fits it, a Chief Marketing Officer, a Legal Representative, a Copywriter, a Graphic Designer, a Video Editor & Podcast Producer, or an App Designer, Web Builder & Coder, and that specialist does the work and posts a reply for you to review before you close it out.",
   },
   {
     num: "04",
     title: "Execution memory",
+    short: "Every closed task compounds into the next brief.",
     body: "Every task you close, whether it's done or dismissed, keeps its result and any note you add about the outcome. The next brief you write builds on that record instead of starting from zero, so your team's context compounds project over project instead of resetting every time.",
   },
 ];
@@ -64,17 +69,7 @@ export default function RoadmapPage() {
         </section>
 
         <section className="section section-bg">
-          <div className="grid grid-2">
-            {STEPS.map((step) => (
-              <div className="card reveal" key={step.num}>
-                <span className="icon-badge" style={{ color: "var(--text-dark)", fontWeight: 700 }} aria-hidden="true">
-                  {step.num}
-                </span>
-                <h3>{step.title}</h3>
-                <p>{step.body}</p>
-              </div>
-            ))}
-          </div>
+          <RoadmapFlow steps={STEPS} />
         </section>
 
         <section className="section section-bg-alt">

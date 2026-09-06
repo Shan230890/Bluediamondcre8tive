@@ -3296,3 +3296,174 @@
     white-space: normal;
   }
 }
+
+/* ---------------------------------------------------------------------
+   RoadmapFlow — interactive step flow (/roadmap), replacing a static card
+   grid: a connected line of numbered nodes above a single crossfading
+   detail panel. Every colour traces to --accent-rgb / existing tokens.
+   --------------------------------------------------------------------- */
+.landing-e .bdc-flow {
+  max-width: 900px;
+  margin: 0 auto;
+}
+.landing-e .bdc-flow-track {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 40px;
+}
+.landing-e .bdc-flow-line {
+  position: absolute;
+  top: 19px;
+  left: 19px;
+  right: 19px;
+  height: 2px;
+  background: var(--border);
+  z-index: 0;
+}
+.landing-e .bdc-flow-line-fill {
+  height: 100%;
+  background: var(--accent);
+  transition: width 0.5s var(--ease, ease);
+}
+@media (prefers-reduced-motion: reduce) {
+  .landing-e .bdc-flow-line-fill {
+    transition: none;
+  }
+}
+.landing-e .bdc-flow-node {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  flex: 1;
+}
+.landing-e .bdc-flow-node-num {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 999px;
+  background: var(--card);
+  border: 2px solid var(--border);
+  color: var(--muted);
+  font-weight: 700;
+  font-size: 13px;
+  transition: border-color 0.2s var(--ease, ease), color 0.2s var(--ease, ease), background 0.2s var(--ease, ease);
+}
+.landing-e .bdc-flow-node.done .bdc-flow-node-num {
+  border-color: var(--accent);
+  color: var(--accent);
+  background: var(--card);
+}
+.landing-e .bdc-flow-node.active .bdc-flow-node-num {
+  border-color: var(--accent);
+  background: var(--accent);
+  color: #fff;
+}
+.landing-e .bdc-flow-node-label {
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--muted);
+  text-align: center;
+  max-width: 110px;
+  transition: color 0.2s var(--ease, ease);
+}
+.landing-e .bdc-flow-node.active .bdc-flow-node-label {
+  color: var(--text-dark);
+}
+@media (max-width: 640px) {
+  .landing-e .bdc-flow-node-label {
+    display: none;
+  }
+}
+
+.landing-e .bdc-flow-panel-wrap {
+  position: relative;
+  min-height: 220px;
+}
+.landing-e .bdc-flow-panel {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(6px);
+  transition: opacity 0.35s var(--ease, ease), transform 0.35s var(--ease, ease);
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: clamp(24px, 4vw, 40px);
+}
+.landing-e .bdc-flow-panel.active {
+  position: relative;
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+@media (prefers-reduced-motion: reduce) {
+  .landing-e .bdc-flow-panel {
+    transition: none;
+  }
+}
+.landing-e .bdc-flow-panel-eyebrow {
+  display: block;
+  font-size: 11.5px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--accent);
+  margin-bottom: 10px;
+}
+.landing-e .bdc-flow-panel h3 {
+  font-size: clamp(20px, 3vw, 26px);
+  margin-bottom: 10px;
+}
+.landing-e .bdc-flow-panel-short {
+  font-weight: 600;
+  color: var(--text-dark);
+  margin-bottom: 10px;
+}
+.landing-e .bdc-flow-panel p {
+  color: var(--body-c);
+  line-height: 1.65;
+}
+
+.landing-e .bdc-flow-dots {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 24px;
+}
+.landing-e .bdc-flow-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  background: var(--border);
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  transition: background 0.2s var(--ease, ease), width 0.2s var(--ease, ease);
+}
+.landing-e .bdc-flow-dot.active {
+  background: var(--accent);
+  width: 22px;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
