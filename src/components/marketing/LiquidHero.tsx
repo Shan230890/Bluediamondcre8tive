@@ -3,17 +3,22 @@
 import { useEffect, useRef, useState } from "react";
 import { useReducedMotion } from "./useReducedMotion";
 
-const FADE_EASE = 0.07;
+const BRUSH_RADIUS = 340;
+const DECAY = 0.012;
+const IDLE_CLEAR_FRAMES = 160;
 const DPR_CAP = 2;
 
 /**
  * The hero's signature liquid-reveal: a base "before" layer (scattered,
  * grayscale abstract chaos -- scattered tabs / spreadsheets / disconnected
- * tools) sits underneath at all times. Hovering anywhere in the hero fades
- * in an "after" layer (a clean orange-accented grid/dashboard composition)
- * across the ENTIRE hero at once, not just a localized brush trail around
- * the cursor -- moving the mouse away fades it back out. Nothing here is a
- * photo -- both layers are drawn shapes, true to Blue Diamond Cre8tive
+ * tools) sits underneath at all times. A canvas paints a soft brush trail
+ * along the cursor that reveals an "after" layer (a clean orange-accented
+ * grid/dashboard composition) only where the pointer has been, with a
+ * radial-gradient brush and per-frame decay so the reveal dissolves once the
+ * pointer stops. The brush is deliberately large (BRUSH_RADIUS) so a normal
+ * sweep of the cursor covers most of the hero's background rather than a
+ * tight little circle, and decays slowly so the trail lingers. Nothing here
+ * is a photo -- both layers are drawn shapes, true to Blue Diamond Cre8tive
  * having no photography asset library.
  *
  * On prefers-reduced-motion or touch, the canvas never mounts: the visitor
@@ -23,6 +28,7 @@ export function LiquidHero() {
   const reduced = useReducedMotion();
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const artRef = useRef<HTMLCanvasElement | null>(null);
+  const maskRef = useRef<HTMLCanvasElement | null>(null);
   const [staticFallback, setStaticFallback] = useState(false);
 
   useEffect(() => {
@@ -52,6 +58,10 @@ export function LiquidHero() {
     const art = document.createElement("canvas");
     const artCtx = art.getContext("2d");
     artRef.current = art;
+
+    const mask = document.createElement("canvas");
+    const maskCtx = mask.getContext("2d");
+    maskRef.current = mask;
 
     // Read the design token at runtime rather than hardcoding a duplicate
     // rgb triplet — every accent colour drawn on the canvas traces back to
@@ -106,7 +116,7 @@ export function LiquidHero() {
       const rect = wrap!.getBoundingClientRect();
       width = rect.width;
       height = rect.height;
-      for (const c of [canvas, art]) {
+      for (const c of [canvas, art, mask]) {
         if (!c) continue;
         c.width = width * dpr;
         c.height = height * dpr;
@@ -115,37 +125,61 @@ export function LiquidHero() {
       }
       ctx?.setTransform(dpr, 0, 0, dpr, 0, 0);
       artCtx?.setTransform(dpr, 0, 0, dpr, 0, 0);
+      maskCtx?.setTransform(dpr, 0, 0, dpr, 0, 0);
       drawAfterArt();
     }
 
-    // Whole-hero hover fade: any pointer movement inside the hero counts as
-    // "hovering" (not just directly over the canvas), so moving the mouse
-    // anywhere across the background highlights the entire after-layer at
-    // once rather than tracing a small brush trail behind the cursor.
-    let hovering = false;
-    let opacity = 0;
+    let pointerX = -9999;
+    let pointerY = -9999;
+    let idleFrames = IDLE_CLEAR_FRAMES;
+    let lastX = -9999;
+    let lastY = -9999;
 
-    function onPointerMove() {
-      hovering = true;
+    function onPointerMove(e: PointerEvent) {
+      const rect = wrap!.getBoundingClientRect();
+      pointerX = e.clientX - rect.left;
+      pointerY = e.clientY - rect.top;
+      idleFrames = 0;
     }
     function onPointerLeave() {
-      hovering = false;
+      pointerX = -9999;
+      pointerY = -9999;
     }
 
     let raf = 0;
     function frame() {
-      if (!ctx) return;
+      if (!maskCtx || !ctx) return;
 
-      const target = hovering ? 1 : 0;
-      opacity += (target - opacity) * FADE_EASE;
-      if (Math.abs(target - opacity) < 0.002) opacity = target;
+      const moved = Math.hypot(pointerX - lastX, pointerY - lastY) > 0.5;
+      if (moved && pointerX > -1000) {
+        const grad = maskCtx.createRadialGradient(pointerX, pointerY, 0, pointerX, pointerY, BRUSH_RADIUS);
+        grad.addColorStop(0, "rgba(255,255,255,1)");
+        grad.addColorStop(0.6, "rgba(255,255,255,0.8)");
+        grad.addColorStop(1, "rgba(255,255,255,0)");
+        maskCtx.globalCompositeOperation = "source-over";
+        maskCtx.fillStyle = grad;
+        maskCtx.beginPath();
+        maskCtx.arc(pointerX, pointerY, BRUSH_RADIUS, 0, Math.PI * 2);
+        maskCtx.fill();
+        lastX = pointerX;
+        lastY = pointerY;
+      }
+
+      idleFrames += 1;
+      const fadeAmount = idleFrames > 40 ? DECAY * 3 : DECAY;
+      maskCtx.globalCompositeOperation = "destination-out";
+      maskCtx.fillStyle = `rgba(0,0,0,${fadeAmount})`;
+      maskCtx.fillRect(0, 0, width, height);
+
+      if (idleFrames > IDLE_CLEAR_FRAMES) {
+        maskCtx.clearRect(0, 0, width, height);
+      }
 
       ctx.clearRect(0, 0, width, height);
-      if (opacity > 0.001) {
-        ctx.globalAlpha = opacity;
-        ctx.drawImage(art, 0, 0, width, height);
-        ctx.globalAlpha = 1;
-      }
+      ctx.drawImage(art, 0, 0, width, height);
+      ctx.globalCompositeOperation = "destination-in";
+      ctx.drawImage(mask, 0, 0, width, height);
+      ctx.globalCompositeOperation = "source-over";
 
       raf = requestAnimationFrame(frame);
     }
@@ -153,7 +187,6 @@ export function LiquidHero() {
     resize();
     window.addEventListener("resize", resize);
     wrap.addEventListener("pointermove", onPointerMove);
-    wrap.addEventListener("pointerenter", onPointerMove);
     wrap.addEventListener("pointerleave", onPointerLeave);
     raf = requestAnimationFrame(frame);
 
@@ -161,7 +194,6 @@ export function LiquidHero() {
       cancelAnimationFrame(raf);
       window.removeEventListener("resize", resize);
       wrap.removeEventListener("pointermove", onPointerMove);
-      wrap.removeEventListener("pointerenter", onPointerMove);
       wrap.removeEventListener("pointerleave", onPointerLeave);
     };
   }, [reduced]);
