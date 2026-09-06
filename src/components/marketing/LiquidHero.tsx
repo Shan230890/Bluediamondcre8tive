@@ -3,9 +3,9 @@
 import { useEffect, useRef, useState } from "react";
 import { useReducedMotion } from "./useReducedMotion";
 
-const BRUSH_RADIUS = 340;
-const DECAY = 0.012;
-const IDLE_CLEAR_FRAMES = 160;
+const BRUSH_RADIUS = 145;
+const DECAY = 0.008;
+const IDLE_CLEAR_FRAMES = 240;
 const DPR_CAP = 2;
 
 /**
@@ -15,9 +15,10 @@ const DPR_CAP = 2;
  * along the cursor that reveals an "after" layer (a clean orange-accented
  * grid/dashboard composition) only where the pointer has been, with a
  * radial-gradient brush and per-frame decay so the reveal dissolves once the
- * pointer stops. The brush is deliberately large (BRUSH_RADIUS) so a normal
- * sweep of the cursor covers most of the hero's background rather than a
- * tight little circle, and decays slowly so the trail lingers. Nothing here
+ * pointer stops. The brush itself is the original size (BRUSH_RADIUS) --
+ * only the decay is slower and the idle-clear window longer, so a normal
+ * sweep of the cursor leaves a trail that lingers and accumulates over more
+ * of the hero's background instead of a bigger single circle. Nothing here
  * is a photo -- both layers are drawn shapes, true to Blue Diamond Cre8tive
  * having no photography asset library.
  *

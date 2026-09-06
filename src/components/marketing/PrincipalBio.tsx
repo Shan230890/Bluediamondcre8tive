@@ -43,7 +43,7 @@ export function PrincipalBio() {
           rule: every hour spent on it had to earn its place against revenue and efficiency. She ran
           that marketing herself, personally, on Claude, ChatGPT, DeepSeek, and a working stack of
           marketing-specific AI tools. That discipline is what turned marketing into a core skill for
-          the business, not a function she delegated and hoped worked.
+          the business.
         </p>
         <p className="bdc-principal-copy">
           It worked on her own business first. That is what led her to start running the same system
@@ -51,7 +51,7 @@ export function PrincipalBio() {
           to client marketing instead of just her own. Blue Diamond Cre8tive is that system, extended.
         </p>
         <p className="bdc-principal-copy">
-          Before co-founding Blue Diamond Capital in 2023, a boutique property advisory serving
+          Before co-founding Blue Diamond Capital in 2022, a boutique property advisory serving
           high-net-worth clients and luxury projects across Mauritius and South Africa, she spent years
           managing commercial property portfolios and running property advisory work. She holds a BSc
           Honours in Property Studies from the University of Cape Town, awarded cum laude.

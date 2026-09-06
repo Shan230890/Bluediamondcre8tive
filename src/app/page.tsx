@@ -109,13 +109,15 @@ export default function HomePage() {
             <Eyebrow>Platform</Eyebrow>
             <LineReveal as="h2" lines={["A full marketing team,", "that you run yourself."]} />
             <p>
-              No onboarding call, no sales conversation. Sign up and get the same AI-native
-              marketing team behind our Services silo, copywriting, design, video, legal, and code,
-              now covering SEO and AI-search strategy, paid-media creative and budget planning,
-              email lifecycle copy, and signal-based outbound drafts, working for you on a project
-              workflow and task board you control. Plus the Competitor Intelligence Vault, a free
-              Cre8tive Score, a deeper AI Visibility Report, and execution memory that keeps a
-              record of what worked.
+              No onboarding call, no sales conversation, just sign up. You get the same AI-native
+              team behind our Services silo: copywriting, design, video, legal, and code. Now
+              expanded with SEO and AI-search strategy, paid-media creative and budget planning,
+              email lifecycle copy, and signal-based outbound drafts. All of it runs through a
+              project workflow and task board you control.
+            </p>
+            <p>
+              Plus the Competitor Intelligence Vault, a free Cre8tive Score, a deeper AI Visibility
+              Report, and execution memory that remembers what worked.
             </p>
           </div>
 

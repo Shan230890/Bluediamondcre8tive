@@ -1051,7 +1051,8 @@
   display: flex;
   align-items: baseline;
   gap: 16px;
-  font-size: clamp(28px, 6vw, 52px);
+  /* 20% smaller than the original clamp(28px, 6vw, 52px) at every step. */
+  font-size: clamp(22.4px, 4.8vw, 41.6px);
   font-weight: 700;
   letter-spacing: -0.02em;
   color: rgba(255, 255, 255, 0.85);
@@ -2672,6 +2673,10 @@
 .landing-e .bdc-ticker-caption {
   max-width: 1120px;
   margin: 0 auto;
+  /* Lives inside .bdc-ticker-wrap (dark background) so this pale, low-
+     opacity white text is actually legible -- it used to sit as a sibling
+     above the dark wrap, on the page's light background, invisible. Top
+     spacing now comes from the wrap's own symmetric padding below. */
   padding: 0 24px 10px;
   font-size: 11.5px;
   color: rgba(255, 255, 255, 0.4);
@@ -2680,7 +2685,9 @@
 .landing-e .bdc-ticker-wrap {
   background: var(--dark);
   overflow: hidden;
-  padding: 0 0 18px;
+  /* Equal top/bottom padding so the pill row sits centered in the dark
+     box instead of flush against the top edge. */
+  padding: 18px 0;
   position: relative;
 }
 .landing-e .bdc-ticker-wrap::before,

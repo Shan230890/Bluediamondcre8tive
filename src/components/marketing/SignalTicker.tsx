@@ -19,8 +19,8 @@ export function SignalTicker() {
   const loop = [...CHIPS, ...CHIPS];
   return (
     <div>
-      <p className="bdc-ticker-caption">Illustrative product activity, not a live feed</p>
       <div className="bdc-ticker-wrap">
+        <p className="bdc-ticker-caption">Illustrative product activity, not a live feed</p>
         <div className="bdc-ticker-track">
           {loop.map((chip, i) => (
             <div className="bdc-ticker-chip" key={i}>

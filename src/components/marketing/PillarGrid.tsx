@@ -14,12 +14,12 @@ const PILLARS: Pillar[] = [
   {
     icon: ShieldCheck,
     title: "Principal-reviewed",
-    body: "Nothing ships on a Services engagement until our principal signs off on strategy and quality, every time, not just on request.",
+    body: "Nothing ships on a Services engagement until our principal signs off on strategy and quality - every time, not only on request.",
   },
   {
     icon: Users2,
     title: "AI product team",
-    body: "Copy, design, and campaign work move through an AI-assisted production pipeline staffed by a real team, not a single prompt box.",
+    body: "Copy, design, and campaign work move through an AI-assisted production pipeline staffed by a pre-built and tested team, not a single prompt box.",
   },
   {
     icon: Scale,
@@ -29,7 +29,7 @@ const PILLARS: Pillar[] = [
   {
     icon: Radar,
     title: "Real client context",
-    body: "Your dashboard, deliverables, and Vault data all live in one account, so every recommendation is grounded in your actual brand, not a generic template.",
+    body: "Your dashboard, deliverables, and Vault data all live in one account, so every recommendation is grounded in your actual brand instead of a generic template.",
   },
 ];
 
