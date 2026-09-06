@@ -42,7 +42,7 @@ export default function HomePage() {
                 as="h1"
                 gateOnReady
                 className="bdc-hero-h1"
-                lines={["Marketing that runs itself,", "built by a team that doesn't", "sleep on your deadlines."]}
+                lines={["Hire the output.", "Skip the headcount."]}
               />
               <p className="bdc-hero-lead">
                 Blue Diamond Cre8tive is two different ways to work with us: a done-for-you,
