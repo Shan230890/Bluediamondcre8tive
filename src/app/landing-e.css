@@ -242,12 +242,14 @@
 .landing-e .hero-bg span {
   position: absolute;
   border-radius: 999px;
-  filter: blur(80px);
+  filter: blur(110px);
   will-change: transform, opacity;
-  width: 560px;
-  height: 400px;
-  background: radial-gradient(closest-side, rgba(var(--accent-rgb), 0.28), rgba(var(--accent-rgb), 0) 70%);
-  top: -180px;
+  /* Stretched to wash across the full hero width instead of reading as one
+     small centered blob -- still a soft radial fade, just spread wider. */
+  width: min(1400px, 150vw);
+  height: 640px;
+  background: radial-gradient(closest-side, rgba(var(--accent-rgb), 0.24), rgba(var(--accent-rgb), 0) 72%);
+  top: -260px;
   left: 50%;
   transform: translateX(-50%);
   animation: landing-e-breathe 7s var(--ease) infinite;
@@ -639,7 +641,10 @@
    Footer
    --------------------------------------------------------------------- */
 .landing-e .fs-footer {
-  background: var(--dark);
+  /* --dark-2, not --dark: the LogoMark surface="dark" lockup file has its
+     background baked in at --dark-2, so this must match exactly or the
+     logo shows a faint mismatched rectangle instead of blending in. */
+  background: var(--dark-2);
   color: rgba(255, 255, 255, 0.72);
   padding: 56px 24px 32px;
 }
@@ -989,7 +994,10 @@
   position: fixed;
   inset: 0;
   z-index: 200;
-  background: var(--dark, #101820);
+  /* --dark-2, not --dark: the LogoMark surface="dark" lockup file has its
+     background baked in at --dark-2, so this must match exactly or the
+     logo shows a faint mismatched rectangle instead of blending in. */
+  background: var(--dark-2, #0f2437);
   color: #fff;
   display: flex;
   flex-direction: column;
@@ -1382,7 +1390,10 @@
   position: absolute;
   inset: 0;
   z-index: 1;
-  background: linear-gradient(180deg, rgba(233, 233, 233, 0.55) 0%, rgba(233, 233, 233, 0.88) 60%, var(--bg) 100%);
+  /* Was fading the liquid-reveal canvas out almost entirely by 60% down the
+     hero, confining it to a thin band near the top. Pushed the heavy-fade
+     point later so the effect reads across nearly the full hero height. */
+  background: linear-gradient(180deg, rgba(233, 233, 233, 0.4) 0%, rgba(233, 233, 233, 0.6) 55%, rgba(233, 233, 233, 0.82) 88%, var(--bg) 100%);
   pointer-events: none;
 }
 .landing-e .bdc-hero-watermark {
@@ -3241,6 +3252,16 @@
   text-align: center;
   color: var(--body-c);
   border-bottom: 1px solid var(--border);
+}
+/* Centering a td with text-align only aligns horizontally, and an inline
+   SVG check icon has a different baseline than a plain dash character, so
+   the two drifted out of vertical alignment with each other row to row.
+   This wrapper centers both axes identically regardless of what's inside. */
+.landing-e .bdc-compare-cell-inner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 20px;
 }
 .landing-e .bdc-compare-table thead th {
   font-size: 12px;

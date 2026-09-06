@@ -92,7 +92,10 @@
 .dashboard-e .dash-sidebar {
   width: 240px;
   flex-shrink: 0;
-  background: var(--dark);
+  /* --dark-2, not --dark: the LogoMark surface="dark" icon file has its
+     background baked in at --dark-2, so this must match exactly or the
+     logo shows a faint mismatched rectangle instead of blending in. */
+  background: var(--dark-2);
   color: var(--text-light);
   display: flex;
   flex-direction: column;

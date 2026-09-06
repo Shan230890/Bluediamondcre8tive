@@ -42,11 +42,6 @@ const FAQ_ENTRIES = [
       "Yes. They run on separate billing since they're different products, so you can run one, both, or move between them as your needs change.",
   },
   {
-    question: "Is the Academy available?",
-    answer:
-      "The Academy is paused, not gone. We pulled it while we focus on Services and the Platform. Reach out through our contact page and we'll notify you when it reopens.",
-  },
-  {
     question: "What if I'm not ready to commit to either?",
     answer: (
       <>
@@ -221,17 +216,23 @@ const platformComparison: { feature: string; values: [string, string, string] | 
 
 function ComparisonCell({ value }: { value: boolean | string }) {
   if (typeof value === "string") {
-    return <td className="bdc-compare-cell">{value}</td>;
+    return (
+      <td className="bdc-compare-cell">
+        <span className="bdc-compare-cell-inner">{value}</span>
+      </td>
+    );
   }
   return (
     <td className="bdc-compare-cell">
-      {value ? (
-        <Check size={16} className="bdc-compare-yes" aria-label="Included" />
-      ) : (
-        <span className="bdc-compare-no" aria-label="Not included">
-          —
-        </span>
-      )}
+      <span className="bdc-compare-cell-inner">
+        {value ? (
+          <Check size={16} className="bdc-compare-yes" aria-label="Included" />
+        ) : (
+          <span className="bdc-compare-no" aria-label="Not included">
+            &ndash;
+          </span>
+        )}
+      </span>
     </td>
   );
 }
